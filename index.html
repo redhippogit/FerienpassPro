@@ -5,202 +5,187 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>goSNOB.ai × Basler Ferienpass — Offerte 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Neue+Haas+Grotesk+Display+Pro:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ── TOKENS ── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700;900&family=DM+Mono:wght@400;500&display=swap');
+
 :root {
-  --bg: #ffffff;
-  --ink: #0a0a0a;
-  --mag: #cc00ff;
-  --grey: #8a8a8a;
-  --light: #f0f0f0;
-  --border: #e0e0e0;
-  --mono: 'DM Mono', 'Courier New', monospace;
-  --sans: 'DM Sans', Helvetica, Arial, sans-serif;
+–bg: #ffffff;
+–ink: #0a0a0a;
+–mag: #cc00ff;
+–grey: #888888;
+–light: #f2f2f2;
+–border: #e0e0e0;
 }
 
-@import url(‘https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap’);
+- { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+  font-family: ‘DM Sans’, -apple-system, BlinkMacSystemFont, ‘Helvetica Neue’, Arial, sans-serif;
+  background: var(–bg);
+  color: var(–ink);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 72px;
+  }
+  /* ─── MONO ─── */
+  .mono {
+  font-family: ‘DM Mono’, ‘SF Mono’, ‘Courier New’, monospace;
+  }
+  /* ─── BOTTOM BAR ─── */
+  #bottom-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 64px;
+  background: var(–ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  z-index: 1000;
+  }
+  #bottom-bar .left {
+  font-family: ‘DM Mono’, monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #666;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  }
+  #bottom-bar .price {
+  font-family: ‘DM Sans’, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(–mag);
+  letter-spacing: 0;
+  }
+  #bottom-bar .btn-pdf {
+  background: var(–bg);
+  color: var(–ink);
+  border: none;
+  padding: 12px 24px;
+  font-family: ‘DM Sans’, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+  white-space: nowrap;
+  }
+  #bottom-bar .btn-pdf:hover { background: var(–mag); color: #fff; }
 
-- { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-
-body {
-font-family: var(–sans);
-background: var(–bg);
-color: var(–ink);
-font-size: 15px;
-line-height: 1.6;
--webkit-font-smoothing: antialiased;
-}
-
-/* ── STICKY BOTTOM BAR (like gosnob) ── */
-.bottom-bar {
-position: fixed;
-bottom: 0; left: 0; right: 0;
-background: var(–ink);
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 14px 32px;
-z-index: 200;
-gap: 16px;
-}
-.bottom-total {
-font-family: var(–mono);
-font-size: 11px;
-letter-spacing: 2px;
-text-transform: uppercase;
-color: var(–grey);
-}
-.bottom-total strong {
-font-family: var(–sans);
-font-size: 22px;
-font-weight: 700;
-color: var(–mag);
-letter-spacing: 0;
-margin-left: 8px;
-}
-.bottom-total span {
-color: #fff;
-font-size: 22px;
-font-weight: 700;
-font-family: var(–sans);
-}
-.btn-pdf {
-background: var(–bg);
-color: var(–ink);
-border: none;
-padding: 12px 28px;
-font-family: var(–sans);
-font-size: 14px;
-font-weight: 500;
-cursor: pointer;
-white-space: nowrap;
-transition: background .2s;
-}
-.btn-pdf:hover { background: var(–mag); color: #fff; }
-
-/* ── HEADER ── */
-.header {
-padding: 20px 32px;
-display: flex;
-align-items: center;
-justify-content: space-between;
-border-bottom: 1px solid var(–border);
+/* ─── HEADER ─── */
+header {
 position: sticky;
 top: 0;
-background: var(–bg);
 z-index: 100;
+background: var(–bg);
+border-bottom: 1px solid var(–border);
+padding: 0 32px;
+height: 60px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 16px;
 }
-.logo {
-font-family: var(–mono);
-font-size: 14px;
-letter-spacing: 2px;
+.logo-wrap .logo {
+font-family: ‘DM Mono’, monospace;
+font-size: 13px;
+letter-spacing: 1px;
 color: var(–ink);
-text-transform: lowercase;
 }
-.logo-sub {
-font-family: var(–mono);
+.logo-wrap .logo-sub {
+font-family: ‘DM Mono’, monospace;
 font-size: 9px;
 letter-spacing: 3px;
-color: var(–grey);
 text-transform: uppercase;
+color: var(–grey);
 display: block;
+margin-top: 1px;
 }
-.offerte-badge {
-font-family: var(–mono);
-font-size: 10px;
+nav {
+display: flex;
+gap: 0;
+}
+nav button {
+font-family: ‘DM Mono’, monospace;
+font-size: 9px;
+letter-spacing: 2px;
+text-transform: uppercase;
+padding: 8px 14px;
+background: none;
+border: none;
+color: var(–grey);
+cursor: pointer;
+border-bottom: 2px solid transparent;
+transition: all .15s;
+}
+nav button:hover { color: var(–ink); }
+nav button.active { color: var(–mag); border-bottom-color: var(–mag); }
+.offerte-tag {
+font-family: ‘DM Mono’, monospace;
+font-size: 9px;
 letter-spacing: 2px;
 text-transform: uppercase;
 border: 1px solid var(–ink);
-padding: 6px 14px;
+padding: 5px 12px;
 color: var(–ink);
+white-space: nowrap;
 }
-.nav {
-display: flex;
-gap: 2px;
-flex-wrap: wrap;
-}
-.nb {
-font-family: var(–mono);
-font-size: 9px;
-letter-spacing: 1.5px;
-text-transform: uppercase;
-padding: 6px 14px;
-background: transparent;
-border: none;
-color: var(–grey);
-cursor: pointer;
-transition: all .15s;
-border-bottom: 2px solid transparent;
-}
-.nb:hover { color: var(–ink); }
-.nb.active { color: var(–ink); border-bottom-color: var(–mag); }
 
-/* ── HERO ── */
+/* ─── SECTIONS ─── */
+.sec { display: none; }
+.sec.active { display: block; }
+
+/* ─── HERO ─── */
 .hero {
-padding: 80px 32px 60px;
+padding: 72px 32px 64px;
 border-bottom: 1px solid var(–border);
-position: relative;
-overflow: hidden;
 }
 .hero-kicker {
-font-family: var(–mono);
+font-family: ‘DM Mono’, monospace;
 font-size: 10px;
 letter-spacing: 3px;
 text-transform: uppercase;
-color: var(–mag);
-margin-bottom: 20px;
-display: flex;
-align-items: center;
-gap: 12px;
+color: var(–grey);
+margin-bottom: 40px;
 }
-.hero-kicker::after {
-content: ‘’;
-flex: 1;
-height: 1px;
-background: var(–border);
-max-width: 200px;
+.hero-kicker span { color: var(–mag); }
+.hero h1 {
+font-size: clamp(72px, 12vw, 140px);
+font-weight: 900;
+line-height: 0.9;
+letter-spacing: -3px;
+margin-bottom: 40px;
 }
-.hero-h1 {
-font-family: var(–sans);
-font-size: clamp(64px, 10vw, 120px);
-font-weight: 700;
-line-height: 0.92;
-letter-spacing: -2px;
-margin-bottom: 16px;
-}
-.hero-h1 .ghost {
+.hero h1 .ghost {
 color: var(–light);
 display: block;
-font-size: clamp(56px, 9vw, 108px);
 }
-.hero-sub {
-font-family: var(–mono);
-font-size: 11px;
+.hero-desc {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
 letter-spacing: 2px;
-color: var(–grey);
 text-transform: uppercase;
-max-width: 480px;
-line-height: 1.8;
-margin-top: 24px;
+color: var(–grey);
+line-height: 2;
+max-width: 500px;
+margin-bottom: 56px;
 }
-.hero-meta {
+.hero-stats {
 display: flex;
-gap: 48px;
-margin-top: 56px;
+gap: 56px;
 flex-wrap: wrap;
 }
-.meta-n {
-font-family: var(–sans);
-font-size: 48px;
+.hero-stat .n {
+font-size: 56px;
 font-weight: 700;
-color: var(–mag);
 line-height: 1;
 display: block;
 }
-.meta-l {
-font-family: var(–mono);
+.hero-stat .l {
+font-family: ‘DM Mono’, monospace;
 font-size: 9px;
 letter-spacing: 2px;
 text-transform: uppercase;
@@ -209,101 +194,141 @@ margin-top: 4px;
 display: block;
 }
 
-/* ── SECTIONS ── */
-.sec {
+/* ─── INNER WRAP ─── */
+.wrap {
 max-width: 1080px;
 margin: 0 auto;
-padding: 64px 32px 80px;
+padding: 64px 32px;
 }
-.sec-hidden { display: none; }
-.sec-full {
-padding: 64px 32px 80px;
-border-bottom: 1px solid var(–border);
+.wrap-hero {
+max-width: 1080px;
+margin: 0 auto;
 }
 
-.sec-label {
-font-family: var(–mono);
+/* ─── LABELS & TITLES ─── */
+.lbl {
+font-family: ‘DM Mono’, monospace;
 font-size: 9px;
 letter-spacing: 3px;
 text-transform: uppercase;
 color: var(–grey);
 margin-bottom: 6px;
 }
-.sec-title {
-font-family: var(–sans);
-font-size: clamp(32px, 5vw, 52px);
+.lbl-mag {
+font-family: ‘DM Mono’, monospace;
+font-size: 9px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(–mag);
+margin-bottom: 6px;
+}
+h2 {
+font-size: clamp(36px, 5vw, 56px);
 font-weight: 700;
-line-height: 1.05;
-letter-spacing: -1px;
+line-height: 1.0;
+letter-spacing: -1.5px;
 margin-bottom: 40px;
 }
 
-/* ── CARDS GRID ── */
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(–border); }
-.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(–border); }
-@media(max-width:700px){ .grid-2,.grid-3 { grid-template-columns: 1fr; } }
-@media(max-width:900px){ .grid-3 { grid-template-columns: 1fr 1fr; } }
-
-.card {
-background: var(–bg);
-padding: 28px;
+/* ─── INFOBOX ─── */
+.infobox {
+border-left: 3px solid var(–mag);
+padding: 16px 20px;
+background: var(–light);
+margin-bottom: 32px;
+display: flex;
+gap: 14px;
 }
-.card-label {
-font-family: var(–mono);
+.infobox h4 { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.infobox p { font-size: 12px; color: var(–grey); line-height: 1.7; }
+
+/* ─── GRID CARDS ─── */
+.g2 {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1px;
+background: var(–border);
+border: 1px solid var(–border);
+margin-bottom: 32px;
+}
+.g3 {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 1px;
+background: var(–border);
+border: 1px solid var(–border);
+margin-bottom: 32px;
+}
+@media (max-width: 800px) { .g3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .g2, .g3 { grid-template-columns: 1fr; } }
+
+.card { background: var(–bg); padding: 28px; }
+.card-dark { background: var(–ink); padding: 28px; }
+.card .clbl {
+font-family: ‘DM Mono’, monospace;
 font-size: 9px;
 letter-spacing: 2px;
 text-transform: uppercase;
 color: var(–mag);
 margin-bottom: 10px;
+display: block;
 }
 .card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-.card p { font-size: 13px; color: var(–grey); line-height: 1.6; }
-.card-dark { background: var(–ink); }
-.card-dark .card-label { color: var(–mag); }
 .card-dark h3 { color: #fff; }
-.card-dark p { color: rgba(255,255,255,.5); }
+.card p { font-size: 13px; color: var(–grey); line-height: 1.6; }
+.card-dark p { color: rgba(255,255,255,0.5); }
 
-/* ── PERSONA ── */
-.persona-wrap {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 1px;
-background: var(–border);
-margin-bottom: 48px;
+/* ─── UL LISTS ─── */
+ul.dotlist { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+ul.dotlist li {
+font-size: 13px;
+padding-left: 18px;
+position: relative;
+line-height: 1.4;
+color: var(–grey);
 }
-@media(max-width:700px){ .persona-wrap { grid-template-columns: 1fr; } }
+ul.dotlist li::before { content: ‘—’; position: absolute; left: 0; color: var(–mag); font-size: 11px; }
+ul.dotlist.dark li { color: rgba(255,255,255,0.55); }
 
-.persona-head {
+/* ─── PERSONA ─── */
+.persona-block {
+border: 1px solid var(–border);
+margin-bottom: 24px;
+}
+.persona-hd {
 background: var(–ink);
-padding: 32px;
-grid-column: 1 / -1;
+padding: 28px 32px;
 display: flex;
-align-items: flex-end;
 justify-content: space-between;
-gap: 20px;
+align-items: flex-end;
 }
-.persona-initial {
-font-family: var(–sans);
-font-size: 72px;
-font-weight: 700;
-color: var(–mag);
-line-height: 1;
-}
-.persona-name {
-font-family: var(–sans);
+.persona-hd .pname {
 font-size: 28px;
 font-weight: 700;
 color: #fff;
 margin-bottom: 4px;
 }
-.persona-role {
-font-family: var(–mono);
+.persona-hd .prole {
+font-family: ‘DM Mono’, monospace;
 font-size: 9px;
 letter-spacing: 3px;
 text-transform: uppercase;
-color: rgba(255,255,255,.4);
+color: rgba(255,255,255,0.35);
 }
-.kv { background: var(–bg); padding: 24px 28px; }
+.persona-hd .pinitial {
+font-size: 80px;
+font-weight: 900;
+color: var(–mag);
+line-height: 1;
+}
+.persona-body {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1px;
+background: var(–border);
+}
+@media(max-width:600px){ .persona-body { grid-template-columns:1fr; } }
+.kv-block { background: var(–bg); padding: 24px 28px; }
 .kv-row {
 display: flex;
 justify-content: space-between;
@@ -314,7 +339,7 @@ gap: 12px;
 }
 .kv-row:last-child { border-bottom: none; }
 .kv-k {
-font-family: var(–mono);
+font-family: ‘DM Mono’, monospace;
 font-size: 9px;
 letter-spacing: 2px;
 text-transform: uppercase;
@@ -323,64 +348,60 @@ flex-shrink: 0;
 }
 .kv-v { font-size: 13px; font-weight: 500; text-align: right; }
 
-/* ── PAIN LIST ── */
-.pain-list {
+/* ─── PAIN GRID ─── */
+.pain-grid {
 display: grid;
 grid-template-columns: repeat(3, 1fr);
 gap: 1px;
 background: var(–border);
+border: 1px solid var(–border);
 }
-@media(max-width:800px){ .pain-list { grid-template-columns: 1fr 1fr; } }
-@media(max-width:500px){ .pain-list { grid-template-columns: 1fr; } }
-
-.pain-item {
-background: var(–bg);
-padding: 24px;
-}
-.pain-tag {
-font-family: var(–mono);
+@media(max-width:800px){ .pain-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:500px){ .pain-grid { grid-template-columns: 1fr; } }
+.pain-item { background: var(–bg); padding: 24px; }
+.pain-item .ptag {
+font-family: ‘DM Mono’, monospace;
 font-size: 9px;
 letter-spacing: 2px;
 text-transform: uppercase;
 color: var(–mag);
-margin-bottom: 8px;
 display: block;
+margin-bottom: 8px;
 }
 .pain-item p { font-size: 13px; color: var(–grey); line-height: 1.5; }
 
-/* ── JOURNEY ── */
+/* ─── PHASE NAV ─── */
 .phase-nav {
 display: flex;
 overflow-x: auto;
 border: 1px solid var(–border);
-margin-bottom: 1px;
+border-bottom: none;
+-webkit-overflow-scrolling: touch;
 }
 .phase-btn {
 flex: 1;
-min-width: 110px;
-padding: 16px 12px;
+min-width: 100px;
+padding: 16px 10px;
 text-align: center;
-cursor: pointer;
 background: var(–bg);
 border: none;
 border-right: 1px solid var(–border);
-transition: all .15s;
+cursor: pointer;
+transition: background .15s;
 }
 .phase-btn:last-child { border-right: none; }
 .phase-btn:hover { background: var(–light); }
 .phase-btn.active { background: var(–ink); }
-.ph-num {
-font-family: var(–sans);
+.phase-btn .pn {
 font-size: 28px;
 font-weight: 700;
 color: var(–mag);
 display: block;
 line-height: 1;
 }
-.phase-btn.active .ph-num { color: var(–mag); }
-.ph-lbl {
-font-family: var(–mono);
-font-size: 9px;
+.phase-btn .pl {
+font-family: ‘DM Mono’, monospace;
+font-size: 8px;
 letter-spacing: 1px;
 text-transform: uppercase;
 color: var(–grey);
@@ -388,7 +409,7 @@ display: block;
 margin-top: 4px;
 line-height: 1.3;
 }
-.phase-btn.active .ph-lbl { color: rgba(255,255,255,.5); }
+.phase-btn.active .pl { color: rgba(255,255,255,0.35); }
 
 .phase-panel { display: none; }
 .phase-panel.active {
@@ -399,69 +420,56 @@ background: var(–border);
 border: 1px solid var(–border);
 }
 @media(max-width:650px){ .phase-panel.active { grid-template-columns: 1fr; } }
-
-.phase-col { background: var(–bg); padding: 28px; }
-.phase-col-dark { background: var(–ink); padding: 28px; }
-.phase-col h4 {
-font-family: var(–mono);
+.phase-col {
+background: var(–bg);
+padding: 28px;
+}
+.phase-col-hd {
+font-family: ‘DM Mono’, monospace;
 font-size: 9px;
 letter-spacing: 2px;
 text-transform: uppercase;
 color: var(–grey);
-margin-bottom: 16px;
+margin-bottom: 14px;
 padding-bottom: 8px;
 border-bottom: 1px solid var(–border);
 }
-.phase-col-dark h4 { border-color: rgba(255,255,255,.1); }
-.phase-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-.phase-col li {
-font-size: 13px;
-padding-left: 16px;
-position: relative;
-line-height: 1.4;
-color: var(–ink);
-}
-.phase-col-dark li { color: rgba(255,255,255,.65); }
-.phase-col li::before {
-content: ‘—’;
-position: absolute;
-left: 0;
-color: var(–mag);
-font-size: 11px;
-}
-.phase-col.pain li::before { content: ‘×’; color: #cc4400; }
+.phase-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.phase-col li { font-size: 13px; padding-left: 16px; position: relative; line-height: 1.4; }
+.phase-col li::before { content: ‘—’; position: absolute; left: 0; color: var(–mag); font-size: 11px; }
+.phase-col.pain li::before { content: ‘×’; color: #cc3300; }
 .phase-col.opps li::before { content: ‘✓’; color: #1a6b3a; font-size: 10px; }
-.phase-col-dark li::before { content: ‘·’; color: var(–mag); }
+.phase-col.touch li { color: var(–grey); }
 
-/* ── SCOPE TABLE ── */
-.scope-head {
+/* ─── SCOPE TABLE ─── */
+.scope-label-row {
 display: flex;
 align-items: center;
-gap: 14px;
-margin-bottom: 16px;
-margin-top: 40px;
+gap: 12px;
+margin: 40px 0 14px;
 }
-.scope-head:first-child { margin-top: 0; }
-.scope-h3 {
-font-family: var(–sans);
-font-size: 20px;
-font-weight: 700;
-}
+.scope-label-row:first-child { margin-top: 0; }
+.scope-label-row h3 { font-size: 20px; font-weight: 700; }
 .badge {
-font-family: var(–mono);
+font-family: ‘DM Mono’, monospace;
 font-size: 9px;
 letter-spacing: 2px;
 text-transform: uppercase;
 padding: 4px 10px;
-border-radius: 1px;
 }
 .b-inc { background: var(–ink); color: var(–mag); }
 .b-add { background: var(–mag); color: #fff; }
-.b-p2  { background: var(–light); color: var(–grey); }
+.b-p2  { background: var(–light); color: var(–grey); border: 1px solid var(–border); }
 
-.stbl { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 8px; }
-.stbl th {
-font-family: var(–mono);
+table.stbl {
+width: 100%;
+border-collapse: collapse;
+font-size: 13px;
+margin-bottom: 8px;
+border: 1px solid var(–border);
+}
+table.stbl th {
+font-family: ‘DM Mono’, monospace;
 font-size: 9px;
 letter-spacing: 2px;
 text-transform: uppercase;
@@ -471,41 +479,39 @@ text-align: left;
 border-bottom: 1px solid var(–border);
 background: var(–light);
 }
-.stbl td {
+table.stbl td {
 padding: 14px 16px;
 border-bottom: 1px solid var(–border);
 vertical-align: top;
 }
-.stbl tr:last-child td { border-bottom: none; }
-.stbl tr:hover td { background: #fafafa; }
+table.stbl tr:last-child td { border-bottom: none; }
+table.stbl tr:hover td { background: #fafafa; }
 .fn { font-weight: 600; font-size: 14px; }
-.fd { font-size: 12px; color: var(–grey); margin-top: 3px; }
+.fd { font-size: 11px; color: var(–grey); margin-top: 2px; }
 .cy { color: #1a6b3a; font-weight: 700; }
 .ca { color: var(–mag); font-weight: 600; }
-.cp { color: var(–grey); font-style: italic; font-size: 12px; }
+.cp { color: var(–grey); font-size: 12px; font-style: italic; }
 
-/* ── TIMELINE ── */
-.tl { position: relative; padding-left: 100px; }
+/* ─── TIMELINE ─── */
+.tl { padding-left: 100px; position: relative; }
 .tl::before {
 content: ‘’;
 position: absolute;
-left: 72px;
-top: 8px;
-bottom: 8px;
+left: 72px; top: 8px; bottom: 8px;
 width: 1px;
 background: var(–border);
 }
 .tl-item {
 position: relative;
-padding: 20px 0 20px 28px;
+padding: 18px 0 18px 28px;
 border-bottom: 1px solid var(–border);
 }
 .tl-item:last-child { border-bottom: none; }
 .tl-week {
 position: absolute;
 left: -100px;
-top: 22px;
-font-family: var(–mono);
+top: 20px;
+font-family: ‘DM Mono’, monospace;
 font-size: 9px;
 letter-spacing: 2px;
 text-transform: uppercase;
@@ -515,88 +521,81 @@ text-align: right;
 }
 .tl-dot {
 position: absolute;
-left: -5px;
-top: 26px;
-width: 10px;
-height: 10px;
+left: -5px; top: 24px;
+width: 10px; height: 10px;
 border-radius: 50%;
 background: var(–mag);
 }
 .tl-dot.go { background: #1a6b3a; }
-.tl-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.tl-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
 .tl-title.go { color: #1a6b3a; }
 .tl-desc { font-size: 13px; color: var(–grey); line-height: 1.6; }
 
-/* ── ASSUMPTIONS ── */
+/* ─── ASSUMPTIONS ─── */
 .ass-grid {
 display: grid;
 grid-template-columns: 1fr 1fr 1fr;
 gap: 1px;
 background: var(–border);
+border: 1px solid var(–border);
 }
 @media(max-width:800px){ .ass-grid { grid-template-columns: 1fr 1fr; } }
 @media(max-width:500px){ .ass-grid { grid-template-columns: 1fr; } }
-
 .ass-card { background: var(–bg); padding: 24px; }
+.ass-card.crit { border-top: 2px solid var(–mag); }
 .ass-card h4 { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
 .ass-card p { font-size: 12px; color: var(–grey); line-height: 1.6; }
-.ass-card.crit { border-top: 2px solid var(–mag); }
 
-/* ── PRICING ── */
+/* ─── PRICING ─── */
 .price-grid {
 display: grid;
 grid-template-columns: 1fr 1fr 1fr;
 gap: 1px;
 background: var(–border);
+border: 1px solid var(–border);
+margin-bottom: 48px;
 }
 @media(max-width:800px){ .price-grid { grid-template-columns: 1fr; } }
-
-.price-card { background: var(–bg); padding: 32px; }
-.price-card.feat { background: var(–ink); }
-.pt {
-font-family: var(–mono);
+.pc { background: var(–bg); padding: 32px; }
+.pc.feat { background: var(–ink); }
+.pc-lbl {
+font-family: ‘DM Mono’, monospace;
 font-size: 9px;
-letter-spacing: 3px;
+letter-spacing: 2px;
 text-transform: uppercase;
 color: var(–grey);
-margin-bottom: 20px;
 display: block;
-}
-.price-card.feat .pt { color: rgba(255,255,255,.4); }
-.price-card .pt-note {
-font-size: 12px;
-color: var(–grey);
-font-family: var(–mono);
-margin-top: 4px;
-display: block;
-}
-.price-card.feat .pt-note { color: rgba(255,255,255,.3); }
-.pa {
-font-family: var(–sans);
-font-size: 13px;
-color: var(–grey);
 margin-bottom: 6px;
 }
-.price-card.feat .pa { color: rgba(255,255,255,.4); }
-.pv {
-font-family: var(–sans);
-font-size: 42px;
+.pc.feat .pc-lbl { color: rgba(255,255,255,0.3); }
+.pc-note {
+font-family: ‘DM Mono’, monospace;
+font-size: 9px;
+letter-spacing: 1px;
+color: var(–grey);
+display: block;
+margin-bottom: 20px;
+}
+.pc.feat .pc-note { color: rgba(255,255,255,0.25); }
+.pc-helper { font-size: 12px; color: var(–grey); margin-bottom: 6px; }
+.pc.feat .pc-helper { color: rgba(255,255,255,0.35); }
+.pc-price {
+font-size: 36px;
 font-weight: 700;
 color: var(–mag);
-line-height: 1;
 margin-bottom: 24px;
+line-height: 1;
 }
-.pv small { font-size: 18px; font-weight: 400; }
-.pf { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.pf li { font-size: 13px; padding-left: 20px; position: relative; color: var(–ink); }
-.price-card.feat .pf li { color: rgba(255,255,255,.7); }
-.pf li::before { content: ‘—’; position: absolute; left: 0; color: var(–mag); font-size: 11px; }
-.pf li.dim { color: var(–grey); }
-.pf li.dim::before { content: ‘·’; color: var(–border); }
-.price-card.feat .pf li.dim { color: rgba(255,255,255,.25); }
+.pc-price small { font-size: 16px; font-weight: 400; }
+.pc-features { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.pc-features li { font-size: 13px; padding-left: 18px; position: relative; color: var(–ink); }
+.pc.feat .pc-features li { color: rgba(255,255,255,0.65); }
+.pc-features li::before { content: ‘—’; position: absolute; left: 0; color: var(–mag); font-size: 11px; }
+.pc-features li.dim { color: var(–grey); }
+.pc-features li.dim::before { content: ‘·’; color: var(–border); }
+.pc.feat .pc-features li.dim { color: rgba(255,255,255,0.2); }
 
-/* ── ACCORDION ── */
-.acc { margin-top: 24px; }
+/* ─── ACCORDION ─── */
 .acc-item { border-bottom: 1px solid var(–border); }
 .acc-head {
 display: flex;
@@ -607,13 +606,7 @@ cursor: pointer;
 user-select: none;
 }
 .acc-head h4 { font-size: 14px; font-weight: 500; }
-.acc-toggle {
-font-size: 20px;
-color: var(–mag);
-transition: transform .2s;
-line-height: 1;
-flex-shrink: 0;
-}
+.acc-toggle { font-size: 22px; color: var(–mag); transition: transform .2s; line-height: 1; }
 .acc-head.open .acc-toggle { transform: rotate(45deg); }
 .acc-body {
 display: none;
@@ -625,970 +618,491 @@ max-width: 680px;
 }
 .acc-body.open { display: block; }
 
-/* ── INFO BOX ── */
-.infobox {
-background: var(–light);
-border-left: 3px solid var(–mag);
-padding: 20px 24px;
-margin-bottom: 32px;
-display: flex;
-gap: 16px;
-align-items: flex-start;
-}
-.infobox-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-.infobox h4 { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-.infobox p { font-size: 12px; color: var(–grey); line-height: 1.6; }
+/* ─── DIVIDER ─── */
+.div { height: 1px; background: var(–border); margin: 40px 0; }
 
-/* ── PHASE BOX (overview) ── */
+/* ─── PHASE BOXES (overview) ─── */
 .phase-boxes {
 display: grid;
 grid-template-columns: 1fr 1fr;
 gap: 1px;
 background: var(–border);
-margin-top: 32px;
+border: 1px solid var(–border);
 }
 @media(max-width:600px){ .phase-boxes { grid-template-columns: 1fr; } }
-
-.phase-box { background: var(–bg); padding: 32px; }
-.phase-box.dark { background: var(–ink); }
-.phase-box-label {
-font-family: var(–mono);
+.pb { background: var(–bg); padding: 32px; }
+.pb.dark { background: var(–ink); }
+.pb-lbl {
+font-family: ‘DM Mono’, monospace;
 font-size: 9px;
 letter-spacing: 3px;
 text-transform: uppercase;
 color: var(–mag);
-margin-bottom: 8px;
 display: block;
+margin-bottom: 8px;
 }
-.phase-box h3 {
-font-size: 22px;
-font-weight: 700;
-margin-bottom: 20px;
-color: var(–ink);
-}
-.phase-box.dark h3 { color: #fff; }
-.phase-box ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.phase-box li {
-font-size: 13px;
-padding-left: 18px;
-position: relative;
-color: var(–grey);
-}
-.phase-box li::before { content: ‘—’; position: absolute; left: 0; color: var(–mag); }
-.phase-box.dark li { color: rgba(255,255,255,.5); }
-
-/* ── UTILITY ── */
-.divider { height: 1px; background: var(–border); margin: 40px 0; }
-.spacer { padding-bottom: 80px; } /* offset for bottom bar */
+.pb h3 { font-size: 20px; font-weight: 700; margin-bottom: 20px; color: var(–ink); }
+.pb.dark h3 { color: #fff; }
 </style>
 
 </head>
 <body>
 
-<!-- ══ STICKY BOTTOM BAR ══ -->
+<!-- BOTTOM BAR -->
 
-<div class="bottom-bar">
-  <div class="bottom-total">
-    <span style="font-size:10px;font-family:var(--mono);letter-spacing:2px;text-transform:uppercase;color:var(--grey);">GESAMT EXKL. MWST</span><br>
-    <span style="color:#fff;font-size:22px;font-weight:700;font-family:var(--sans);">CHF </span><strong id="total-price">auf Anfrage</strong>
+<div id="bottom-bar">
+  <div class="left">
+    <span>Gesamt exkl. MWST</span>
+    <span class="price">auf Anfrage</span>
   </div>
   <button class="btn-pdf" onclick="window.print()">Offerte als PDF →</button>
 </div>
 
-<!-- ══ HEADER ══ -->
+<!-- HEADER -->
 
-<header class="header">
-  <div>
-    <div class="logo">g o S N O B . a i</div>
+<header>
+  <div class="logo-wrap">
+    <div class="logo">gosnob.ai</div>
     <span class="logo-sub">Basler Ferienpass</span>
   </div>
-  <nav class="nav">
-    <button class="nb active" onclick="show('overview',this)">Übersicht</button>
-    <button class="nb" onclick="show('persona',this)">Persona</button>
-    <button class="nb" onclick="show('journey',this)">Journey</button>
-    <button class="nb" onclick="show('scope',this)">Leistungen</button>
-    <button class="nb" onclick="show('timeline',this)">Timeline</button>
-    <button class="nb" onclick="show('assumptions',this)">Bedingungen</button>
-    <button class="nb" onclick="show('pricing',this)">Investment</button>
+  <nav>
+    <button class="active" onclick="nav('overview',this)">Übersicht</button>
+    <button onclick="nav('persona',this)">Persona</button>
+    <button onclick="nav('journey',this)">Journey</button>
+    <button onclick="nav('scope',this)">Leistungen</button>
+    <button onclick="nav('timeline',this)">Timeline</button>
+    <button onclick="nav('assumptions',this)">Bedingungen</button>
+    <button onclick="nav('pricing',this)">Investment</button>
   </nav>
-  <div class="offerte-badge">OFFERTE 2026</div>
+  <div class="offerte-tag">Offerte 2026</div>
 </header>
 
-<!-- ══ HERO ══ -->
+<!-- ═══════════════ OVERVIEW ═══════════════ -->
 
-<section class="hero">
-  <p class="hero-kicker">Website-Offerte · goSNOB.ai × Basler Ferienpass</p>
-  <h1 class="hero-h1">
-    BASLER
-    <span class="ghost">FERIENPASS</span>
-  </h1>
-  <p class="hero-sub">
-    Module auswählen. Leistungen verstehen.<br>
-    Als PDF herunterladen und als Auftrag zurückschicken.
-  </p>
-  <div class="hero-meta">
-    <div>
-      <span class="meta-n">15</span>
-      <span class="meta-l">Wochen Delivery</span>
-    </div>
-    <div>
-      <span class="meta-n">3</span>
-      <span class="meta-l">Sprachen DE/EN/FR</span>
-    </div>
-    <div>
-      <span class="meta-n">3</span>
-      <span class="meta-l">Nutzergruppen</span>
-    </div>
-    <div>
-      <span class="meta-n">7</span>
-      <span class="meta-l">Journey Phasen</span>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════ -->
-
-<!-- OVERVIEW -->
-
-<!-- ════════════════════════════════════════ -->
-
-<div id="sec-overview" class="sec-full">
-<div class="sec" style="padding-top:0;padding-bottom:0;">
-
-  <p class="sec-label">01 — Ausgangslage</p>
-  <h2 class="sec-title">Das Problem ist real.<br>Die Lösung auch.</h2>
-
-  <div class="infobox">
-    <div class="infobox-icon">→</div>
-    <div>
-      <h4>Warum jetzt</h4>
-      <p>Die aktuelle Ferienpass-Plattform lässt alle drei Nutzergruppen im Stich: Eltern kämpfen mit fragmentierten Informationen und fehlendem Online-Booking, Anbieter verwalten alles manuell, das Ferienpass-Team hat keinen zentralen Überblick. goSNOB.ai liefert die Infrastruktur, die alle drei verdienen — dreisprachig, KI-gestützt, in 15 Wochen.</p>
-    </div>
-  </div>
-
-  <div class="grid-3" style="border:1px solid var(--border);">
-    <div class="card">
-      <div class="card-label">Eltern</div>
-      <h3>Fragmentiert & chaotisch</h3>
-      <p>Dutzende Websites, kein Kalender, keine Reviews, kein TWINT. Buchung via E-Mail im Jahr 2026.</p>
-    </div>
-    <div class="card">
-      <div class="card-label">Kursanbieter</div>
-      <h3>Alles manuell</h3>
-      <p>Kein Self-Service-Portal. Jede Änderung = Telefonat. Keine Echtzeit-Kapazitätsanzeige.</p>
-    </div>
-    <div class="card">
-      <div class="card-label">Ferienpass-Team</div>
-      <h3>Kein Überblick</h3>
-      <p>Kein Dashboard, keine automatisierte Kommunikation, kein skalierbares Approval-System.</p>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <p class="sec-label">Unser Ansatz</p>
-  <h2 class="sec-title">Zwei Phasen. Eine Vision.</h2>
-
-  <div class="phase-boxes">
-    <div class="phase-box dark">
-      <span class="phase-box-label">Phase 1 — Base Package</span>
-      <h3>Mai → August 2026</h3>
-      <ul>
-        <li>Dreisprachige Website (DE/EN/FR)</li>
-        <li>Kurssuche, Filter & Detailseiten</li>
-        <li>Familienkonten & Online-Buchungsflow</li>
-        <li>Stripe-Zahlung (TWINT, Apple/Google Pay)</li>
-        <li>Anbieter Self-Service Portal</li>
-        <li>Ferienpass Admin- & Approval-Modul</li>
-        <li>Automatisierte E-Mails (dreisprachig)</li>
-        <li>goSNOB.ai KI-Chatbot Integration</li>
-        <li>UX Design (15–20+ Screens)</li>
-      </ul>
-    </div>
-    <div class="phase-box">
-      <span class="phase-box-label">Phase 2 — Further Development</span>
-      <h3>Ab Herbst 2026</h3>
-      <ul>
-        <li>Kids-Profile & altersbasiertes AI-Matching</li>
-        <li>Mobile App / PWA mit Push-Notifikationen</li>
-        <li>SMS / WhatsApp Kanal</li>
-        <li>Vollständiges Wartelisten-Management</li>
-        <li>Reviews & Ratings (full)</li>
-        <li>Analytics Dashboards (Anbieter & Admin)</li>
-        <li>Automatische Kursübersetzung (KI)</li>
-        <li>Stripe Split Payments / Marketplace Payouts</li>
-      </ul>
-    </div>
-  </div>
-
-</div>
-</div>
-
-<!-- ════════════════════════════════════════ -->
-
-<!-- PERSONA -->
-
-<!-- ════════════════════════════════════════ -->
-
-<div id="sec-persona" class="sec-full sec-hidden">
-<div class="sec" style="padding-top:0;padding-bottom:0;">
-
-  <p class="sec-label">02 — Für wen wir bauen</p>
-  <h2 class="sec-title">Die Nutzer.<br>Ihre Realität.</h2>
-
-  <div class="persona-wrap" style="border:1px solid var(--border);">
-    <div class="persona-head">
-      <div>
-        <div class="persona-name">Claudia Meier</div>
-        <div class="persona-role">Hauptnutzerin · Mutter · 41 Jahre · Basel</div>
+<div id="sec-overview" class="sec active">
+  <div class="wrap-hero">
+    <div class="hero">
+      <p class="hero-kicker">Website-Offerte · <span>goSNOB.ai</span> × Basler Ferienpass</p>
+      <h1>BASLER<span class="ghost">FERIENPASS</span></h1>
+      <p class="hero-desc">
+        Module auswählen. Leistungen verstehen.<br>
+        Als PDF herunterladen und als Auftrag zurückschicken.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="n">15</span><span class="l">Wochen Delivery</span></div>
+        <div class="hero-stat"><span class="n">3</span><span class="l">Sprachen DE/EN/FR</span></div>
+        <div class="hero-stat"><span class="n">3</span><span class="l">Nutzergruppen</span></div>
+        <div class="hero-stat"><span class="n">7</span><span class="l">Journey Phasen</span></div>
       </div>
-      <div class="persona-initial">CM</div>
     </div>
-    <div class="kv">
+  </div>
+  <div class="wrap">
+    <p class="lbl">01 — Ausgangslage</p>
+    <h2>Das Problem ist real.<br>Die Lösung auch.</h2>
+
+```
+<div class="infobox">
+  <div>
+    <h4>Warum jetzt</h4>
+    <p>Die aktuelle Ferienpass-Plattform lässt alle drei Nutzergruppen im Stich: Eltern kämpfen mit fragmentierten Informationen und fehlendem Online-Booking, Anbieter verwalten alles manuell, das Ferienpass-Team hat keinen zentralen Überblick. goSNOB.ai liefert die Infrastruktur in 15 Wochen — dreisprachig, KI-gestützt.</p>
+  </div>
+</div>
+
+<div class="g3">
+  <div class="card"><span class="clbl">Eltern</span><h3>Fragmentiert & chaotisch</h3><p>Dutzende Websites, kein Kalender, keine Reviews, kein TWINT. Buchung via E-Mail im Jahr 2026.</p></div>
+  <div class="card"><span class="clbl">Kursanbieter</span><h3>Alles manuell</h3><p>Kein Self-Service-Portal. Jede Änderung = Telefonat. Keine Echtzeit-Kapazitätsanzeige.</p></div>
+  <div class="card"><span class="clbl">Ferienpass-Team</span><h3>Kein Überblick</h3><p>Kein Dashboard, keine automatisierte Kommunikation, kein skalierbares Approval-System.</p></div>
+</div>
+
+<div class="div"></div>
+<p class="lbl">Unser Ansatz</p>
+<h2>Zwei Phasen. Eine Vision.</h2>
+
+<div class="phase-boxes">
+  <div class="pb dark">
+    <span class="pb-lbl">Phase 1 — Base Package</span>
+    <h3>Mai → August 2026</h3>
+    <ul class="dotlist dark">
+      <li>Dreisprachige Website (DE/EN/FR)</li>
+      <li>Kurssuche, Filter &amp; Detailseiten</li>
+      <li>Familienkonten &amp; Online-Buchungsflow</li>
+      <li>Stripe-Zahlung (TWINT, Apple/Google Pay)</li>
+      <li>Anbieter Self-Service Portal</li>
+      <li>Ferienpass Admin- &amp; Approval-Modul</li>
+      <li>Automatisierte E-Mails (dreisprachig)</li>
+      <li>goSNOB.ai KI-Chatbot Integration</li>
+      <li>UX Design (15–20+ Screens)</li>
+    </ul>
+  </div>
+  <div class="pb">
+    <span class="pb-lbl">Phase 2 — Further Development</span>
+    <h3>Ab Herbst 2026</h3>
+    <ul class="dotlist">
+      <li>Kids-Profile &amp; altersbasiertes AI-Matching</li>
+      <li>Mobile App / PWA mit Push-Notifikationen</li>
+      <li>SMS / WhatsApp Kanal</li>
+      <li>Vollständiges Wartelisten-Management</li>
+      <li>Reviews &amp; Ratings (full)</li>
+      <li>Analytics Dashboards</li>
+      <li>Automatische Kursübersetzung (KI)</li>
+      <li>Stripe Split Payments / Marketplace Payouts</li>
+    </ul>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ═══════════════ PERSONA ═══════════════ -->
+
+<div id="sec-persona" class="sec">
+  <div class="wrap">
+    <p class="lbl">02 — Für wen wir bauen</p>
+    <h2>Die Nutzer.<br>Ihre Realität.</h2>
+
+```
+<div class="persona-block">
+  <div class="persona-hd">
+    <div><div class="pname">Claudia Meier</div><div class="prole">Hauptnutzerin · Mutter · 41 Jahre · Basel</div></div>
+    <div class="pinitial">CM</div>
+  </div>
+  <div class="persona-body">
+    <div class="kv-block">
       <div class="kv-row"><span class="kv-k">Alter</span><span class="kv-v">41 Jahre</span></div>
       <div class="kv-row"><span class="kv-k">Beschäftigung</span><span class="kv-v">80% angestellt</span></div>
-      <div class="kv-row"><span class="kv-k">Kinder</span><span class="kv-v">2 (8 & 14 Jahre)</span></div>
+      <div class="kv-row"><span class="kv-k">Kinder</span><span class="kv-v">2 (8 &amp; 14 Jahre)</span></div>
       <div class="kv-row"><span class="kv-k">Wohnort</span><span class="kv-v">Basel, Schweiz</span></div>
       <div class="kv-row"><span class="kv-k">Ferienwochen/Jahr</span><span class="kv-v">14 zu planen</span></div>
     </div>
-    <div class="kv">
-      <div class="kv-row"><span class="kv-k">Ziel</span><span class="kv-v">Stressfreie Ferienplanung für beide Kinder</span></div>
-      <div class="kv-row"><span class="kv-k">Hauptproblem</span><span class="kv-v">Fragmentierte Angebote, kein Überblick</span></div>
+    <div class="kv-block">
+      <div class="kv-row"><span class="kv-k">Ziel</span><span class="kv-v">Stressfreie Ferienplanung</span></div>
+      <div class="kv-row"><span class="kv-k">Hauptproblem</span><span class="kv-v">Fragmentierte Angebote</span></div>
       <div class="kv-row"><span class="kv-k">Tools heute</span><span class="kv-v">Mehrere Websites, Excel, Telefon</span></div>
       <div class="kv-row"><span class="kv-k">Zahlungspräferenz</span><span class="kv-v">TWINT, Apple Pay</span></div>
       <div class="kv-row"><span class="kv-k">Planungstyp</span><span class="kv-v">Reaktiv (Zeitmangel)</span></div>
     </div>
   </div>
+</div>
 
-  <div class="persona-wrap" style="border:1px solid var(--border); margin-top:1px;">
-    <div class="persona-head">
-      <div>
-        <div class="persona-name">Fabio Albertini</div>
-        <div class="persona-role">Kursanbieter · Provider · Self-Service-Nutzer</div>
-      </div>
-      <div class="persona-initial" style="color:#fff;">FA</div>
-    </div>
-    <div class="kv">
+<div class="persona-block">
+  <div class="persona-hd">
+    <div><div class="pname">Fabio Albertini</div><div class="prole">Kursanbieter · Provider · Self-Service-Nutzer</div></div>
+    <div class="pinitial">FA</div>
+  </div>
+  <div class="persona-body">
+    <div class="kv-block">
       <div class="kv-row"><span class="kv-k">Rolle</span><span class="kv-v">Kursanbieter</span></div>
-      <div class="kv-row"><span class="kv-k">Hauptbedürfnis</span><span class="kv-v">Kurse selbst verwalten ohne Admin-Eingriff</span></div>
-      <div class="kv-row"><span class="kv-k">Grösster Frustration</span><span class="kv-v">Alles läuft manuell & langsam</span></div>
+      <div class="kv-row"><span class="kv-k">Hauptbedürfnis</span><span class="kv-v">Kurse selbst verwalten</span></div>
+      <div class="kv-row"><span class="kv-k">Grösste Frustration</span><span class="kv-v">Alles läuft manuell</span></div>
     </div>
-    <div class="kv">
-      <div class="kv-row"><span class="kv-k">Pain Point #1</span><span class="kv-v">Keine Echtzeit-Kapazitätsanzeige</span></div>
+    <div class="kv-block">
+      <div class="kv-row"><span class="kv-k">Pain Point #1</span><span class="kv-v">Keine Echtzeit-Kapazität</span></div>
       <div class="kv-row"><span class="kv-k">Pain Point #2</span><span class="kv-v">Kein eigenes Dashboard</span></div>
-      <div class="kv-row"><span class="kv-k">Ziel</span><span class="kv-v">Self-Service ohne Ferienpass-Team-Eingriff</span></div>
+      <div class="kv-row"><span class="kv-k">Ziel</span><span class="kv-v">Self-Service ohne Eingriff</span></div>
     </div>
   </div>
-
-  <div class="divider"></div>
-  <p class="sec-label">Claudias Pain Points im Detail</p>
-
-  <div class="pain-list" style="border:1px solid var(--border);">
-    <div class="pain-item"><span class="pain-tag">Mental Load</span><p>Konstante Sorge, 14 Ferienwochen monate im Voraus zu füllen — Dauerstress neben 80%-Job.</p></div>
-    <div class="pain-item"><span class="pain-tag">Geschwister-Koordination</span><p>Programme für 8- UND 14-Jährige mit unterschiedlichen Interessen und Reifegraden.</p></div>
-    <div class="pain-item"><span class="pain-tag">Qualitätsunsicherheit</span><p>Keine Reviews oder Ratings — Buchung ins Blaue ohne Qualitätsnachweis.</p></div>
-    <div class="pain-item"><span class="pain-tag">Finanzplanung</span><p>Unklare Preisstrukturen und versteckte Kosten erschweren das Haushaltsbudget.</p></div>
-    <div class="pain-item"><span class="pain-tag">Kommunikationslücken</span><p>Kein zentraler Kanal — E-Mail-Chaos ausserhalb jeder Plattform.</p></div>
-    <div class="pain-item"><span class="pain-tag">Kein Kalender</span><p>Gebuchte Kurse nicht in persönliche Kalender integrierbar — alles manuell.</p></div>
-    <div class="pain-item"><span class="pain-tag">Zahlungsoptionen</span><p>Kein TWINT, kein Apple/Google Pay — 2026 noch Überweisung oder Bargeld.</p></div>
-    <div class="pain-item"><span class="pain-tag">Spontane Änderungen</span><p>Bei Krankheit keine Stornierungsoption, keine Alternativen in Sicht.</p></div>
-    <div class="pain-item"><span class="pain-tag">Decision Fatigue</span><p>Zu viele Optionen ohne Vergleichswerkzeuge — Entscheidungslähmung garantiert.</p></div>
-  </div>
-
-</div>
 </div>
 
-<!-- ════════════════════════════════════════ -->
-
-<!-- JOURNEY -->
-
-<!-- ════════════════════════════════════════ -->
-
-<div id="sec-journey" class="sec-full sec-hidden">
-<div class="sec" style="padding-top:0;padding-bottom:0;">
-
-  <p class="sec-label">03 — Customer Journey Map</p>
-  <h2 class="sec-title">7 Phasen. Ein Erlebnis.</h2>
-
-  <div class="phase-nav">
-    <button class="phase-btn active" onclick="showPhase(0,this)"><span class="ph-num">1</span><span class="ph-lbl">Family Profile</span></button>
-    <button class="phase-btn" onclick="showPhase(1,this)"><span class="ph-num">2</span><span class="ph-lbl">Ferienpass kaufen</span></button>
-    <button class="phase-btn" onclick="showPhase(2,this)"><span class="ph-num">3</span><span class="ph-lbl">Kurse browsen</span></button>
-    <button class="phase-btn" onclick="showPhase(3,this)"><span class="ph-num">4</span><span class="ph-lbl">Kurs buchen</span></button>
-    <button class="phase-btn" onclick="showPhase(4,this)"><span class="ph-num">5</span><span class="ph-lbl">Änderungen</span></button>
-    <button class="phase-btn" onclick="showPhase(5,this)"><span class="ph-num">6</span><span class="ph-lbl">Live Updates</span></button>
-    <button class="phase-btn" onclick="showPhase(6,this)"><span class="ph-num">7</span><span class="ph-lbl">Bewertung</span></button>
-  </div>
-
-  <!-- Phase 1 -->
-
-  <div class="phase-panel active" id="ph0">
-    <div class="phase-col-dark" style="grid-column:1/-1;padding-bottom:16px;">
-      <h4 style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.1);">Phase 1 — Family Profile erstellen</h4>
-    </div>
-    <div class="phase-col">
-      <h4>Aktionen (Claudia)</h4>
-      <ul>
-        <li>Landet auf attraktiver, übersichtlicher Homepage</li>
-        <li>Registriert sich via E-Mail/Passwort oder Google</li>
-        <li>Vervollständigt geführtes Familienprofil</li>
-        <li>Speichert Zahlungsmethode (TWINT, Kreditkarte)</li>
-        <li>Richtet Kurs-Verfügbarkeits-Reminders ein</li>
-        <li>Aktiviert Kalender-Integration</li>
-      </ul>
-    </div>
-    <div class="phase-col pain">
-      <h4>Aktuelle Pain Points</h4>
-      <ul>
-        <li>Homepage veraltet und überladen</li>
-        <li>Registrierung: zu viele Felder, kein Google OAuth</li>
-        <li>Kids-Profile mit personalisierten Ansichten fehlen</li>
-        <li>Keine Kalender-Integration, kein Reminder-System</li>
-        <li>Multi-Schritt-Prozess unübersichtlich</li>
-      </ul>
-    </div>
-    <div class="phase-col opps">
-      <h4>goSNOB.ai Lösung</h4>
-      <ul>
-        <li>Modernes, dreisprachiges Website-Design</li>
-        <li>Streamlined Sign-up (Google OAuth)</li>
-        <li>Geführtes Profil-Setup, KI-unterstützt</li>
-        <li>iCal / Google / Outlook Calendar Integration</li>
-        <li>Visuelle Kids-Interesse-Profiling (Phase 2)</li>
-      </ul>
-    </div>
-    <div class="phase-col">
-      <h4>Touchpoints</h4>
-      <ul>
-        <li>Ferienpass Website (mobile responsive)</li>
-        <li>E-Mail / Push Notifications</li>
-        <li>Zahlungsanbieter (Stripe)</li>
-        <li>goSNOB.ai KI-Chatbot</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Phase 2 -->
-
-  <div class="phase-panel" id="ph1">
-    <div class="phase-col-dark" style="grid-column:1/-1;padding-bottom:16px;">
-      <h4 style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.1);">Phase 2 — Ferienpass kaufen</h4>
-    </div>
-    <div class="phase-col">
-      <h4>Aktionen (Claudia)</h4>
-      <ul>
-        <li>Prüft Leistungen und Preise des Ferienpasses</li>
-        <li>Kauft Ferienpass via gespeicherter Zahlungsmethode</li>
-        <li>Erhält Kaufbestätigung (E-Mail + PDF)</li>
-        <li>Fügt Ferienpass zu Apple/Google Wallet hinzu</li>
-      </ul>
-    </div>
-    <div class="phase-col pain">
-      <h4>Aktuelle Pain Points</h4>
-      <ul>
-        <li>Physische Karte — leicht verloren/vergessen</li>
-        <li>Jährliche Neu-Anschaffung repetitiv & unklar</li>
-        <li>Keine modernen Zahlungsoptionen</li>
-        <li>Kein digitaler Nachweis, kein Wallet-Support</li>
-      </ul>
-    </div>
-    <div class="phase-col opps">
-      <h4>goSNOB.ai Lösung</h4>
-      <ul>
-        <li>Digitaler Ferienpass für alle Stakeholder sichtbar</li>
-        <li>Stripe: TWINT, Apple/Google Pay, Kreditkarte</li>
-        <li>Automatische PDF-Bestätigung per E-Mail</li>
-        <li>Phase 2: QR-Code-Tickets mit On-Site-Scanning</li>
-      </ul>
-    </div>
-    <div class="phase-col">
-      <h4>Touchpoints</h4>
-      <ul>
-        <li>Ferienpass Website (Kauf-Flow)</li>
-        <li>Stripe Checkout</li>
-        <li>E-Mail Bestätigung (DE/EN/FR)</li>
-        <li>Digital Wallet / PDF Viewer</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Phase 3 -->
-
-  <div class="phase-panel" id="ph2">
-    <div class="phase-col-dark" style="grid-column:1/-1;padding-bottom:16px;">
-      <h4 style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.1);">Phase 3 — Kurse browsen & entdecken</h4>
-    </div>
-    <div class="phase-col">
-      <h4>Aktionen (Claudia)</h4>
-      <ul>
-        <li>Erhält Verfügbarkeits-Reminder für neue Kurse</li>
-        <li>Filtert nach Kategorie, Alter, Datum, Preis</li>
-        <li>Liest Reviews und Ratings</li>
-        <li>Speichert Favoriten und organisiert in Listen</li>
-        <li>Drag & Drop in Ferienkalender</li>
-      </ul>
-    </div>
-    <div class="phase-col pain">
-      <h4>Aktuelle Pain Points</h4>
-      <ul>
-        <li>Keine personalisierten Filter und Vorschläge</li>
-        <li>Kurspräsentation veraltet & inkonsistent</li>
-        <li>Keine Reviews oder Ratings vorhanden</li>
-        <li>Keine Favoritenliste möglich</li>
-        <li>Kursinfos & Qualität stark variabel</li>
-      </ul>
-    </div>
-    <div class="phase-col opps">
-      <h4>goSNOB.ai Lösung</h4>
-      <ul>
-        <li>Visuell reichhaltige, einheitliche Kurspräsentation</li>
-        <li>Smarte Filter + KI-Kursempfehlungen</li>
-        <li>Kursfavoriten & Listen (Phase 1 Add-on)</li>
-        <li>Reviews & Ratings Minimal (Phase 1 Add-on)</li>
-        <li>Phase 2: Drag & Drop Vacation Calendar</li>
-      </ul>
-    </div>
-    <div class="phase-col">
-      <h4>Touchpoints</h4>
-      <ul>
-        <li>Kurslistung & Detailseite</li>
-        <li>E-Mail / Push Notifications</li>
-        <li>goSNOB.ai KI-Chatbot</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Phase 4 -->
-
-  <div class="phase-panel" id="ph3">
-    <div class="phase-col-dark" style="grid-column:1/-1;padding-bottom:16px;">
-      <h4 style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.1);">Phase 4 — Kurs buchen</h4>
-    </div>
-    <div class="phase-col">
-      <h4>Aktionen (Claudia)</h4>
-      <ul>
-        <li>Wählt Kurs aus Kalender oder Favoriten</li>
-        <li>Prüft freie Plätze und Session-Daten</li>
-        <li>Wählt Kind, bestätigt Details & zahlt</li>
-        <li>Erhält Buchungsbestätigung per E-Mail</li>
-        <li>Bei Ausgebucht: tritt Warteliste bei</li>
-      </ul>
-    </div>
-    <div class="phase-col pain">
-      <h4>Aktuelle Pain Points</h4>
-      <ul>
-        <li>Keine Online-Buchung mit Echtzeit-Verfügbarkeit</li>
-        <li>Booking-Deadline erzeugt Angst & Druck</li>
-        <li>Keine sichtbare Warteliste — keine Garantien</li>
-        <li>Kein TWINT, keine modernen Zahlungsmittel</li>
-        <li>Buchung = manuelle E-Mail-Kommunikation</li>
-      </ul>
-    </div>
-    <div class="phase-col opps">
-      <h4>goSNOB.ai Lösung</h4>
-      <ul>
-        <li>Buchungsflow mit serverseitiger Kapazitätsprüfung</li>
-        <li>Stripe: TWINT, Apple Pay, Kreditkarte, PayPal</li>
-        <li>Automatische Buchungsbestätigung (DE/EN/FR)</li>
-        <li>Warteliste: «Platz beitreten» + E-Mail-Alert</li>
-        <li>Phase 2: Queue-System mit Zeitfenster</li>
-      </ul>
-    </div>
-    <div class="phase-col">
-      <h4>Touchpoints</h4>
-      <ul>
-        <li>Buchungsflow auf Website</li>
-        <li>Stripe Checkout</li>
-        <li>Bestätigungs-E-Mail (automatisch)</li>
-        <li>goSNOB.ai Chatbot-Support</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Phase 5 -->
-
-  <div class="phase-panel" id="ph4">
-    <div class="phase-col-dark" style="grid-column:1/-1;padding-bottom:16px;">
-      <h4 style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.1);">Phase 5 — Buchungsänderungen verwalten</h4>
-    </div>
-    <div class="phase-col">
-      <h4>Aktionen (Claudia)</h4>
-      <ul>
-        <li>Initiiert Stornierung via Self-Service</li>
-        <li>Prüft Stornierungsrichtlinien & Gebühren</li>
-        <li>Bestätigt Stornierung, erhält Bestätigung</li>
-        <li>Erhält Rückerstattung oder Gutschrift</li>
-        <li>Erhält KI-basierte Kursalternativen</li>
-      </ul>
-    </div>
-    <div class="phase-col pain">
-      <h4>Aktuelle Pain Points</h4>
-      <ul>
-        <li>Keine Warteliste sichtbar, keine Garantien</li>
-        <li>Jede Änderung = Telefon oder E-Mail manuell</li>
-        <li>Kein Self-Service für Kursänderungen</li>
-        <li>Stornierungspolitik unklar kommuniziert</li>
-      </ul>
-    </div>
-    <div class="phase-col opps">
-      <h4>goSNOB.ai Lösung</h4>
-      <ul>
-        <li>Self-Service Stornierung im Familienkonto</li>
-        <li>Konfigurierbares Refund-Policy-System</li>
-        <li>KI schlägt sofort Alternativen vor</li>
-        <li>Wartelisten-Benachrichtigung automatisiert</li>
-      </ul>
-    </div>
-    <div class="phase-col">
-      <h4>Touchpoints</h4>
-      <ul>
-        <li>Familienkonto / Buchungshistorie</li>
-        <li>E-Mail Bestätigung</li>
-        <li>Stripe Refund Flow</li>
-        <li>goSNOB.ai KI-Alternativen</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Phase 6 -->
-
-  <div class="phase-panel" id="ph5">
-    <div class="phase-col-dark" style="grid-column:1/-1;padding-bottom:16px;">
-      <h4 style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.1);">Phase 6 — Kursinfos & Live-Updates</h4>
-    </div>
-    <div class="phase-col">
-      <h4>Aktionen (Claudia)</h4>
-      <ul>
-        <li>Erhält Kursvorbereitungsinfos (Anfahrt, Material)</li>
-        <li>Erhält dynamische Änderungs-Notifikationen</li>
-        <li>Erhält Echtzeit-Kind-Ankunfts-Alert (Check-in)</li>
-        <li>Kann bei Problemen Notfall-Notifikationen empfangen</li>
-      </ul>
-    </div>
-    <div class="phase-col pain">
-      <h4>Aktuelle Pain Points</h4>
-      <ul>
-        <li>Updates nur sporadisch via manuellem E-Mail</li>
-        <li>Keine Live- oder dynamischen Updates</li>
-        <li>Kursinfos inkonsistent & unvollständig</li>
-        <li>Keine Check-in-Benachrichtigung für Eltern</li>
-      </ul>
-    </div>
-    <div class="phase-col opps">
-      <h4>goSNOB.ai Lösung</h4>
-      <ul>
-        <li>Automatisierter 48h-Kurs-Reminder per E-Mail</li>
-        <li>Anbieter postet Updates über eigenes Portal</li>
-        <li>Unified Communication Channel (zentral)</li>
-        <li>Phase 2: WhatsApp/SMS + Live-Wetter-Updates</li>
-      </ul>
-    </div>
-    <div class="phase-col">
-      <h4>Touchpoints</h4>
-      <ul>
-        <li>E-Mail / Push-Notifications</li>
-        <li>Kurs-Detailseite (live updates)</li>
-        <li>goSNOB.ai Chatbot</li>
-        <li>Phase 2: WhatsApp, SMS</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Phase 7 -->
-
-  <div class="phase-panel" id="ph6">
-    <div class="phase-col-dark" style="grid-column:1/-1;padding-bottom:16px;">
-      <h4 style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.1);">Phase 7 — Erfahrung bewerten & neu planen</h4>
-    </div>
-    <div class="phase-col">
-      <h4>Aktionen (Claudia & Kids)</h4>
-      <ul>
-        <li>Kids bewerten Kurs altersgerecht (Sterne)</li>
-        <li>Eltern schreiben optionalen Kommentar</li>
-        <li>Erhält KI-Folge-Kursvorschläge</li>
-        <li>Aktualisiert Ferienkalender für nächste Saison</li>
-      </ul>
-    </div>
-    <div class="phase-col pain">
-      <h4>Aktuelle Pain Points</h4>
-      <ul>
-        <li>Kein Kalender — Planung jede Saison von null</li>
-        <li>Keine Kursempfehlungen basierend auf Erfahrung</li>
-        <li>Keine Ratings von Kids oder Eltern möglich</li>
-        <li>Kurs-Token & Medien inkonsistent / offline</li>
-      </ul>
-    </div>
-    <div class="phase-col opps">
-      <h4>goSNOB.ai Lösung</h4>
-      <ul>
-        <li>Bewertungssystem (Sterne, Phase 1 minimal)</li>
-        <li>KI-Folgeempfehlungen nach Kursabschluss</li>
-        <li>Planungsfeatures & Kalenderintegration</li>
-        <li>Phase 2: Loyalty & Reward-Mechanismen</li>
-      </ul>
-    </div>
-    <div class="phase-col">
-      <h4>Touchpoints</h4>
-      <ul>
-        <li>Familienkonto / Buchungshistorie</li>
-        <li>goSNOB.ai KI-Empfehlungen</li>
-        <li>Phase 2: Social Media Integration</li>
-      </ul>
-    </div>
-  </div>
-
+<div class="div"></div>
+<p class="lbl">Claudias Pain Points im Detail</p>
+<div class="pain-grid" style="margin-top:16px;">
+  <div class="pain-item"><span class="ptag">Mental Load</span><p>Konstante Sorge, 14 Ferienwochen monate im Voraus zu füllen — Dauerstress neben 80%-Job.</p></div>
+  <div class="pain-item"><span class="ptag">Geschwister-Koordination</span><p>Programme für 8- UND 14-Jährige mit verschiedenen Interessen und Reifegraden finden.</p></div>
+  <div class="pain-item"><span class="ptag">Qualitätsunsicherheit</span><p>Keine Reviews oder Ratings — Buchung ins Blaue ohne Qualitätsnachweis.</p></div>
+  <div class="pain-item"><span class="ptag">Finanzplanung</span><p>Unklare Preisstrukturen und versteckte Kosten erschweren das Haushaltsbudget.</p></div>
+  <div class="pain-item"><span class="ptag">Kommunikationslücken</span><p>Kein zentraler Kanal — E-Mail-Chaos ausserhalb jeder Plattform.</p></div>
+  <div class="pain-item"><span class="ptag">Kein Kalender</span><p>Gebuchte Kurse nicht in persönliche Kalender integrierbar — alles manuell.</p></div>
+  <div class="pain-item"><span class="ptag">Zahlungsoptionen</span><p>Kein TWINT, kein Apple/Google Pay — 2026 noch Überweisung oder Bargeld.</p></div>
+  <div class="pain-item"><span class="ptag">Spontane Änderungen</span><p>Bei Krankheit keine Stornierungsoption, keine Alternativen in Sicht.</p></div>
+  <div class="pain-item"><span class="ptag">Decision Fatigue</span><p>Zu viele Optionen ohne Vergleichswerkzeuge — Entscheidungslähmung garantiert.</p></div>
 </div>
+```
+
+  </div>
 </div>
 
-<!-- ════════════════════════════════════════ -->
+<!-- ═══════════════ JOURNEY ═══════════════ -->
 
-<!-- SCOPE -->
+<div id="sec-journey" class="sec">
+  <div class="wrap">
+    <p class="lbl">03 — Customer Journey Map</p>
+    <h2>7 Phasen. Ein Erlebnis.</h2>
 
-<!-- ════════════════════════════════════════ -->
-
-<div id="sec-scope" class="sec-full sec-hidden">
-<div class="sec" style="padding-top:0;padding-bottom:0;">
-
-  <p class="sec-label">04 — Leistungsumfang</p>
-  <h2 class="sec-title">Was wir liefern.<br>Was optional ist.</h2>
-
-  <!-- BASE PACKAGE -->
-
-  <div class="scope-head">
-    <div class="scope-h3">Base Package</div>
-    <span class="badge b-inc">Inklusive</span>
-  </div>
-  <table class="stbl">
-    <thead>
-      <tr>
-        <th style="width:28%">Feature</th>
-        <th style="width:52%">Beschreibung</th>
-        <th style="width:20%">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td><div class="fn">Dreisprachige Website</div><div class="fd">DE / EN / FR</div></td><td>Homepage, Navigation, CMS-verwaltete Inhaltsbereiche. Vollständig dreisprachige UI inkl. System-E-Mails.</td><td><span class="cy">✓ Inklusive</span></td></tr>
-      <tr><td><div class="fn">Kurssuche & Filter</div></td><td>Filter nach Kategorie, Altersgruppe, Datum, Preis, Verfügbarkeit. Teilbare URLs. Responsive auf allen Geräten.</td><td><span class="cy">✓ Inklusive</span></td></tr>
-      <tr><td><div class="fn">Kursdetailseite</div></td><td>Vollständige Kursinfos: Beschreibung, Stundenplan, Anbieterprofil, Kapazitätsanzeige, Preis, Fotogalerie, Enrol-CTA.</td><td><span class="cy">✓ Inklusive</span></td></tr>
-      <tr><td><div class="fn">Familienkonten</div></td><td>Registrierung via E-Mail/Passwort oder Google. Buchungshistorie mit Self-Service-Stornierung.</td><td><span class="cy">✓ Inklusive</span></td></tr>
-      <tr><td><div class="fn">Buchungsflow</div></td><td>Kind wählen, Details bestätigen, sicherer Checkout. Serverseitige Kapazitätsprüfung verhindert Überbuchung. Auto-Bestätigungs-E-Mail.</td><td><span class="cy">✓ Inklusive</span></td></tr>
-      <tr><td><div class="fn">Stripe-Zahlung</div><div class="fd">TWINT · Apple/Google Pay · Kreditkarte</div></td><td>Stripe-gestützter Checkout. Automatisierte Stornierungsabwicklung mit konfigurierbarer Refund-Policy. Echtzeit-Status.</td><td><span class="cy">✓ Inklusive</span></td></tr>
-      <tr><td><div class="fn">Automatisierte E-Mails</div></td><td>Buchungsbestätigung, Stornierungsbestätigung, 48h-Kurs-Reminder, Anbieter-Update — alle in DE/EN/FR.</td><td><span class="cy">✓ Inklusive</span></td></tr>
-      <tr><td><div class="fn">Anbieter Self-Service Portal</div></td><td>Registrierung, Profil einreichen, Approval-Status verfolgen. Kurse erstellen/bearbeiten/deaktivieren. Teilnehmerliste einsehen.</td><td><span class="cy">✓ Inklusive</span></td></tr>
-      <tr><td><div class="fn">Ferienpass Admin-Modul</div></td><td>Anbieter-Approval (mit Feedback-E-Mail). Plattformweites Enrollment-Dashboard. Manuelle Buchungskorrektur. Filtierbar.</td><td><span class="cy">✓ Inklusive</span></td></tr>
-      <tr><td><div class="fn">goSNOB.ai KI-Chatbot</div></td><td>Kontextbewusste Einbettung auf relevanten Seiten. Session-Übergabe (Kurs, Sprache, Login-Status). Konsistente UI-Platzierung.</td><td><span class="cy">✓ Inklusive</span></td></tr>
-      <tr><td><div class="fn">UX Design</div><div class="fd">15–20+ Screens</div></td><td>Funktionaler Spec → UI Designs → 2–3 Iterationsrunden via Screenshare → Implementierung. Alle drei Rollen abgedeckt.</td><td><span class="cy">✓ Inklusive</span></td></tr>
-    </tbody>
-  </table>
-
-  <!-- ADD-ONS -->
-
-  <div class="scope-head">
-    <div class="scope-h3">Optionale Add-ons</div>
-    <span class="badge b-add">Zubuchbar</span>
-  </div>
-  <div class="infobox" style="margin-bottom:16px;">
-    <div class="infobox-icon">ℹ</div>
-    <div><h4>Vor Vertragsabschluss definieren</h4><p>Add-ons beeinflussen Scope und Timeline und müssen vor Vertragsabschluss definiert werden. Einige wenige (XLSX-Export) können auch später separat beauftragt werden.</p></div>
-  </div>
-  <table class="stbl">
-    <thead>
-      <tr><th style="width:28%">Feature</th><th style="width:52%">Beschreibung</th><th style="width:20%">Aufwand</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><div class="fn">Ferienpass-Kauf + PDF</div></td><td>Kauf-Flow: Eltern zahlen für Ferienpass → erhalten einfache PDF-Bestätigung per E-Mail. Phase 2: QR-Tickets mit On-Site-Scanning.</td><td><span class="ca">+0.5–1 Manntag</span></td></tr>
-      <tr><td><div class="fn">Zweistufige Kurs-Genehmigung</div></td><td>Admin genehmigt einzelne Kurse zusätzlich zur Anbieter-Approval bevor sie live gehen. Qualitätskontrolle ohne volles Moderationssystem.</td><td><span class="ca">+1 Manntag</span></td></tr>
-      <tr><td><div class="fn">XLSX-Export Admin</div></td><td>Export aller Anmeldungen gefiltert nach Kurskategorie und Preisband. Quick Win.</td><td><span class="ca">+0.25 Manntag</span></td></tr>
-      <tr><td><div class="fn">Reviews & Ratings (minimal)</div></td><td>1–5 Sterne-Bewertung. Keine Kommentare, kein Threading in Phase 1. Phase 2: Kommentare, Threading, Anbieter-Antworten.</td><td><span class="ca">+1 Manntag</span></td></tr>
-      <tr><td><div class="fn">Kalender-Integration (.ics)</div></td><td>«Zu Google/Apple/Outlook Kalender hinzufügen»-Button bei gebuchten Kursen. Kein eigener In-Platform-Kalender nötig.</td><td><span class="ca">+0.5 Manntag</span></td></tr>
-      <tr><td><div class="fn">Kurs-Kommunikationsraum</div><div class="fd">Anbieter ↔ Eltern</div></td><td>Kontaktformular: angemeldete Eltern können Anbieter über Plattform kontaktieren. DSGVO-relevant. Phase 2: Messaging + File Sharing.</td><td><span class="ca">+2 Manntage</span></td></tr>
-      <tr><td><div class="fn">Wartelisten-Management</div></td><td>«Warteliste beitreten» → E-Mail bei freiem Platz → First-come-first-served. Phase 2: Queue-Position + Zeitfenster-Claim.</td><td><span class="ca">+2 Manntage</span></td></tr>
-    </tbody>
-  </table>
-
-  <!-- PHASE 2 / OUT -->
-
-  <div class="scope-head">
-    <div class="scope-h3">Phase 2 / Out of Scope</div>
-    <span class="badge b-p2">Phase 2</span>
-  </div>
-  <table class="stbl">
-    <thead>
-      <tr><th style="width:28%">Feature</th><th style="width:72%">Begründung</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><div class="fn">Stripe Split Payments</div><div class="fd">Anbieter-Auszahlungen</div></td><td><span class="cp">Erfordert Stripe Connect — fundamental andere Architektur, KYC-Verifikation, Schweizer Regulatorik. Phase 1: Ferienpass zentralisiert Zahlungen, Anbieter werden offline ausgezahlt.</span></td></tr>
-      <tr><td><div class="fn">Kids-Profile & AI-Matching</div></td><td><span class="cp">Komplexes Datenmodell für Minderjährige. DSGVO-Anforderungen erhöht. Für Phase 2 geplant nach Validierung der Grundplattform.</span></td></tr>
-      <tr><td><div class="fn">Mobile App / PWA</div></td><td><span class="cp">Native App oder PWA mit Push-Notifikationen — Phase 2 nach Validierung der Web-Plattform und User-Feedback.</span></td></tr>
-      <tr><td><div class="fn">SMS / WhatsApp Kanal</div></td><td><span class="cp">Zusätzlicher Kommunikationskanal — Phase 2, nach Basis-E-Mail-System etabliert und getestet.</span></td></tr>
-      <tr><td><div class="fn">Automatische Kursübersetzung</div></td><td><span class="cp">KI-gestützte Übersetzung von Kursinhalten — Phase 2. Phase 1: UI dreisprachig, Kursinhalte in Originalsprache des Anbieters.</span></td></tr>
-    </tbody>
-  </table>
-
-</div>
+```
+<div class="phase-nav">
+  <button class="phase-btn active" onclick="ph(0,this)"><span class="pn">1</span><span class="pl">Family Profile</span></button>
+  <button class="phase-btn" onclick="ph(1,this)"><span class="pn">2</span><span class="pl">Pass kaufen</span></button>
+  <button class="phase-btn" onclick="ph(2,this)"><span class="pn">3</span><span class="pl">Kurse browsen</span></button>
+  <button class="phase-btn" onclick="ph(3,this)"><span class="pn">4</span><span class="pl">Kurs buchen</span></button>
+  <button class="phase-btn" onclick="ph(4,this)"><span class="pn">5</span><span class="pl">Änderungen</span></button>
+  <button class="phase-btn" onclick="ph(5,this)"><span class="pn">6</span><span class="pl">Live Updates</span></button>
+  <button class="phase-btn" onclick="ph(6,this)"><span class="pn">7</span><span class="pl">Bewertung</span></button>
 </div>
 
-<!-- ════════════════════════════════════════ -->
-
-<!-- TIMELINE -->
-
-<!-- ════════════════════════════════════════ -->
-
-<div id="sec-timeline" class="sec-full sec-hidden">
-<div class="sec" style="padding-top:0;padding-bottom:0;">
-
-  <p class="sec-label">05 — Delivery Plan</p>
-  <h2 class="sec-title">15 Wochen.<br>Pünktlich zum Sommer.</h2>
-
-  <div class="infobox">
-    <div class="infobox-icon">→</div>
-    <div>
-      <h4>Go-Live: vor Ende Sommer 2026</h4>
-      <p>Start Mitte Mai 2026. Einzige kritische Voraussetzung: Stripe-Zugangsdaten ab Kick-off verfügbar, Hosting-Entscheid in Woche 1–2 getroffen (betrifft gesamte Architektur).</p>
-    </div>
-  </div>
-
-  <div class="tl">
-    <div class="tl-item">
-      <div class="tl-week">Wo 1–2</div>
-      <div class="tl-dot"></div>
-      <div class="tl-title">Kick-off & Alignment</div>
-      <div class="tl-desc">Technisches Setup abgeschlossen. Design-Brief bestätigt. Hosting-Entscheid getroffen (Vercel/Supabase empfohlen). Stripe-Zugang konfiguriert. Offene Fragen abgeschlossen.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-week">Wo 2–4</div>
-      <div class="tl-dot"></div>
-      <div class="tl-title">UX & Design</div>
-      <div class="tl-desc">Key Screens designt und freigegeben: Homepage, Kurslistung, Buchungsflow, Anbieter-Portal, Admin-Modul. 2–3 Iterationsrunden via Screenshare. 15–20+ einzigartige Screens.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-week">Wo 4–9</div>
-      <div class="tl-dot"></div>
-      <div class="tl-title">Build — Öffentliche Plattform</div>
-      <div class="tl-desc">Dreisprachige Website live auf Staging: Homepage, Kurslistung, Detailseiten, Familienkonten, Buchungs- und Zahlungsflow vollständig implementiert. Mobile responsive.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-week">Wo 9–12</div>
-      <div class="tl-dot"></div>
-      <div class="tl-title">Build — Portale & Integrationen</div>
-      <div class="tl-desc">Anbieter-Portal, Admin-Modul, E-Mail-Automatisierung (DE/EN/FR), goSNOB.ai KI-Chatbot Integration — alle auf Staging fertiggestellt und testbar.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-week">Wo 12–14</div>
-      <div class="tl-dot"></div>
-      <div class="tl-title">Testing & Client UAT</div>
-      <div class="tl-desc">Vollständiges End-to-End-Testing. Client-Team führt User Acceptance Testing auf Staging durch. Bugs behoben, Feedback eingearbeitet, Produktionsumgebung vorbereitet.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-week">Wo 15</div>
-      <div class="tl-dot go"></div>
-      <div class="tl-title go">🚀 Go-Live</div>
-      <div class="tl-desc">Production Deployment. Plattform live und einsatzbereit. Ferienpass-Team übernimmt operativen Betrieb via Admin-Modul. Handover-Dokumentation übergeben.</div>
-    </div>
-  </div>
-
-</div>
+<div id="ph0" class="phase-panel active">
+  <div class="phase-col"><div class="phase-col-hd">Aktionen (Claudia)</div><ul><li>Landet auf attraktiver, übersichtlicher Homepage</li><li>Registriert sich via E-Mail oder Google</li><li>Vervollständigt geführtes Familienprofil</li><li>Speichert Zahlungsmethode (TWINT, Kreditkarte)</li><li>Richtet Kurs-Verfügbarkeits-Reminders ein</li><li>Aktiviert Kalender-Integration</li></ul></div>
+  <div class="phase-col pain"><div class="phase-col-hd">Aktuelle Pain Points</div><ul><li>Homepage veraltet und überladen</li><li>Registrierung: zu viele Felder, kein Google OAuth</li><li>Kids-Profile mit personalisierten Ansichten fehlen</li><li>Keine Kalender-Integration, kein Reminder-System</li></ul></div>
+  <div class="phase-col opps"><div class="phase-col-hd">goSNOB.ai Lösung</div><ul><li>Modernes, dreisprachiges Website-Design</li><li>Streamlined Sign-up (Google OAuth)</li><li>Geführtes Profil-Setup, KI-unterstützt</li><li>iCal / Google / Outlook Calendar Integration</li></ul></div>
+  <div class="phase-col touch"><div class="phase-col-hd">Touchpoints</div><ul><li>Ferienpass Website (mobile responsive)</li><li>E-Mail / Push Notifications</li><li>Stripe (Zahlungsanbieter)</li><li>goSNOB.ai KI-Chatbot</li></ul></div>
 </div>
 
-<!-- ════════════════════════════════════════ -->
-
-<!-- ASSUMPTIONS -->
-
-<!-- ════════════════════════════════════════ -->
-
-<div id="sec-assumptions" class="sec-full sec-hidden">
-<div class="sec" style="padding-top:0;padding-bottom:0;">
-
-  <p class="sec-label">06 — Rahmenbedingungen</p>
-  <h2 class="sec-title">Was wir voraussetzen.<br>Was der Kunde liefert.</h2>
-
-  <div class="infobox">
-    <div class="infobox-icon">⚠</div>
-    <div>
-      <h4>Kritische Voraussetzungen — müssen in Woche 1–2 geklärt sein</h4>
-      <p>Verzögerungen bei Stripe-Zugang oder Hosting-Entscheid verschieben den Go-Live-Termin direkt. Diese Punkte sind nicht optional.</p>
-    </div>
-  </div>
-
-  <div class="ass-grid" style="border:1px solid var(--border);">
-    <div class="ass-card crit">
-      <h4>Stripe-Zugang (kritisch)</h4>
-      <p>Zugang zum Stripe-Account (Test + Prod) ab Projekt-Start erforderlich. Ohne Stripe-Zugang kann kein Zahlungsflow gebaut werden.</p>
-    </div>
-    <div class="ass-card crit">
-      <h4>Hosting-Entscheid Wo 1–2 (kritisch)</h4>
-      <p>Betrifft gesamte Architektur: Datenbank, Deployment, File Storage. Empfehlung: Managed Services (Vercel / Supabase). Spart Zeit, reduziert Portabilität.</p>
-    </div>
-    <div class="ass-card crit">
-      <h4>Drittanbieter-Konten (kritisch)</h4>
-      <p>Kunde erstellt/besitzt Konten für E-Mail-Delivery (SendGrid/Mailgun), Image-Hosting etc. und gibt goSNOB.ai Zugang. Setup durch uns = zusätzlicher Aufwand.</p>
-    </div>
-    <div class="ass-card">
-      <h4>Zahlungsmodell</h4>
-      <p>Ferienpass zentralisiert alle Familienzahlungen. Anbieter-Auszahlungen sind separater Business-Prozess — kein Platform-Feature in Phase 1. Marketplace Payouts = Phase 2.</p>
-    </div>
-    <div class="ass-card">
-      <h4>Kein Datenmigration</h4>
-      <p>Greenfield-Plattform — keine Migration aus bestehendem System. Anbieter registrieren sich selbst. Initiale Inhalte werden durch Ferienpass-Team via Admin-Modul befüllt.</p>
-    </div>
-    <div class="ass-card">
-      <h4>Deutschen Copy vom Kunden</h4>
-      <p>Statische Seiteninhalte (Homepage, About, FAQ, Hilfe-Texte) werden vom Kunden auf Deutsch geliefert. goSNOB.ai implementiert und adaptiert für EN/FR.</p>
-    </div>
-    <div class="ass-card">
-      <h4>Kursinhalt-Sprache</h4>
-      <p>Provider-eingereichte Kursbeschreibungen erscheinen in Originalsprache. Platform-UI und System-E-Mails sind dreisprachig. Automatische Übersetzung = Phase 2.</p>
-    </div>
-    <div class="ass-card">
-      <h4>Subventions-Validierung</h4>
-      <p>Dieses Proposal geht davon aus, dass Rabatte und Ferienpass-Karten offline abgewickelt werden. Digitale Validierung beim Checkout = zusätzlicher Scope, vor Vertragsabschluss zu definieren.</p>
-    </div>
-    <div class="ass-card">
-      <h4>Hosting-Kosten (Post-Launch)</h4>
-      <p>Laufende Cloud-Kosten (Hosting, Stripe-Fees, E-Mail-Delivery) gehen auf den Kunden. Geschätzt: unter CHF 200/Monat bei Launch-Scale. Exkl. Stripe-Transaktionsgebühren.</p>
-    </div>
-    <div class="ass-card">
-      <h4>Ein Staging-Environment</h4>
-      <p>Ein Environment, das zum Go-Live zu Production wird. Kein separates Dev/Staging/Prod-Drei-Environment-Setup im Scope.</p>
-    </div>
-    <div class="ass-card">
-      <h4>Registrierungspflicht</h4>
-      <p>Jede Aktion über das Browsen hinaus (inkl. Ferienpass-Kauf) erfordert Registrierung und Login. Kein Guest Checkout im Scope.</p>
-    </div>
-    <div class="ass-card">
-      <h4>CI/CD via GitHub Actions</h4>
-      <p>Continuous Integration und Deployment via GitHub Actions mit platform-nativem Deployment. Kein Custom-Infrastructure-Management im Scope.</p>
-    </div>
-  </div>
-
-</div>
+<div id="ph1" class="phase-panel">
+  <div class="phase-col"><div class="phase-col-hd">Aktionen (Claudia)</div><ul><li>Prüft Leistungen und Preise des Ferienpasses</li><li>Kauft Ferienpass via gespeicherter Zahlungsmethode</li><li>Erhält Kaufbestätigung (E-Mail + PDF)</li><li>Fügt Ferienpass zu Apple/Google Wallet hinzu</li></ul></div>
+  <div class="phase-col pain"><div class="phase-col-hd">Aktuelle Pain Points</div><ul><li>Physische Karte — leicht verloren/vergessen</li><li>Jährliche Neu-Anschaffung repetitiv &amp; unklar</li><li>Keine modernen Zahlungsoptionen</li><li>Kein digitaler Nachweis, kein Wallet-Support</li></ul></div>
+  <div class="phase-col opps"><div class="phase-col-hd">goSNOB.ai Lösung</div><ul><li>Digitaler Ferienpass für alle Stakeholder sichtbar</li><li>Stripe: TWINT, Apple/Google Pay, Kreditkarte</li><li>Automatische PDF-Bestätigung per E-Mail</li><li>Phase 2: QR-Code-Tickets mit On-Site-Scanning</li></ul></div>
+  <div class="phase-col touch"><div class="phase-col-hd">Touchpoints</div><ul><li>Ferienpass Website (Kauf-Flow)</li><li>Stripe Checkout</li><li>E-Mail Bestätigung (DE/EN/FR)</li><li>Digital Wallet / PDF Viewer</li></ul></div>
 </div>
 
-<!-- ════════════════════════════════════════ -->
-
-<!-- PRICING -->
-
-<!-- ════════════════════════════════════════ -->
-
-<div id="sec-pricing" class="sec-full sec-hidden">
-<div class="sec" style="padding-top:0;padding-bottom:0;">
-
-  <p class="sec-label">07 — Investment</p>
-  <h2 class="sec-title">Transparent.<br>Skalierbar.</h2>
-
-  <div class="price-grid" style="border:1px solid var(--border); margin-bottom:48px;">
-    <div class="price-card">
-      <span class="pt">Base Package<br><span class="pt-note">15 Wochen · Mai–Aug 2026</span></span>
-      <p class="pa">Gesamt exkl. MWST</p>
-      <div class="pv">auf Anfrage</div>
-      <ul class="pf">
-        <li>Dreisprachige Website (DE/EN/FR)</li>
-        <li>Kurssuche, Filter, Detailseiten</li>
-        <li>Familienkonten & Buchungsflow</li>
-        <li>Stripe (TWINT, Apple/Google Pay)</li>
-        <li>Anbieter Self-Service Portal</li>
-        <li>Ferienpass Admin-Modul</li>
-        <li>Auto. E-Mails (dreisprachig)</li>
-        <li>goSNOB.ai KI-Chatbot Integration</li>
-        <li>UX Design (15–20+ Screens)</li>
-        <li class="dim">Add-ons nicht inklusive</li>
-      </ul>
-    </div>
-    <div class="price-card feat">
-      <span class="pt">Base + Empfohlene Add-ons<br><span class="pt-note">Empfohlen für Launch-Erfolg</span></span>
-      <p class="pa">Gesamt exkl. MWST</p>
-      <div class="pv">auf Anfrage</div>
-      <ul class="pf">
-        <li>Alles aus Base Package</li>
-        <li>Wartelisten-Management (+2 MT)</li>
-        <li>Kalender-Integration .ics (+0.5 MT)</li>
-        <li>Reviews & Ratings minimal (+1 MT)</li>
-        <li>XLSX Export Admin (+0.25 MT)</li>
-        <li>Ferienpass-Kauf + PDF (+0.5–1 MT)</li>
-        <li class="dim">Kurs-Kommunikationsraum opt.</li>
-        <li class="dim">Zweistufige Genehmigung opt.</li>
-      </ul>
-    </div>
-    <div class="price-card">
-      <span class="pt">Laufende Kosten<br><span class="pt-note">Geschätzt · Post-Launch</span></span>
-      <p class="pa">Pro Monat</p>
-      <div class="pv"><small>CHF</small> &lt;200</div>
-      <ul class="pf">
-        <li>Cloud Hosting (Vercel/Supabase)</li>
-        <li>Datenbank-Infrastruktur</li>
-        <li>E-Mail Delivery (SendGrid/Mailgun)</li>
-        <li>Image Storage</li>
-        <li class="dim">Stripe-Fees % pro Transaktion</li>
-        <li class="dim">Exkl. Transaktionsgebühren</li>
-        <li class="dim">Direkt auf Kunden</li>
-      </ul>
-    </div>
-  </div>
-
-  <p class="sec-label">Häufige Fragen</p>
-  <div class="acc">
-    <div class="acc-item">
-      <div class="acc-head" onclick="toggleAcc(this)"><h4>Kann ich Add-ons nach Vertragsabschluss noch hinzufügen?</h4><span class="acc-toggle">+</span></div>
-      <div class="acc-body">Add-ons müssen grundsätzlich vor Vertragsabschluss definiert werden, da sie Scope und Timeline beeinflussen. Einige technisch unkomplizierte Add-ons (z.B. XLSX-Export) können auch später separat beauftragt werden — in Absprache und gegen Aufpreis.</div>
-    </div>
-    <div class="acc-item">
-      <div class="acc-head" onclick="toggleAcc(this)"><h4>Was passiert, wenn wir keinen Stripe-Account haben?</h4><span class="acc-toggle">+</span></div>
-      <div class="acc-body">Ein Stripe-Account muss vor Projekt-Start eingerichtet und goSNOB.ai zugänglich gemacht werden. Wir können bei der Einrichtung begleiten, aber der Account liegt beim Kunden. Ohne Stripe-Zugang kann der gesamte Zahlungsflow nicht gebaut werden.</div>
-    </div>
-    <div class="acc-item">
-      <div class="acc-head" onclick="toggleAcc(this)"><h4>Wer schreibt die Inhalte (Texte, FAQs, About)?</h4><span class="acc-toggle">+</span></div>
-      <div class="acc-body">Der Kunde liefert alle statischen Seiteninhalte auf Deutsch. goSNOB.ai implementiert und adaptiert für EN/FR. Originalinhalte werden nicht verfasst — Content-Erstellung ist kein Teil des Scopes.</div>
-    </div>
-    <div class="acc-item">
-      <div class="acc-head" onclick="toggleAcc(this)"><h4>Ist die Plattform nach Go-Live wartungsfrei?</h4><span class="acc-toggle">+</span></div>
-      <div class="acc-body">Das Ferienpass-Team übernimmt nach Go-Live den operativen Betrieb via Admin-Modul. Laufende technische Wartung (Updates, Sicherheits-Patches, Bug-Fixes) ist separat zu beauftragen. Wir empfehlen einen Wartungsvertrag für Phase 2.</div>
-    </div>
-    <div class="acc-item">
-      <div class="acc-head" onclick="toggleAcc(this)"><h4>Wie wird DSGVO / DSG (Schweiz) berücksichtigt?</h4><span class="acc-toggle">+</span></div>
-      <div class="acc-body">Die Plattform wird DSGVO-konform gebaut: Datenminimierung, Consent-Management, sichere Verarbeitung. Daten Minderjähriger werden besonders geschützt. Kommunikationsfeatures (Phase 2) werden mit besonderer DSGVO-Prüfung umgesetzt. Rechtliche Beratung liegt beim Kunden.</div>
-    </div>
-    <div class="acc-item">
-      <div class="acc-head" onclick="toggleAcc(this)"><h4>Können Anbieter Kursinhalte auf EN/FR übersetzen?</h4><span class="acc-toggle">+</span></div>
-      <div class="acc-body">Phase 1: Kursinhalte erscheinen in der Originalsprache des Anbieters. Automatische KI-Übersetzung von Kursinhalten ist Phase 2. Anbieter können optional mehrere Sprachversionen manuell einpflegen, wenn das Formular-Setup dies erlaubt.</div>
-    </div>
-  </div>
-
-</div>
+<div id="ph2" class="phase-panel">
+  <div class="phase-col"><div class="phase-col-hd">Aktionen (Claudia)</div><ul><li>Erhält Verfügbarkeits-Reminder für neue Kurse</li><li>Filtert nach Kategorie, Alter, Datum, Preis</li><li>Liest Reviews und Ratings</li><li>Speichert Favoriten und organisiert in Listen</li></ul></div>
+  <div class="phase-col pain"><div class="phase-col-hd">Aktuelle Pain Points</div><ul><li>Keine personalisierten Filter und Vorschläge</li><li>Kurspräsentation veraltet &amp; inkonsistent</li><li>Keine Reviews oder Ratings vorhanden</li><li>Keine Favoritenliste möglich</li></ul></div>
+  <div class="phase-col opps"><div class="phase-col-hd">goSNOB.ai Lösung</div><ul><li>Visuell reichhaltige, einheitliche Kurspräsentation</li><li>Smarte Filter + KI-Kursempfehlungen</li><li>Kursfavoriten &amp; Listen (Phase 1 Add-on)</li><li>Reviews &amp; Ratings Minimal (Phase 1 Add-on)</li></ul></div>
+  <div class="phase-col touch"><div class="phase-col-hd">Touchpoints</div><ul><li>Kurslistung &amp; Detailseite</li><li>E-Mail / Push Notifications</li><li>goSNOB.ai KI-Chatbot</li></ul></div>
 </div>
 
-<div class="spacer"></div>
+<div id="ph3" class="phase-panel">
+  <div class="phase-col"><div class="phase-col-hd">Aktionen (Claudia)</div><ul><li>Wählt Kurs aus Kalender oder Favoriten</li><li>Prüft freie Plätze und Session-Daten</li><li>Wählt Kind, bestätigt Details &amp; zahlt</li><li>Erhält Buchungsbestätigung per E-Mail</li><li>Bei Ausgebucht: tritt Warteliste bei</li></ul></div>
+  <div class="phase-col pain"><div class="phase-col-hd">Aktuelle Pain Points</div><ul><li>Keine Online-Buchung mit Echtzeit-Verfügbarkeit</li><li>Booking-Deadline erzeugt Angst &amp; Druck</li><li>Keine sichtbare Warteliste — keine Garantien</li><li>Buchung = manuelle E-Mail-Kommunikation</li></ul></div>
+  <div class="phase-col opps"><div class="phase-col-hd">goSNOB.ai Lösung</div><ul><li>Buchungsflow mit serverseitiger Kapazitätsprüfung</li><li>Stripe: TWINT, Apple Pay, Kreditkarte, PayPal</li><li>Automatische Buchungsbestätigung (DE/EN/FR)</li><li>Warteliste: «Platz beitreten» + E-Mail-Alert</li></ul></div>
+  <div class="phase-col touch"><div class="phase-col-hd">Touchpoints</div><ul><li>Buchungsflow auf Website</li><li>Stripe Checkout</li><li>Bestätigungs-E-Mail (automatisch)</li><li>goSNOB.ai Chatbot-Support</li></ul></div>
+</div>
+
+<div id="ph4" class="phase-panel">
+  <div class="phase-col"><div class="phase-col-hd">Aktionen (Claudia)</div><ul><li>Initiiert Stornierung via Self-Service</li><li>Prüft Stornierungsrichtlinien &amp; Gebühren</li><li>Erhält Rückerstattung oder Gutschrift</li><li>Erhält KI-basierte Kursalternativen</li></ul></div>
+  <div class="phase-col pain"><div class="phase-col-hd">Aktuelle Pain Points</div><ul><li>Jede Änderung = Telefon oder E-Mail manuell</li><li>Kein Self-Service für Kursänderungen</li><li>Stornierungspolitik unklar kommuniziert</li></ul></div>
+  <div class="phase-col opps"><div class="phase-col-hd">goSNOB.ai Lösung</div><ul><li>Self-Service Stornierung im Familienkonto</li><li>Konfigurierbares Refund-Policy-System</li><li>KI schlägt sofort Alternativen vor</li><li>Wartelisten-Benachrichtigung automatisiert</li></ul></div>
+  <div class="phase-col touch"><div class="phase-col-hd">Touchpoints</div><ul><li>Familienkonto / Buchungshistorie</li><li>E-Mail Bestätigung</li><li>Stripe Refund Flow</li><li>goSNOB.ai KI-Alternativen</li></ul></div>
+</div>
+
+<div id="ph5" class="phase-panel">
+  <div class="phase-col"><div class="phase-col-hd">Aktionen (Claudia)</div><ul><li>Erhält Kursvorbereitungsinfos (Anfahrt, Material)</li><li>Erhält dynamische Änderungs-Notifikationen</li><li>Erhält Echtzeit-Kind-Ankunfts-Alert (Check-in)</li></ul></div>
+  <div class="phase-col pain"><div class="phase-col-hd">Aktuelle Pain Points</div><ul><li>Updates nur sporadisch via manuellem E-Mail</li><li>Keine Live- oder dynamischen Updates</li><li>Kursinfos inkonsistent &amp; unvollständig</li></ul></div>
+  <div class="phase-col opps"><div class="phase-col-hd">goSNOB.ai Lösung</div><ul><li>Automatisierter 48h-Kurs-Reminder per E-Mail</li><li>Anbieter postet Updates über eigenes Portal</li><li>Unified Communication Channel (zentral)</li><li>Phase 2: WhatsApp/SMS + Live-Wetter-Updates</li></ul></div>
+  <div class="phase-col touch"><div class="phase-col-hd">Touchpoints</div><ul><li>E-Mail / Push-Notifications</li><li>Kurs-Detailseite (live updates)</li><li>goSNOB.ai Chatbot</li></ul></div>
+</div>
+
+<div id="ph6" class="phase-panel">
+  <div class="phase-col"><div class="phase-col-hd">Aktionen (Claudia &amp; Kids)</div><ul><li>Kids bewerten Kurs altersgerecht (Sterne)</li><li>Eltern schreiben optionalen Kommentar</li><li>Erhält KI-Folge-Kursvorschläge</li><li>Aktualisiert Ferienkalender für nächste Saison</li></ul></div>
+  <div class="phase-col pain"><div class="phase-col-hd">Aktuelle Pain Points</div><ul><li>Kein Kalender — Planung jede Saison von null</li><li>Keine Kursempfehlungen basierend auf Erfahrung</li><li>Keine Ratings von Kids oder Eltern möglich</li></ul></div>
+  <div class="phase-col opps"><div class="phase-col-hd">goSNOB.ai Lösung</div><ul><li>Bewertungssystem (Sterne, Phase 1 minimal)</li><li>KI-Folgeempfehlungen nach Kursabschluss</li><li>Planungsfeatures &amp; Kalenderintegration</li><li>Phase 2: Loyalty &amp; Reward-Mechanismen</li></ul></div>
+  <div class="phase-col touch"><div class="phase-col-hd">Touchpoints</div><ul><li>Familienkonto / Buchungshistorie</li><li>goSNOB.ai KI-Empfehlungen</li><li>Phase 2: Social Media Integration</li></ul></div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ═══════════════ SCOPE ═══════════════ -->
+
+<div id="sec-scope" class="sec">
+  <div class="wrap">
+    <p class="lbl">04 — Leistungsumfang</p>
+    <h2>Was wir liefern.<br>Was optional ist.</h2>
+
+```
+<div class="scope-label-row"><h3>Base Package</h3><span class="badge b-inc">Inklusive</span></div>
+<table class="stbl">
+  <thead><tr><th style="width:28%">Feature</th><th style="width:52%">Beschreibung</th><th style="width:20%">Status</th></tr></thead>
+  <tbody>
+    <tr><td><div class="fn">Dreisprachige Website</div><div class="fd">DE / EN / FR</div></td><td>Homepage, Navigation, CMS-verwaltete Inhaltsbereiche. Vollständig dreisprachige UI inkl. System-E-Mails.</td><td><span class="cy">✓ Inklusive</span></td></tr>
+    <tr><td><div class="fn">Kurssuche &amp; Filter</div></td><td>Filter nach Kategorie, Altersgruppe, Datum, Preis, Verfügbarkeit. Teilbare URLs. Responsive auf allen Geräten.</td><td><span class="cy">✓ Inklusive</span></td></tr>
+    <tr><td><div class="fn">Kursdetailseite</div></td><td>Vollständige Kursinfos: Beschreibung, Stundenplan, Anbieterprofil, Kapazitätsanzeige, Preis, Fotogalerie.</td><td><span class="cy">✓ Inklusive</span></td></tr>
+    <tr><td><div class="fn">Familienkonten</div></td><td>Registrierung via E-Mail/Passwort oder Google. Buchungshistorie mit Self-Service-Stornierung.</td><td><span class="cy">✓ Inklusive</span></td></tr>
+    <tr><td><div class="fn">Buchungsflow</div></td><td>Kind wählen, Details bestätigen, sicherer Checkout. Serverseitige Kapazitätsprüfung. Auto-Bestätigungs-E-Mail.</td><td><span class="cy">✓ Inklusive</span></td></tr>
+    <tr><td><div class="fn">Stripe-Zahlung</div><div class="fd">TWINT · Apple/Google Pay · Kreditkarte</div></td><td>Stripe-gestützter Checkout. Automatisierte Stornierungsabwicklung mit konfigurierbarer Refund-Policy.</td><td><span class="cy">✓ Inklusive</span></td></tr>
+    <tr><td><div class="fn">Automatisierte E-Mails</div></td><td>Buchungsbestätigung, Stornierung, 48h-Reminder, Anbieter-Update — alle in DE/EN/FR.</td><td><span class="cy">✓ Inklusive</span></td></tr>
+    <tr><td><div class="fn">Anbieter Self-Service Portal</div></td><td>Registrierung, Profil einreichen, Approval-Status. Kurse erstellen/bearbeiten/deaktivieren. Teilnehmerliste.</td><td><span class="cy">✓ Inklusive</span></td></tr>
+    <tr><td><div class="fn">Ferienpass Admin-Modul</div></td><td>Anbieter-Approval mit Feedback-E-Mail. Plattformweites Enrollment-Dashboard. Manuelle Buchungskorrektur.</td><td><span class="cy">✓ Inklusive</span></td></tr>
+    <tr><td><div class="fn">goSNOB.ai KI-Chatbot</div></td><td>Kontextbewusste Einbettung auf relevanten Seiten. Session-Übergabe (Kurs, Sprache, Login-Status).</td><td><span class="cy">✓ Inklusive</span></td></tr>
+    <tr><td><div class="fn">UX Design</div><div class="fd">15–20+ Screens</div></td><td>Funktionaler Spec → UI Designs → 2–3 Iterationsrunden via Screenshare → Implementierung. Alle drei Rollen.</td><td><span class="cy">✓ Inklusive</span></td></tr>
+  </tbody>
+</table>
+
+<div class="infobox" style="margin-top:40px;">
+  <div><h4>Add-ons vor Vertragsabschluss definieren</h4><p>Add-ons beeinflussen Scope und Timeline. Sie müssen vor Vertragsabschluss definiert werden.</p></div>
+</div>
+<div class="scope-label-row"><h3>Optionale Add-ons</h3><span class="badge b-add">Zubuchbar</span></div>
+<table class="stbl">
+  <thead><tr><th style="width:28%">Feature</th><th style="width:52%">Beschreibung</th><th style="width:20%">Aufwand</th></tr></thead>
+  <tbody>
+    <tr><td><div class="fn">Ferienpass-Kauf + PDF</div></td><td>Kauf-Flow mit einfacher PDF-Bestätigung per E-Mail. Phase 2: QR-Tickets mit On-Site-Scanning.</td><td><span class="ca">+0.5–1 MT</span></td></tr>
+    <tr><td><div class="fn">Zweistufige Kurs-Genehmigung</div></td><td>Admin genehmigt einzelne Kurse zusätzlich zur Anbieter-Approval bevor sie live gehen.</td><td><span class="ca">+1 MT</span></td></tr>
+    <tr><td><div class="fn">XLSX-Export Admin</div></td><td>Export aller Anmeldungen gefiltert nach Kurskategorie und Preisband. Quick Win.</td><td><span class="ca">+0.25 MT</span></td></tr>
+    <tr><td><div class="fn">Reviews &amp; Ratings (minimal)</div></td><td>1–5 Sterne-Bewertung. Keine Kommentare in Phase 1. Phase 2: Kommentare + Anbieter-Antworten.</td><td><span class="ca">+1 MT</span></td></tr>
+    <tr><td><div class="fn">Kalender-Integration (.ics)</div></td><td>«Zu Google/Apple/Outlook Kalender hinzufügen»-Button bei gebuchten Kursen.</td><td><span class="ca">+0.5 MT</span></td></tr>
+    <tr><td><div class="fn">Kurs-Kommunikationsraum</div><div class="fd">Anbieter ↔ Eltern</div></td><td>Kontaktformular: Eltern kontaktieren Anbieter über Plattform. DSGVO-relevant. Phase 2: Messaging.</td><td><span class="ca">+2 MT</span></td></tr>
+    <tr><td><div class="fn">Wartelisten-Management</div></td><td>«Warteliste beitreten» → E-Mail bei freiem Platz → First-come-first-served. Phase 2: Queue + Zeitfenster.</td><td><span class="ca">+2 MT</span></td></tr>
+  </tbody>
+</table>
+
+<div class="scope-label-row" style="margin-top:40px;"><h3>Phase 2 / Out of Scope</h3><span class="badge b-p2">Phase 2</span></div>
+<table class="stbl">
+  <thead><tr><th style="width:28%">Feature</th><th style="width:72%">Begründung</th></tr></thead>
+  <tbody>
+    <tr><td><div class="fn">Stripe Split Payments</div></td><td><span class="cp">Erfordert Stripe Connect — fundamental andere Architektur, KYC, Schweizer Regulatorik. Phase 1: Ferienpass zentralisiert Zahlungen, Anbieter werden offline ausgezahlt.</span></td></tr>
+    <tr><td><div class="fn">Kids-Profile &amp; AI-Matching</div></td><td><span class="cp">Komplexes Datenmodell für Minderjährige. DSGVO-Anforderungen erhöht. Für Phase 2 nach Plattform-Validierung.</span></td></tr>
+    <tr><td><div class="fn">Mobile App / PWA</div></td><td><span class="cp">Phase 2 nach Validierung der Web-Plattform und User-Feedback.</span></td></tr>
+    <tr><td><div class="fn">SMS / WhatsApp Kanal</div></td><td><span class="cp">Phase 2, nach Basis-E-Mail-System etabliert.</span></td></tr>
+    <tr><td><div class="fn">Automatische Kursübersetzung</div></td><td><span class="cp">Phase 2. Phase 1: UI dreisprachig, Kursinhalte in Originalsprache des Anbieters.</span></td></tr>
+  </tbody>
+</table>
+```
+
+  </div>
+</div>
+
+<!-- ═══════════════ TIMELINE ═══════════════ -->
+
+<div id="sec-timeline" class="sec">
+  <div class="wrap">
+    <p class="lbl">05 — Delivery Plan</p>
+    <h2>15 Wochen.<br>Pünktlich zum Sommer.</h2>
+
+```
+<div class="infobox">
+  <div><h4>Go-Live: vor Ende Sommer 2026</h4><p>Start Mitte Mai 2026. Kritische Voraussetzung: Stripe-Zugangsdaten ab Kick-off verfügbar, Hosting-Entscheid in Woche 1–2 (betrifft gesamte Architektur).</p></div>
+</div>
+
+<div class="tl">
+  <div class="tl-item"><div class="tl-week">Wo 1–2</div><div class="tl-dot"></div><div class="tl-title">Kick-off &amp; Alignment</div><div class="tl-desc">Technisches Setup. Design-Brief bestätigt. Hosting-Entscheid (Vercel/Supabase empfohlen). Stripe-Zugang konfiguriert. Offene Fragen abgeschlossen.</div></div>
+  <div class="tl-item"><div class="tl-week">Wo 2–4</div><div class="tl-dot"></div><div class="tl-title">UX &amp; Design</div><div class="tl-desc">Key Screens designt und freigegeben: Homepage, Kurslistung, Buchungsflow, Anbieter-Portal, Admin-Modul. 2–3 Iterationsrunden. 15–20+ einzigartige Screens.</div></div>
+  <div class="tl-item"><div class="tl-week">Wo 4–9</div><div class="tl-dot"></div><div class="tl-title">Build — Öffentliche Plattform</div><div class="tl-desc">Dreisprachige Website live auf Staging: Homepage, Kurslistung, Detailseiten, Familienkonten, Buchungs- und Zahlungsflow. Mobile responsive.</div></div>
+  <div class="tl-item"><div class="tl-week">Wo 9–12</div><div class="tl-dot"></div><div class="tl-title">Build — Portale &amp; Integrationen</div><div class="tl-desc">Anbieter-Portal, Admin-Modul, E-Mail-Automatisierung (DE/EN/FR), goSNOB.ai KI-Chatbot — alle auf Staging fertig.</div></div>
+  <div class="tl-item"><div class="tl-week">Wo 12–14</div><div class="tl-dot"></div><div class="tl-title">Testing &amp; Client UAT</div><div class="tl-desc">Vollständiges End-to-End-Testing. Client-Team führt User Acceptance Testing auf Staging durch. Bugs behoben, Feedback eingearbeitet.</div></div>
+  <div class="tl-item"><div class="tl-week">Wo 15</div><div class="tl-dot go"></div><div class="tl-title go">Go-Live</div><div class="tl-desc">Production Deployment. Plattform live. Ferienpass-Team übernimmt operativen Betrieb via Admin-Modul. Handover-Dokumentation übergeben.</div></div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ═══════════════ ASSUMPTIONS ═══════════════ -->
+
+<div id="sec-assumptions" class="sec">
+  <div class="wrap">
+    <p class="lbl">06 — Rahmenbedingungen</p>
+    <h2>Was wir voraussetzen.<br>Was der Kunde liefert.</h2>
+
+```
+<div class="infobox">
+  <div><h4>Kritische Punkte — müssen in Woche 1–2 geklärt sein</h4><p>Verzögerungen bei Stripe-Zugang oder Hosting-Entscheid verschieben den Go-Live-Termin direkt. Nicht optional.</p></div>
+</div>
+
+<div class="ass-grid">
+  <div class="ass-card crit"><h4>Stripe-Zugang</h4><p>Zugang zum Stripe-Account (Test + Prod) ab Projekt-Start erforderlich. Ohne Stripe kein Zahlungsflow.</p></div>
+  <div class="ass-card crit"><h4>Hosting-Entscheid Wo 1–2</h4><p>Betrifft gesamte Architektur: DB, Deployment, File Storage. Empfehlung: Vercel / Supabase (managed).</p></div>
+  <div class="ass-card crit"><h4>Drittanbieter-Konten</h4><p>Kunde erstellt Konten für E-Mail-Delivery (SendGrid/Mailgun), Image-Hosting und gibt goSNOB.ai Zugang.</p></div>
+  <div class="ass-card"><h4>Zahlungsmodell</h4><p>Ferienpass zentralisiert alle Zahlungen. Anbieter-Auszahlungen = separater Prozess, offline. Marketplace Payouts = Phase 2.</p></div>
+  <div class="ass-card"><h4>Kein Datenmigration</h4><p>Greenfield-Plattform. Anbieter registrieren sich selbst. Initiale Inhalte via Admin-Modul befüllt.</p></div>
+  <div class="ass-card"><h4>Deutschen Copy vom Kunden</h4><p>Statische Inhalte (Homepage, About, FAQ) werden vom Kunden auf DE geliefert. goSNOB.ai adaptiert für EN/FR.</p></div>
+  <div class="ass-card"><h4>Kursinhalt-Sprache</h4><p>Kursbeschreibungen in Originalsprache des Anbieters. Platform-UI und System-E-Mails dreisprachig. Auto-Übersetzung = Phase 2.</p></div>
+  <div class="ass-card"><h4>Subventions-Validierung</h4><p>Rabatte und Ferienpass-Karten werden offline abgewickelt. Digitale Validierung beim Checkout = separater Scope.</p></div>
+  <div class="ass-card"><h4>Hosting-Kosten Post-Launch</h4><p>Cloud-Kosten (Hosting, E-Mail, Storage) gehen auf den Kunden. Geschätzt: unter CHF 200/Monat bei Launch-Scale.</p></div>
+  <div class="ass-card"><h4>Ein Staging-Environment</h4><p>Kein separates Dev/Staging/Prod-Setup. Ein Environment, das zum Go-Live zu Production wird.</p></div>
+  <div class="ass-card"><h4>Registrierungspflicht</h4><p>Jede Aktion über Browsen hinaus erfordert Login. Kein Guest Checkout im Scope.</p></div>
+  <div class="ass-card"><h4>CI/CD via GitHub Actions</h4><p>Deployment via GitHub Actions. Kein Custom-Infrastructure-Management im Scope.</p></div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ═══════════════ PRICING ═══════════════ -->
+
+<div id="sec-pricing" class="sec">
+  <div class="wrap">
+    <p class="lbl">07 — Investment</p>
+    <h2>Transparent.<br>Skalierbar.</h2>
+
+```
+<div class="price-grid">
+  <div class="pc">
+    <span class="pc-lbl">Base Package</span>
+    <span class="pc-note">15 Wochen · Mai–Aug 2026</span>
+    <p class="pc-helper">Gesamt exkl. MWST</p>
+    <div class="pc-price">auf Anfrage</div>
+    <ul class="pc-features">
+      <li>Dreisprachige Website (DE/EN/FR)</li>
+      <li>Kurssuche, Filter, Detailseiten</li>
+      <li>Familienkonten &amp; Buchungsflow</li>
+      <li>Stripe (TWINT, Apple/Google Pay)</li>
+      <li>Anbieter Self-Service Portal</li>
+      <li>Ferienpass Admin-Modul</li>
+      <li>Auto. E-Mails (dreisprachig)</li>
+      <li>goSNOB.ai KI-Chatbot</li>
+      <li>UX Design (15–20+ Screens)</li>
+      <li class="dim">Add-ons nicht inklusive</li>
+    </ul>
+  </div>
+  <div class="pc feat">
+    <span class="pc-lbl">Base + Empfohlene Add-ons</span>
+    <span class="pc-note">Empfohlen für Launch-Erfolg</span>
+    <p class="pc-helper">Gesamt exkl. MWST</p>
+    <div class="pc-price">auf Anfrage</div>
+    <ul class="pc-features">
+      <li>Alles aus Base Package</li>
+      <li>Wartelisten-Management (+2 MT)</li>
+      <li>Kalender-Integration .ics (+0.5 MT)</li>
+      <li>Reviews &amp; Ratings minimal (+1 MT)</li>
+      <li>XLSX Export Admin (+0.25 MT)</li>
+      <li>Ferienpass-Kauf + PDF (+0.5–1 MT)</li>
+      <li class="dim">Kurs-Kommunikationsraum opt.</li>
+      <li class="dim">Zweistufige Genehmigung opt.</li>
+    </ul>
+  </div>
+  <div class="pc">
+    <span class="pc-lbl">Laufende Kosten</span>
+    <span class="pc-note">Geschätzt · Post-Launch</span>
+    <p class="pc-helper">Pro Monat</p>
+    <div class="pc-price"><small>CHF</small> &lt;200</div>
+    <ul class="pc-features">
+      <li>Cloud Hosting (Vercel/Supabase)</li>
+      <li>Datenbank-Infrastruktur</li>
+      <li>E-Mail Delivery (SendGrid/Mailgun)</li>
+      <li>Image Storage</li>
+      <li class="dim">Stripe-Fees % pro Transaktion</li>
+      <li class="dim">Direkt auf Kunden</li>
+    </ul>
+  </div>
+</div>
+
+<p class="lbl" style="margin-bottom:0;">Häufige Fragen</p>
+<div style="margin-top:16px;">
+  <div class="acc-item"><div class="acc-head" onclick="acc(this)"><h4>Kann ich Add-ons nach Vertragsabschluss noch hinzufügen?</h4><span class="acc-toggle">+</span></div><div class="acc-body">Add-ons müssen grundsätzlich vor Vertragsabschluss definiert werden, da sie Scope und Timeline beeinflussen. Einige (z.B. XLSX-Export) können auch später separat beauftragt werden — in Absprache und gegen Aufpreis.</div></div>
+  <div class="acc-item"><div class="acc-head" onclick="acc(this)"><h4>Was passiert, wenn wir keinen Stripe-Account haben?</h4><span class="acc-toggle">+</span></div><div class="acc-body">Ein Stripe-Account muss vor Projekt-Start eingerichtet und goSNOB.ai zugänglich gemacht werden. Ohne Stripe-Zugang kann der Zahlungsflow nicht gebaut werden. Einrichtungsbegleitung möglich, geht aber auf Zeitkonto.</div></div>
+  <div class="acc-item"><div class="acc-head" onclick="acc(this)"><h4>Wer schreibt die Inhalte (Texte, FAQs, About)?</h4><span class="acc-toggle">+</span></div><div class="acc-body">Der Kunde liefert alle statischen Seiteninhalte auf Deutsch. goSNOB.ai implementiert und adaptiert für EN/FR. Originalinhalte verfassen ist kein Teil des Scopes.</div></div>
+  <div class="acc-item"><div class="acc-head" onclick="acc(this)"><h4>Ist die Plattform nach Go-Live wartungsfrei?</h4><span class="acc-toggle">+</span></div><div class="acc-body">Das Ferienpass-Team übernimmt den operativen Betrieb via Admin-Modul. Laufende technische Wartung (Updates, Security-Patches, Bug-Fixes) ist separat zu beauftragen. Wartungsvertrag für Phase 2 empfohlen.</div></div>
+  <div class="acc-item"><div class="acc-head" onclick="acc(this)"><h4>Wie wird DSGVO / DSG (Schweiz) berücksichtigt?</h4><span class="acc-toggle">+</span></div><div class="acc-body">Plattform wird DSGVO-konform gebaut: Datenminimierung, Consent-Management, sichere Verarbeitung. Daten Minderjähriger besonders geschützt. Rechtliche Beratung liegt beim Kunden.</div></div>
+</div>
+```
+
+  </div>
+</div>
 
 <script>
-// Section navigation
-const allSecs = ['overview','persona','journey','scope','timeline','assumptions','pricing'];
-
-function show(name, btn) {
-  allSecs.forEach(s => {
-    const el = document.getElementById('sec-' + s);
-    if (el) el.classList.toggle('sec-hidden', s !== name);
-  });
-  document.querySelectorAll('.nb').forEach(b => b.classList.remove('active'));
+const secs = ['overview','persona','journey','scope','timeline','assumptions','pricing'];
+function nav(id, btn) {
+  secs.forEach(s => document.getElementById('sec-'+s).classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({top:0, behavior:'smooth'});
 }
-
-// Phase tabs
-function showPhase(i, btn) {
-  for (let j = 0; j < 7; j++) {
-    const p = document.getElementById('ph' + j);
-    if (p) p.classList.toggle('active', j === i);
+function ph(i, btn) {
+  for(let j=0;j<7;j++){
+    const p=document.getElementById('ph'+j);
+    if(p) p.classList.toggle('active', j===i);
   }
-  document.querySelectorAll('.phase-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.phase-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
 }
-
-// Accordion
-function toggleAcc(head) {
-  const body = head.nextElementSibling;
-  const wasOpen = head.classList.contains('open');
-  document.querySelectorAll('.acc-head').forEach(h => h.classList.remove('open'));
-  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
-  if (!wasOpen) { head.classList.add('open'); body.classList.add('open'); }
+function acc(head) {
+  const body=head.nextElementSibling;
+  const wasOpen=head.classList.contains('open');
+  document.querySelectorAll('.acc-head').forEach(h=>h.classList.remove('open'));
+  document.querySelectorAll('.acc-body').forEach(b=>b.classList.remove('open'));
+  if(!wasOpen){head.classList.add('open');body.classList.add('open');}
 }
 </script>
 
