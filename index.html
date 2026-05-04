@@ -4,795 +4,937 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>goSNOB.ai x Basler Ferienpass — Offerte 2026</title>
+<title>goSNOB.ai × Basler Ferienpass</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=DM+Mono:wght@400;500&display=swap');
-:root{--bg:#fff;--ink:#0a0a0a;--mag:#cc00ff;--mag2:#aa00dd;--grey:#888;--light:#f0f0f0;--border:#e0e0e0;--green:#0a7a3e;
---fs:'DM Sans',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
---fm:'DM Mono','SF Mono','Courier New',monospace;}
-*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
-body{font-family:var(--fs);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;padding-bottom:80px;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
-@keyframes slideIn{from{opacity:0;transform:translateX(-16px);}to{opacity:1;transform:translateX(0);}}
-@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(204,0,255,0);}50%{box-shadow:0 0 20px 4px rgba(204,0,255,.25);}}
-@keyframes scan{0%{transform:translateY(-100%);}100%{transform:translateY(100vh);}}
-.fu{animation:fadeUp .5s ease both;}
-.fu2{animation:fadeUp .5s .12s ease both;}
-.fu3{animation:fadeUp .5s .24s ease both;}
+/* SYSTEM FONTS ONLY — works everywhere including GitHub Pages */
+:root {
+  --f: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --fm: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+  --ink: #0a0a0a;
+  --bg: #ffffff;
+  --mag: #cc00ff;
+  --mag2: #9900cc;
+  --grey: #666;
+  --dim: #aaa;
+  --line: #e0e0e0;
+  --light: #f5f5f5;
+  --green: #007a3e;
+  --warn: #c85000;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 80px;
+}
 
-/* SCANLINE EFFECT */
-body::after{content:’’;position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(transparent,rgba(204,0,255,.15),transparent);animation:scan 6s linear infinite;pointer-events:none;z-index:9999;}
+/* ── BOTTOM BAR ── */
+#bar {
+position: fixed; bottom: 0; left: 0; right: 0;
+height: 72px; background: var(–ink);
+border-top: 3px solid var(–mag);
+display: flex; align-items: center;
+justify-content: space-between;
+padding: 0 28px; z-index: 999; gap: 12px;
+}
+.bar-l { display: flex; align-items: baseline; gap: 14px; }
+.bar-lbl { font-family: var(–fm); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555; }
+.bar-price { font-size: 26px; font-weight: 800; color: var(–mag); line-height: 1; }
+.bar-extra { font-family: var(–fm); font-size: 11px; color: var(–mag); padding: 3px 10px; background: rgba(204,0,255,.15); display: none; }
+.bar-r { display: flex; gap: 10px; }
+.bar-btn { font-family: var(–f); font-size: 14px; font-weight: 700; padding: 10px 22px; border: none; cursor: pointer; transition: all .15s; }
+.bar-sec { background: transparent; color: #555; border: 1px solid #333; }
+.bar-sec:hover { border-color: var(–mag); color: var(–mag); }
+.bar-pri { background: var(–mag); color: #fff; }
+.bar-pri:hover { background: var(–mag2); }
 
-/* BOTTOM BAR */
-#bar{position:fixed;bottom:0;left:0;right:0;height:68px;background:var(–ink);display:flex;align-items:center;justify-content:space-between;padding:0 32px;z-index:998;border-top:2px solid var(–mag);}
-.bl{display:flex;align-items:baseline;gap:12px;}
-.bl-l{font-family:var(–fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#444;}
-.bl-p{font-size:22px;font-weight:700;color:var(–mag);transition:all .3s;}
-.bl-a{font-family:var(–fm);font-size:9px;color:#444;margin-left:4px;transition:all .3s;}
-.br{display:flex;gap:8px;}
-.bbt{padding:10px 22px;font-family:var(–fs);font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .2s;white-space:nowrap;letter-spacing:.3px;}
-.bbt-s{background:transparent;color:#666;border:1px solid #333;}
-.bbt-s:hover{border-color:var(–mag);color:var(–mag);}
-.bbt-p{background:var(–mag);color:#fff;}
-.bbt-p:hover{background:var(–mag2);transform:translateY(-1px);}
+/* ── HEADER ── */
+header {
+background: var(–ink); border-bottom: 1px solid #1a1a1a;
+position: sticky; top: 0; z-index: 100;
+display: flex; align-items: center; justify-content: space-between;
+padding: 0 28px; height: 58px; gap: 16px;
+}
+.logo { font-family: var(–fm); font-size: 14px; letter-spacing: 1px; color: #fff; }
+.logo-s { font-family: var(–fm); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #444; display: block; }
+.lang { display: flex; }
+.lb { font-family: var(–fm); font-size: 10px; letter-spacing: 2px; padding: 5px 10px; background: none; border: none; color: #444; cursor: pointer; border-bottom: 2px solid transparent; transition: all .15s; }
+.lb:hover { color: #fff; }
+.lb.on { color: var(–mag); border-bottom-color: var(–mag); }
+.hbadge { font-family: var(–fm); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; border: 1px solid #333; padding: 5px 12px; color: #444; white-space: nowrap; }
 
-/* HEADER */
-header{position:sticky;top:0;z-index:100;background:var(–ink);height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;gap:16px;border-bottom:1px solid #1a1a1a;}
-.logo{font-family:var(–fm);font-size:13px;letter-spacing:1px;color:#fff;}
-.logo-s{font-family:var(–fm);font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#444;display:block;margin-top:1px;}
-.lsw{display:flex;}
-.lb{font-family:var(–fm);font-size:9px;letter-spacing:2px;padding:5px 10px;background:none;border:none;color:#555;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;}
-.lb:hover{color:#fff;}.lb.on{color:var(–mag);border-bottom-color:var(–mag);}
-.otag{font-family:var(–fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;border:1px solid #333;padding:5px 12px;color:#555;}
+/* ── NAV ── */
+.nav {
+background: var(–ink); border-bottom: 1px solid #1a1a1a;
+display: flex; overflow-x: auto; padding: 0 28px;
+-webkit-overflow-scrolling: touch;
+}
+.nt {
+font-family: var(–fm); font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+padding: 14px 20px; background: none; border: none; color: #444;
+cursor: pointer; border-bottom: 3px solid transparent; transition: all .15s;
+white-space: nowrap; flex-shrink: 0;
+}
+.nt:hover { color: #fff; }
+.nt.on { color: var(–mag); border-bottom-color: var(–mag); }
 
-/* NAV */
-.nav-s{display:flex;padding:0 32px;border-bottom:1px solid #1a1a1a;overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(–ink);}
-.np{font-family:var(–fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:14px 18px;background:none;border:none;color:#444;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
-.np:hover{color:#fff;}.np.on{color:var(–mag);border-bottom-color:var(–mag);}
+/* ── PAGES ── */
+.pg { display: none; }
+.pg.on { display: block; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 56px 28px 100px; }
 
-/* PAGES */
-.pg{display:none;}.pg.on{display:block;}
+/* ── HERO ── */
+.hero {
+background: var(–ink); padding: 80px 28px 72px;
+position: relative; overflow: hidden;
+}
+.hero::before {
+content: ‘’;
+position: absolute; inset: 0;
+background-image: linear-gradient(rgba(204,0,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(204,0,255,.05) 1px, transparent 1px);
+background-size: 56px 56px;
+pointer-events: none;
+}
+.hero-inner { max-width: 960px; margin: 0 auto; position: relative; }
+.hero-eye { font-family: var(–fm); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #444; margin-bottom: 28px; }
+.hero-eye b { color: var(–mag); font-weight: 400; }
+.hero h1 { font-size: clamp(56px, 11vw, 136px); font-weight: 900; line-height: .88; letter-spacing: -4px; color: #fff; margin-bottom: 36px; }
+.hero h1 span { color: rgba(255,255,255,.08); display: block; }
+.hero-desc { font-family: var(–fm); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #444; line-height: 2; max-width: 480px; margin-bottom: 56px; }
+.stats { display: flex; max-width: 600px; border: 1px solid #1a1a1a; }
+.stat { flex: 1; padding: 20px 24px; border-right: 1px solid #1a1a1a; }
+.stat:last-child { border-right: none; }
+.stat-n { font-size: 48px; font-weight: 900; color: var(–mag); line-height: 1; display: block; letter-spacing: -2px; }
+.stat-l { font-family: var(–fm); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #444; display: block; margin-top: 4px; }
 
-/* HERO — full black */
-.hero{background:var(–ink);padding:90px 32px 72px;position:relative;overflow:hidden;}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(204,0,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(204,0,255,.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
-.hky{font-family:var(–fm);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#444;margin-bottom:32px;position:relative;}
-.hky b{color:var(–mag);font-weight:400;}
-.hero h1{font-size:clamp(64px,12vw,148px);font-weight:900;line-height:.88;letter-spacing:-4px;margin-bottom:40px;color:#fff;position:relative;}
-.hero h1 em{color:rgba(204,0,255,.15);font-style:normal;display:block;}
-.hdesc{font-family:var(–fm);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#444;line-height:2.2;max-width:480px;margin-bottom:56px;position:relative;}
-.hstats{display:flex;gap:0;flex-wrap:wrap;max-width:640px;position:relative;}
-.hs{padding:20px 28px;border:1px solid #1a1a1a;border-right:none;flex:1;min-width:110px;background:var(–ink);transition:background .2s;}
-.hs:last-child{border-right:1px solid #1a1a1a;}
-.hs:hover{background:#111;}
-.hs-n{font-size:48px;font-weight:900;line-height:1;color:var(–mag);display:block;}
-.hs-l{font-family:var(–fm);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#555;margin-top:4px;display:block;}
+/* ── SECTION TYPE ── */
+.ey { font-family: var(–fm); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(–grey); margin-bottom: 8px; }
+.ey.m { color: var(–mag); }
+h2 { font-size: clamp(34px, 5vw, 54px); font-weight: 900; line-height: .95; letter-spacing: -2px; margin-bottom: 32px; }
+.div { height: 1px; background: var(–line); margin: 48px 0; }
 
-/* WRAP */
-.wrap{max-width:1080px;margin:0 auto;padding:64px 32px;}
-.ey{font-family:var(–fm);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(–grey);margin-bottom:6px;}
-.ey.m{color:var(–mag);}
-h2{font-size:clamp(34px,5.5vw,58px);font-weight:900;line-height:.95;letter-spacing:-2px;margin-bottom:36px;}
+/* ── IBOX ── */
+.ibox { border-left: 4px solid var(–mag); padding: 16px 20px; background: var(–light); margin-bottom: 28px; }
+.ibox.warn { border-color: var(–warn); background: #fff7f0; }
+.ibox h4 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.ibox.warn h4 { color: var(–warn); }
+.ibox p { font-size: 13px; color: var(–grey); line-height: 1.6; }
 
-/* IBOX */
-.ibox{border-left:3px solid var(–mag);padding:16px 20px;background:var(–light);margin-bottom:28px;}
-.ibox h4{font-size:13px;font-weight:600;margin-bottom:4px;}.ibox p{font-size:12px;color:var(–grey);line-height:1.7;}
-.ibox.warn{border-color:#e07820;background:#fff8f0;}.ibox.warn h4{color:#e07820;}
+/* ── HOME 3-STEP ── */
+.steps { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border: 2px solid var(–line); margin-bottom: 48px; }
+@media(max-width:650px) { .steps { grid-template-columns: 1fr; } }
+.step { padding: 32px; cursor: pointer; border-right: 1px solid var(–line); transition: background .15s; position: relative; }
+.step:last-child { border-right: none; }
+.step::after { content: ‘’; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(–mag); transform: scaleX(0); transition: transform .25s; transform-origin: left; }
+.step:hover::after { transform: scaleX(1); }
+.step.dark { background: var(–ink); border-color: #1a1a1a; }
+.step.dark:hover { background: #0a0a0a; }
+.step:not(.dark):hover { background: #faf0ff; }
+.step-num { font-family: var(–fm); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(–mag); margin-bottom: 20px; display: block; }
+.step-t { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+.step.dark .step-t { color: #fff; }
+.step-d { font-size: 14px; color: var(–grey); line-height: 1.6; margin-bottom: 20px; }
+.step.dark .step-d { color: #555; }
+.step-cta { font-family: var(–fm); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(–mag); }
 
-/* DIV */
-.div{height:1px;background:var(–border);margin:48px 0;}
+/* ── PHASE BOXES ── */
+.phases { display: grid; grid-template-columns: 1fr 1fr; border: 2px solid var(–line); }
+@media(max-width:600px) { .phases { grid-template-columns: 1fr; } }
+.phase { padding: 32px; }
+.phase.dark { background: var(–ink); border-right: 1px solid #1a1a1a; }
+.phase-l { font-family: var(–fm); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(–mag); margin-bottom: 8px; display: block; }
+.phase h3 { font-size: 22px; font-weight: 800; margin-bottom: 20px; }
+.phase.dark h3 { color: #fff; }
+.phase ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.phase li { font-size: 14px; padding-left: 20px; position: relative; color: var(–grey); }
+.phase.dark li { color: #555; }
+.phase li::before { content: ‘’; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(–mag); }
 
-/* STEP CARDS — alternating black/white */
-.sg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-bottom:48px;border:1px solid var(–border);}
-@media(max-width:700px){.sg{grid-template-columns:1fr;}}
-.sc{padding:36px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;border-right:1px solid var(–border);}
-.sc:last-child{border-right:none;}
-.sc.w{background:var(–bg);}.sc.w:hover{background:#fafafa;}
-.sc.b{background:var(–ink);}.sc.b:hover{background:#111;}
-.sc::before{content:’’;position:absolute;bottom:0;left:0;right:0;height:3px;background:var(–mag);transform:scaleX(0);transition:transform .35s cubic-bezier(.4,0,.2,1);transform-origin:left;}
-.sc:hover::before{transform:scaleX(1);}
-.snum{font-family:var(–fm);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(–mag);margin-bottom:24px;display:block;}
-.sico{width:44px;height:44px;margin-bottom:24px;}
-.stit{font-size:17px;font-weight:700;margin-bottom:8px;}
-.sc.b .stit{color:#fff;}
-.sdesc{font-size:13px;line-height:1.6;margin-bottom:20px;}
-.sc.w .sdesc{color:var(–grey);}
-.sc.b .sdesc{color:rgba(255,255,255,.4);}
-.scta{font-family:var(–fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(–mag);display:inline-flex;align-items:center;gap:6px;}
+/* ── PRICE SUMMARY BAR ── */
+.price-summary {
+background: var(–ink); border: 2px solid var(–mag);
+padding: 28px 32px; margin-bottom: 40px;
+display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;
+}
+@media(max-width:650px) { .price-summary { grid-template-columns: 1fr; } }
+.ps-item { }
+.ps-label { font-family: var(–fm); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #444; margin-bottom: 8px; display: block; }
+.ps-val { font-size: 24px; font-weight: 900; color: #fff; line-height: 1; }
+.ps-val.mag { color: var(–mag); }
+.ps-sub { font-family: var(–fm); font-size: 10px; color: #444; margin-top: 4px; display: block; }
 
-/* PROBLEM GRID — black cards */
-.pg3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(–border);border:1px solid var(–border);}
-@media(max-width:700px){.pg3{grid-template-columns:1fr;}}
-.pc3{background:var(–ink);padding:28px;transition:background .2s;}
-.pc3:hover{background:#0f0f0f;}
-.pc3-l{font-family:var(–fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(–mag);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
-.pc3-t{font-size:16px;font-weight:700;margin-bottom:8px;color:#fff;}
-.pc3-d{font-size:13px;color:#555;line-height:1.6;}
+/* ── MENU SECTION HEADER ── */
+.ms-hd {
+display: flex; align-items: center; justify-content: space-between;
+padding: 14px 0; border-bottom: 3px solid var(–mag); margin-bottom: 0;
+gap: 12px;
+}
+.ms-title { font-family: var(–fm); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(–mag); }
+.ms-count { font-family: var(–fm); font-size: 10px; color: #aaa; }
 
-/* PHASE BOXES */
-.pboxes{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(–mag);border:1px solid var(–mag);}
-@media(max-width:600px){.pboxes{grid-template-columns:1fr;}}
-.pb{padding:36px;}.pb.dk{background:var(–ink);}.pb.lt{background:var(–bg);}
-.pb-l{font-family:var(–fm);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(–mag);margin-bottom:8px;display:block;}
-.pb h3{font-size:22px;font-weight:700;margin-bottom:24px;}
-.pb.dk h3{color:#fff;}.pb.lt h3{color:var(–ink);}
-.pb ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
-.pb li{font-size:13px;padding-left:20px;position:relative;}
-.pb.dk li{color:#555;}.pb.lt li{color:var(–grey);}
-.pb li::before{content:’’;position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(–mag);}
+/* ── MENU ITEM ── */
+.mi {
+display: flex; align-items: center; gap: 20px;
+padding: 22px 16px;
+border-bottom: 1px solid var(–line);
+transition: all .15s;
+}
+.mi:last-child { border-bottom: none; }
+.mi.clickable { cursor: pointer; }
+.mi.clickable:hover { background: #faf0ff; margin: 0 -16px; padding-left: 32px; padding-right: 32px; }
+.mi.sel { background: var(–ink) !important; margin: 0 -16px; padding-left: 32px; padding-right: 32px; }
+.mi.sel:hover { background: #0d0d0d !important; }
+.mi.p2 { opacity: .35; cursor: not-allowed; }
 
-/* INCLUDED GRID */
-.ig{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(–mag);border:1px solid var(–mag);margin-bottom:40px;}
-@media(max-width:800px){.ig{grid-template-columns:1fr 1fr;}}
-@media(max-width:500px){.ig{grid-template-columns:1fr;}}
-.ic{padding:28px;transition:all .2s;cursor:default;}
-.ic:nth-child(odd){background:var(–ink);}.ic:nth-child(even){background:#0f0f0f;}
-.ic:hover{background:#1a0020;}
-.ictag{font-family:var(–fm);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(–green);margin-bottom:14px;display:flex;align-items:center;gap:6px;}
-.icico{width:32px;height:32px;margin-bottom:14px;color:var(–mag);}
-.icit{font-size:14px;font-weight:700;margin-bottom:6px;color:#fff;}
-.icd{font-size:12px;color:#555;line-height:1.7;}
+/* CHECK */
+.chk {
+width: 28px; height: 28px; border: 2.5px solid var(–line);
+flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+transition: all .2s;
+}
+.mi.inc .chk { background: var(–ink); border-color: var(–ink); }
+.mi.sel .chk { background: var(–mag); border-color: var(–mag); }
+.mi.p2 .chk { border-color: #222; }
+.chk-svg { display: none; width: 14px; height: 14px; }
+.mi.inc .chk-svg, .mi.sel .chk-svg { display: block; }
 
-/* ADDON CONFIGURATOR */
-.cfg{border:1px solid var(–border);overflow:hidden;}
-.cfg-hd{background:var(–mag);padding:20px 28px;display:flex;align-items:center;justify-content:space-between;}
-.cfg-hd h3{color:#fff;font-size:16px;margin-bottom:0;font-weight:700;}
-.cfg-cnt{font-family:var(–fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);background:rgba(0,0,0,.25);padding:4px 10px;}
-.ao{display:flex;align-items:flex-start;gap:20px;padding:20px 28px;border-bottom:1px solid var(–border);cursor:pointer;transition:all .2s;position:relative;}
-.ao:last-child{border-bottom:none;}
-.ao:hover:not(.p2){background:#fdf0ff;}
-.ao.on{background:var(–ink);}
-.ao.on:hover{background:#0a0a0a;}
-.ao.p2{opacity:.3;cursor:not-allowed;background:var(–light);}
-.ack{width:24px;height:24px;border:2px solid var(–border);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all .25s;}
-.ao.on .ack{background:var(–mag);border-color:var(–mag);animation:glow .8s ease;}
-.cm{display:none;width:10px;height:10px;}.ao.on .cm{display:block;}
-.ab{flex:1;}
-.an{font-size:14px;font-weight:600;margin-bottom:4px;transition:color .2s;}
-.ao.on .an{color:#fff;}
-.ad{font-size:12px;color:var(–grey);line-height:1.6;transition:color .2s;}
-.ao.on .ad{color:#555;}
-.aps{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
-.pill{font-family:var(–fm);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;}
-.pd{background:var(–light);color:var(–grey);}
-.ao.on .pd{background:var(–mag);color:#fff;}
-.pr{background:rgba(10,122,62,.12);color:var(–green);}
-.po{background:var(–light);color:var(–grey);}
-.ao.on .pr{background:rgba(204,0,255,.15);color:var(–mag);}
+/* BODY */
+.mi-body { flex: 1; min-width: 0; }
+.mi-name { font-size: 17px; font-weight: 700; margin-bottom: 3px; transition: color .15s; }
+.mi.sel .mi-name { color: #fff; }
+.mi.p2 .mi-name { color: #555; }
+.mi-desc { font-size: 13px; color: var(–grey); line-height: 1.5; transition: color .15s; }
+.mi.sel .mi-desc { color: #555; }
+.mi.p2 .mi-desc { color: #333; }
+.mi-tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; align-items: center; }
+.tag { font-family: var(–fm); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 3px 8px; }
+.tag-inc { background: rgba(0,122,62,.1); color: var(–green); }
+.tag-rec { background: rgba(204,0,255,.12); color: var(–mag); }
+.tag-opt { background: var(–light); color: var(–grey); }
+.tag-p2 { background: #111; color: #444; }
+.tag-days { font-family: var(–fm); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; background: var(–light); color: var(–grey); transition: all .15s; }
+.mi.sel .tag-days { background: var(–mag); color: #fff; }
 
-/* JOURNEY */
-.jt-wrap{display:flex;overflow-x:auto;background:var(–ink);}
-.jt{flex:1;min-width:88px;padding:16px 8px;text-align:center;background:var(–ink);border:none;border-right:1px solid #1a1a1a;border-bottom:2px solid transparent;cursor:pointer;transition:all .2s;}
-.jt:last-child{border-right:none;}
-.jt:hover{background:#111;}
-.jt.on{background:var(–mag);border-bottom-color:var(–mag);}
-.jtn{font-size:26px;font-weight:900;color:var(–mag);display:block;line-height:1;}
-.jt.on .jtn{color:#fff;}
-.jtl{font-family:var(–fm);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#444;display:block;margin-top:4px;line-height:1.3;}
-.jt.on .jtl{color:rgba(255,255,255,.7);}
-.jp{display:none;border:1px solid var(–border);}
-.jp.on{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(–border);}
-@media(max-width:650px){.jp.on{grid-template-columns:1fr;}}
-.jc{padding:24px;}
-.jc:nth-child(1){background:var(–ink);}
-.jc:nth-child(2){background:#0a0005;}
-.jc:nth-child(3){background:var(–bg);}
-.jc:nth-child(4){background:var(–light);}
-.jch{font-family:var(–fm);font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.08);}
-.jc:nth-child(1) .jch{color:#444;border-color:rgba(255,255,255,.06);}
-.jc:nth-child(2) .jch{color:var(–mag);border-color:rgba(204,0,255,.2);}
-.jc:nth-child(3) .jch{color:var(–green);border-color:var(–border);}
-.jc:nth-child(4) .jch{color:var(–grey);border-color:var(–border);}
-.jc ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
-.jc li{font-size:13px;padding-left:16px;position:relative;line-height:1.4;}
-.jc:nth-child(1) li{color:#666;}
-.jc:nth-child(2) li{color:#882299;}
-.jc:nth-child(3) li{color:var(–green);}
-.jc:nth-child(4) li{color:var(–grey);}
-.jc:nth-child(1) li::before{content:’—’;position:absolute;left:0;color:#333;font-size:11px;}
-.jc:nth-child(2) li::before{content:‘x’;position:absolute;left:0;color:var(–mag);font-size:10px;}
-.jc:nth-child(3) li::before{content:‘v’;position:absolute;left:0;color:var(–green);font-size:10px;}
-.jc:nth-child(4) li::before{content:’·’;position:absolute;left:0;color:var(–grey);font-size:16px;top:-2px;}
+/* PRICE COLUMN */
+.mi-price { text-align: right; flex-shrink: 0; min-width: 90px; }
+.mi-pval { font-size: 20px; font-weight: 800; display: block; transition: color .15s; }
+.mi.inc .mi-pval { color: var(–green); }
+.mi.sel .mi-pval { color: var(–mag); }
+.mi.p2 .mi-pval { color: #444; }
+.mi.clickable:not(.sel) .mi-pval { color: var(–grey); }
+.mi-punit { font-family: var(–fm); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(–dim); display: block; }
 
-/* TIMELINE */
-.wkg{display:flex;gap:2px;margin-bottom:40px;flex-wrap:wrap;}
-.wk{flex:1;min-width:32px;height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .2s;}
-.wk:hover{transform:translateY(-3px);}
-.wkl{font-family:var(–fm);font-size:7px;letter-spacing:1px;text-transform:uppercase;}
-.wkn{font-family:var(–fm);font-size:8px;font-weight:600;margin-top:2px;}
-.tlw{position:relative;padding-left:110px;}
-.tlw::before{content:’’;position:absolute;left:82px;top:0;bottom:0;width:1px;background:var(–border);}
-.tlr{position:relative;padding:0 0 0 28px;}
-.tli{padding:20px 0;border-bottom:1px solid var(–border);}
-.tlr:last-child .tli{border-bottom:none;}
-.tlwl{position:absolute;left:-110px;top:22px;font-family:var(–fm);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(–grey);width:90px;text-align:right;}
-.tldot{position:absolute;left:-7px;top:23px;width:14px;height:14px;border-radius:50%;background:var(–mag);z-index:1;transition:transform .2s;}
-.tlr:hover .tldot{transform:scale(1.3);}
-.tldot.go{background:var(–green);}
-.tlt{font-size:15px;font-weight:700;margin-bottom:4px;}
-.tlt.go{color:var(–green);}
-.tldesc{font-size:13px;color:var(–grey);line-height:1.6;max-width:600px;margin-bottom:10px;}
-.tlbw{height:3px;background:var(–light);max-width:480px;}
-.tlbf{height:100%;background:var(–mag);transition:width .8s cubic-bezier(.4,0,.2,1);}
-.tlbf.go{background:var(–green);}
+/* ── JOURNEY ── */
+.j-tabs { display: flex; background: var(–ink); overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.jt { flex: 1; min-width: 80px; padding: 14px 8px; text-align: center; background: var(–ink); border: none; border-right: 1px solid #1a1a1a; border-bottom: 3px solid transparent; cursor: pointer; transition: all .15s; }
+.jt:last-child { border-right: none; }
+.jt:hover { background: #111; }
+.jt.on { border-bottom-color: var(–mag); }
+.jt-n { font-size: 26px; font-weight: 900; color: var(–mag); display: block; line-height: 1; }
+.jt-l { font-family: var(–fm); font-size: 8px; letter-spacing: 1px; text-transform: uppercase; color: #444; display: block; margin-top: 4px; }
+.jp { display: none; }
+.jp.on { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(–line); }
+@media(max-width:600px) { .jp.on { grid-template-columns: 1fr; } }
+.jc { padding: 24px; background: var(–bg); }
+.jc.dk { background: var(–ink); }
+.jc-h { font-family: var(–fm); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(–line); color: var(–grey); }
+.jc.dk .jc-h { border-color: #1a1a1a; color: #333; }
+.jc.pain .jc-h { color: #cc4400; }
+.jc.opps .jc-h { color: var(–green); }
+.jc.touch .jc-h { color: var(–mag); }
+.jc ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.jc li { font-size: 13px; padding-left: 16px; position: relative; line-height: 1.4; }
+.jc.dk li { color: #555; }
+.jc.pain li { color: #994422; }
+.jc.opps li { color: var(–green); }
+.jc.touch li { color: var(–grey); }
+.jc li::before { content: ‘—’; position: absolute; left: 0; font-size: 11px; color: #ccc; }
+.jc.dk li::before { color: #333; }
+.jc.pain li::before { content: ‘x’; color: #cc4400; }
+.jc.opps li::before { content: ‘v’; color: var(–green); }
+.jc.touch li::before { color: var(–mag); }
 
-/* CONDITIONS */
-.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(–mag);border:1px solid var(–mag);}
-@media(max-width:800px){.cg{grid-template-columns:1fr 1fr;}}
-@media(max-width:500px){.cg{grid-template-columns:1fr;}}
-.cc{background:var(–ink);padding:22px;transition:background .2s;}
-.cc:hover{background:#0f0f0f;}
-.cc.crit{border-top:2px solid var(–mag);}
-.cc h4{font-size:13px;font-weight:600;margin-bottom:5px;color:#fff;}
-.cc p{font-size:12px;color:#555;line-height:1.6;}
+/* ── TIMELINE ── */
+.wk-row { display: flex; gap: 2px; margin-bottom: 40px; flex-wrap: wrap; }
+.wk { flex: 1; min-width: 28px; height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform .2s; }
+.wk:hover { transform: translateY(-4px); }
+.wk-n { font-family: var(–fm); font-size: 8px; }
+.wk-l { font-family: var(–fm); font-size: 9px; font-weight: 700; margin-top: 2px; }
+.tl-wrap { position: relative; padding-left: 100px; }
+.tl-wrap::before { content: ‘’; position: absolute; left: 72px; top: 0; bottom: 0; width: 1px; background: var(–line); }
+.tlr { position: relative; padding: 0 0 0 24px; }
+.tli { padding: 18px 0; border-bottom: 1px solid var(–line); }
+.tlr:last-child .tli { border-bottom: none; }
+.tl-wl { position: absolute; left: -100px; top: 20px; font-family: var(–fm); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(–dim); width: 80px; text-align: right; }
+.tl-dot { position: absolute; left: -7px; top: 22px; width: 14px; height: 14px; border-radius: 50%; background: var(–mag); z-index: 1; }
+.tl-dot.go { background: var(–green); }
+.tl-t { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+.tl-t.go { color: var(–green); }
+.tl-d { font-size: 13px; color: var(–grey); line-height: 1.6; max-width: 560px; margin-bottom: 10px; }
+.tl-bar { height: 4px; background: var(–light); max-width: 440px; }
+.tl-fill { height: 100%; background: var(–mag); }
+.tl-fill.go { background: var(–green); }
 
-/* FAQ */
-.fi{border-bottom:1px solid var(–border);}
-.fh{display:flex;justify-content:space-between;align-items:center;padding:16px 0;cursor:pointer;user-select:none;gap:16px;}
-.fh h4{font-size:14px;font-weight:500;}
-.ftog{width:26px;height:26px;background:var(–light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;color:var(–mag);transition:all .25s;font-family:var(–fm);}
-.fh.on .ftog{background:var(–mag);color:#fff;transform:rotate(45deg);}
-.fh.on h4{color:var(–mag);}
-.fb{display:none;padding-bottom:16px;font-size:13px;color:var(–grey);line-height:1.7;max-width:680px;}.fb.on{display:block;animation:slideIn .2s ease both;}
+/* ── CONDITIONS ── */
+.cg { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(–line); }
+@media(max-width:800px) { .cg { grid-template-columns: 1fr 1fr; } }
+@media(max-width:500px) { .cg { grid-template-columns: 1fr; } }
+.cc { background: var(–bg); padding: 22px; }
+.cc.crit { background: var(–ink); border-top: 3px solid var(–mag); }
+.cc h4 { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
+.cc.crit h4 { color: #fff; }
+.cc p { font-size: 12px; color: var(–grey); line-height: 1.6; }
+.cc.crit p { color: #555; }
+.faq-item { border-bottom: 1px solid var(–line); }
+.faq-hd { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; cursor: pointer; gap: 16px; user-select: none; }
+.faq-hd h4 { font-size: 15px; font-weight: 600; }
+.faq-tog { width: 28px; height: 28px; background: var(–light); display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(–mag); transition: all .2s; flex-shrink: 0; font-family: var(–fm); }
+.faq-hd.on .faq-tog { background: var(–mag); color: #fff; transform: rotate(45deg); }
+.faq-hd.on h4 { color: var(–mag); }
+.faq-body { display: none; padding-bottom: 16px; font-size: 14px; color: var(–grey); line-height: 1.7; }
+.faq-body.on { display: block; }
 
-/* SUMMARY */
-.smg{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(–mag);margin-bottom:32px;}
-@media(max-width:700px){.smg{grid-template-columns:1fr;}}
-.smi{background:var(–ink);padding:36px;border-right:1px solid var(–mag);}
-.sma{background:var(–bg);padding:36px;}
-.smi h3{color:#fff;margin-bottom:20px;font-size:18px;}
-.sma h3{margin-bottom:20px;font-size:18px;}
-.si{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid #1a1a1a;font-size:13px;}
-.si:last-child{border-bottom:none;}
-.sin{color:rgba(255,255,255,.6);}
-.sitag{font-family:var(–fm);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(–green);padding:2px 6px;background:rgba(10,122,62,.15);}
-.asi{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(–border);font-size:13px;animation:slideIn .2s ease both;}
-.asi:last-child{border-bottom:none;}
-.adays{font-family:var(–fm);font-size:9px;color:var(–mag);}
-.stot{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0 0;margin-top:8px;border-top:2px solid var(–border);}
-.stl{font-family:var(–fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(–grey);}
-.stv{font-size:26px;font-weight:700;color:var(–mag);}
-.sem{font-family:var(–fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(–grey);padding:28px 0;text-align:center;border:2px dashed var(–border);}
-.scta-box{background:var(–ink);padding:36px;text-align:center;border:1px solid var(–border);}
-.scta-box p{font-size:14px;color:#555;max-width:500px;margin:0 auto 28px;line-height:1.8;}
-.sbtns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-.btn-dk{background:var(–bg);color:var(–ink);border:2px solid var(–ink);padding:14px 28px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(–fs);transition:all .2s;}
-.btn-dk:hover{background:var(–ink);color:#fff;}
-.btn-mg{background:var(–mag);color:#fff;border:2px solid var(–mag);padding:14px 28px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(–fs);transition:all .2s;}
-.btn-mg:hover{background:var(–mag2);border-color:var(–mag2);transform:translateY(-1px);}
-.btn-ol{background:transparent;color:var(–grey);border:2px solid var(–border);padding:14px 28px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(–fs);transition:all .2s;}
-.btn-ol:hover{border-color:var(–grey);color:var(–ink);}
+/* ── SUMMARY ── */
+.sum-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 2px solid var(–mag); margin-bottom: 32px; }
+@media(max-width:700px) { .sum-grid { grid-template-columns: 1fr; } }
+.sum-inc { background: var(–ink); padding: 32px; border-right: 1px solid #333; }
+.sum-ao { background: var(–bg); padding: 32px; }
+.sum-inc h3 { color: #fff; font-size: 20px; font-weight: 800; margin-bottom: 20px; }
+.sum-ao h3 { font-size: 20px; font-weight: 800; margin-bottom: 20px; }
+.srow { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 0; border-bottom: 1px solid #1a1a1a; font-size: 14px; }
+.srow:last-child { border-bottom: none; }
+.sn { color: rgba(255,255,255,.6); }
+.stag { font-family: var(–fm); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 2px 7px; background: rgba(0,122,62,.15); color: var(–green); }
+.ao-row { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(–line); font-size: 14px; }
+.ao-row:last-child { border-bottom: none; }
+.ao-d { font-family: var(–fm); font-size: 10px; color: var(–mag); font-weight: 700; }
+.sum-empty { font-family: var(–fm); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(–dim); padding: 24px 0; text-align: center; border: 2px dashed var(–line); }
+.sum-tot { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 0 0; margin-top: 8px; border-top: 2px solid var(–line); }
+.st-l { font-family: var(–fm); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(–grey); }
+.st-v { font-size: 30px; font-weight: 900; color: var(–mag); }
+.cta-box { border: 2px solid var(–line); padding: 36px; text-align: center; margin-top: 32px; }
+.cta-box p { font-size: 15px; color: var(–grey); max-width: 520px; margin: 0 auto 28px; line-height: 1.7; }
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn { font-family: var(–f); font-size: 15px; font-weight: 700; padding: 14px 28px; border: none; cursor: pointer; transition: all .2s; letter-spacing: .2px; }
+.btn-dark { background: var(–ink); color: #fff; border: 2px solid var(–ink); }
+.btn-dark:hover { background: #222; }
+.btn-mag { background: var(–mag); color: #fff; border: 2px solid var(–mag); }
+.btn-mag:hover { background: var(–mag2); border-color: var(–mag2); }
+.btn-out { background: transparent; color: var(–grey); border: 2px solid var(–line); }
+.btn-out:hover { border-color: var(–ink); color: var(–ink); }
 
-/* CURSOR DOT */
-.cursor{width:8px;height:8px;background:var(–mag);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transition:transform .15s ease;mix-blend-mode:difference;}
+/* ── PRESENT FILES ── */
+.pf-btn {
+display: inline-block;
+margin-top: 24px;
+font-family: var(–fm); font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+color: var(–mag); border: 1px solid var(–mag); padding: 8px 16px;
+cursor: pointer; background: transparent;
+transition: all .15s;
+}
+.pf-btn:hover { background: var(–mag); color: #fff; }
 </style>
 
 </head>
 <body>
-<div class="cursor" id="cur"></div>
 
-<!-- BOTTOM BAR -->
+<!-- ── BOTTOM BAR ── -->
 
 <div id="bar">
-  <div class="bl">
-    <span class="bl-l" id="bl">Gesamt exkl. MWST</span>
-    <span class="bl-p" id="bp">Base Package</span>
-    <span class="bl-a" id="ba"></span>
+  <div class="bar-l">
+    <span class="bar-lbl" id="bbl">Gesamt exkl. MWST</span>
+    <span class="bar-price" id="bbp">auf Anfrage</span>
+    <span class="bar-extra" id="bbe"></span>
   </div>
-  <div class="br">
-    <button class="bbt bbt-s" onclick="window.print()" id="bpdf">Offerte als PDF &#8594;</button>
-    <button class="bbt bbt-p" onclick="mailTo()" id="bcon">Gespraech anfragen &#8594;</button>
+  <div class="bar-r">
+    <button class="bar-btn bar-sec" onclick="window.print()" id="bbpdf">Offerte als PDF &rarr;</button>
+    <button class="bar-btn bar-pri" onclick="mailTo()" id="bbcon">Anfragen bei team@gosnob.com &rarr;</button>
   </div>
 </div>
 
-<!-- HEADER -->
+<!-- ── HEADER ── -->
 
 <header>
-  <div><div class="logo">gosnob.ai</div><span class="logo-s">Basler Ferienpass</span></div>
-  <div class="lsw">
+  <div>
+    <div class="logo">gosnob.ai</div>
+    <span class="logo-s">Basler Ferienpass</span>
+  </div>
+  <div class="lang">
     <button class="lb on" onclick="setLang('de',this)">DE</button>
     <button class="lb" onclick="setLang('en',this)">EN</button>
     <button class="lb" onclick="setLang('fr',this)">FR</button>
   </div>
-  <div class="otag" id="ot">Offerte 2026</div>
+  <div class="hbadge" id="hbadge">Offerte 2026</div>
 </header>
 
-<!-- NAV -->
+<!-- ── NAV ── -->
 
-<div class="nav-s">
-  <button class="np on" onclick="gp('home',this)" id="nh">Start</button>
-  <button class="np" onclick="gp('inc',this)" id="ni">Inklusive</button>
-  <button class="np" onclick="gp('ao',this)" id="na">Add-ons</button>
-  <button class="np" onclick="gp('jou',this)" id="nj">Journey</button>
-  <button class="np" onclick="gp('tl',this)" id="ntl">Timeline</button>
-  <button class="np" onclick="gp('cond',this)" id="nc">Bedingungen</button>
-  <button class="np" onclick="gp('sum',this)" id="ns">Zusammenfassung</button>
+<div class="nav">
+  <button class="nt on" onclick="gp('home',this)" id="n0">Start</button>
+  <button class="nt" onclick="gp('menu',this)" id="n1">Leistungen &amp; Preise</button>
+  <button class="nt" onclick="gp('journey',this)" id="n2">Journey</button>
+  <button class="nt" onclick="gp('timeline',this)" id="n3">Timeline</button>
+  <button class="nt" onclick="gp('cond',this)" id="n4">Bedingungen</button>
+  <button class="nt" onclick="gp('sum',this)" id="n5">Zusammenfassung</button>
 </div>
 
-<!-- ══ HOME ══ -->
+<!-- ═══════════════════════════════════════ HOME ═══════════════════════════════════════ -->
 
 <div id="pg-home" class="pg on">
   <div class="hero">
-    <div class="hero-grid"></div>
-    <p class="hky fu"><b>goSNOB.ai</b> &times; Basler Ferienpass &mdash; <span id="hey">Website-Offerte</span></p>
-    <h1 class="fu2">BASLER<em>FERIENPASS</em></h1>
-    <p class="hdesc fu3" id="hd">Module auswaehlen. Leistungen verstehen.<br>Als PDF herunterladen und als Auftrag zurueckschicken.</p>
-    <div class="hstats fu3">
-      <div class="hs"><span class="hs-n">15</span><span class="hs-l" id="hs1">Wochen Delivery</span></div>
-      <div class="hs"><span class="hs-n">3</span><span class="hs-l" id="hs2">Sprachen DE/EN/FR</span></div>
-      <div class="hs"><span class="hs-n">3</span><span class="hs-l" id="hs3">Nutzergruppen</span></div>
-      <div class="hs"><span class="hs-n">7</span><span class="hs-l" id="hs4">Journey Phasen</span></div>
+    <div class="hero-inner">
+      <p class="hero-eye"><b>goSNOB.ai</b> &times; Basler Ferienpass &mdash; <span id="hey">Website-Offerte</span></p>
+      <h1>BASLER<span>FERIENPASS</span></h1>
+      <p class="hero-desc" id="hdesc">Leistungen auswaehlen.<br>Preis berechnet sich automatisch.<br>Als Auftrag an team@gosnob.com senden.</p>
+      <div class="stats">
+        <div class="stat"><span class="stat-n">15</span><span class="stat-l" id="hs1">Wochen Delivery</span></div>
+        <div class="stat"><span class="stat-n">3</span><span class="stat-l" id="hs2">Sprachen DE/EN/FR</span></div>
+        <div class="stat"><span class="stat-n">3</span><span class="stat-l" id="hs3">Nutzergruppen</span></div>
+        <div class="stat"><span class="stat-n">7</span><span class="stat-l" id="hs4">Journey Phasen</span></div>
+      </div>
     </div>
   </div>
   <div class="wrap">
-    <p class="ey" id="he1">So funktioniert diese Offerte</p>
-    <h2 id="hh1">Klicken.<br>Auswaehlen.<br>Fertig.</h2>
-    <div class="sg">
-      <div class="sc w" onclick="gp('inc',document.getElementById('ni'))">
-        <span class="snum" id="sn1">01</span>
-        <svg class="sico" viewBox="0 0 44 44" fill="none" stroke="#cc00ff" stroke-width="1.5"><rect x="4" y="4" width="36" height="36" rx="2"/><polyline points="12,22 19,29 32,14"/></svg>
-        <div class="stit" id="st1">Inklusive ansehen</div>
-        <div class="sdesc" id="sd1">Alles im Base Package ohne Aufpreis.</div>
-        <span class="scta" id="sc1">Anzeigen &#8594;</span>
+    <p class="ey" id="hey1">So einfach geht es</p>
+    <h2 id="hh1">3 Schritte.<br>Fertig.</h2>
+    <div class="steps">
+      <div class="step" onclick="gp('menu',document.getElementById('n1'))">
+        <span class="step-num" id="sn1">01</span>
+        <div class="step-t" id="st1">Leistungen &amp; Preise</div>
+        <div class="step-d" id="sd1">Alles inklusive und optionale Add-ons auf einen Blick &mdash; mit Preisen.</div>
+        <span class="step-cta" id="sc1">Anzeigen &rarr;</span>
       </div>
-      <div class="sc b" onclick="gp('ao',document.getElementById('na'))">
-        <span class="snum" id="sn2">02</span>
-        <svg class="sico" viewBox="0 0 44 44" fill="none" stroke="#cc00ff" stroke-width="1.5"><circle cx="22" cy="22" r="18"/><line x1="22" y1="13" x2="22" y2="31"/><line x1="13" y1="22" x2="31" y2="22"/></svg>
-        <div class="stit" id="st2">Add-ons waehlen</div>
-        <div class="sdesc" id="sd2">Klicke was du willst. Preis live berechnet.</div>
-        <span class="scta" id="sc2">Konfigurieren &#8594;</span>
+      <div class="step dark" onclick="gp('menu',document.getElementById('n1'))">
+        <span class="step-num" id="sn2">02</span>
+        <div class="step-t" id="st2">Add-ons anklicken</div>
+        <div class="step-d" id="sd2">Klicke was du willst. Preis berechnet sich live unten in der Bar.</div>
+        <span class="step-cta" id="sc2">Konfigurieren &rarr;</span>
       </div>
-      <div class="sc w" onclick="gp('sum',document.getElementById('ns'))">
-        <span class="snum" id="sn3">03</span>
-        <svg class="sico" viewBox="0 0 44 44" fill="none" stroke="#cc00ff" stroke-width="1.5"><path d="M8 40 L22 8 L36 40"/><line x1="13" y1="28" x2="31" y2="28"/></svg>
-        <div class="stit" id="st3">Als PDF herunterladen</div>
-        <div class="sdesc" id="sd3">Zusammenfassung und als Auftrag an team@gosnob.com.</div>
-        <span class="scta" id="sc3">Zusammenfassung &#8594;</span>
+      <div class="step" onclick="gp('sum',document.getElementById('n5'))">
+        <span class="step-num" id="sn3">03</span>
+        <div class="step-t" id="st3">Als Auftrag senden</div>
+        <div class="step-d" id="sd3">PDF herunterladen und an team@gosnob.com schicken.</div>
+        <span class="step-cta" id="sc3">Zusammenfassung &rarr;</span>
       </div>
     </div>
     <div class="div"></div>
-    <p class="ey" id="he2">Ausgangslage</p>
-    <h2 id="hh2">Das Problem<br>ist real.</h2>
-    <div class="ibox"><h4 id="hih">Warum jetzt</h4><p id="hip">Die aktuelle Ferienpass-Plattform laesst alle drei Nutzergruppen im Stich. goSNOB.ai liefert die Infrastruktur in 15 Wochen &mdash; dreisprachig, KI-gestuetzt.</p></div>
-    <div class="pg3">
-      <div class="pc3"><div class="pc3-l"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#cc00ff" stroke-width="1.5"/><line x1="6" y1="3" x2="6" y2="7" stroke="#cc00ff" stroke-width="1.5"/><circle cx="6" cy="9" r=".75" fill="#cc00ff"/></svg><span id="pl1">Eltern</span></div><div class="pc3-t" id="pt1">Fragmentiert &amp; chaotisch</div><div class="pc3-d" id="pd1">Dutzende Websites, kein Kalender, keine Reviews, kein TWINT. Buchung via E-Mail 2026.</div></div>
-      <div class="pc3"><div class="pc3-l"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#cc00ff" stroke-width="1.5"/><line x1="6" y1="3" x2="6" y2="7" stroke="#cc00ff" stroke-width="1.5"/><circle cx="6" cy="9" r=".75" fill="#cc00ff"/></svg><span id="pl2">Kursanbieter</span></div><div class="pc3-t" id="pt2">Alles manuell</div><div class="pc3-d" id="pd2">Kein Self-Service-Portal. Jede Aenderung = Telefonat. Keine Kapazitaetsanzeige.</div></div>
-      <div class="pc3"><div class="pc3-l"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#cc00ff" stroke-width="1.5"/><line x1="6" y1="3" x2="6" y2="7" stroke="#cc00ff" stroke-width="1.5"/><circle cx="6" cy="9" r=".75" fill="#cc00ff"/></svg><span id="pl3">Ferienpass-Team</span></div><div class="pc3-t" id="pt3">Kein Ueberblick</div><div class="pc3-d" id="pd3">Kein Dashboard, keine automatisierte Kommunikation, kein Approval-System.</div></div>
-    </div>
-    <div class="div"></div>
-    <p class="ey" id="he3">Unser Ansatz</p>
-    <h2 id="hh3">Zwei Phasen.<br>Eine Vision.</h2>
-    <div class="pboxes">
-      <div class="pb dk"><span class="pb-l" id="p1l">Phase 1 &mdash; Base Package</span><h3 id="p1h">Mai &#8594; August 2026</h3><ul><li>Dreisprachige Website (DE/EN/FR)</li><li>Kurssuche, Filter &amp; Detailseiten</li><li>Familienkonten &amp; Buchungsflow</li><li>Stripe (TWINT, Apple/Google Pay)</li><li>Anbieter Self-Service Portal</li><li>Ferienpass Admin-Modul</li><li>Automatisierte E-Mails</li><li>goSNOB.ai KI-Chatbot</li><li>UX Design (15&ndash;20+ Screens)</li></ul></div>
-      <div class="pb lt"><span class="pb-l" id="p2l">Phase 2 &mdash; Further Development</span><h3 id="p2h">Ab Herbst 2026</h3><ul><li>Kids-Profile &amp; AI-Matching</li><li>Mobile App / PWA</li><li>SMS / WhatsApp Kanal</li><li>Vollstaendiges Wartelisten-Management</li><li>Reviews &amp; Ratings (full)</li><li>Analytics Dashboards</li><li>Automatische Kursuebersetzung</li><li>Stripe Split Payments</li></ul></div>
+    <p class="ey" id="hey2">Zwei Phasen</p>
+    <h2 id="hh2">Jetzt: Base Package.<br>Spaeter: Phase 2.</h2>
+    <div class="phases">
+      <div class="phase dark">
+        <span class="phase-l" id="p1l">Phase 1 &mdash; Base Package</span>
+        <h3 id="p1h">Mai &rarr; August 2026</h3>
+        <ul>
+          <li>Dreisprachige Website (DE/EN/FR)</li>
+          <li>Kurssuche, Filter &amp; Detailseiten</li>
+          <li>Familienkonten &amp; Online-Buchung</li>
+          <li>Stripe: TWINT, Apple/Google Pay</li>
+          <li>Anbieter Self-Service Portal</li>
+          <li>Ferienpass Admin-Modul</li>
+          <li>Automatisierte E-Mails</li>
+          <li>goSNOB.ai KI-Chatbot</li>
+          <li>UX Design (15&ndash;20+ Screens)</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <span class="phase-l" id="p2l">Phase 2 &mdash; Later</span>
+        <h3 id="p2h">Ab Herbst 2026</h3>
+        <ul>
+          <li>Kids-Profile &amp; AI-Matching</li>
+          <li>Mobile App / PWA</li>
+          <li>SMS / WhatsApp</li>
+          <li>Vollstaendiges Wartelisten-System</li>
+          <li>Reviews &amp; Ratings (full)</li>
+          <li>Analytics Dashboards</li>
+          <li>Automatische Kursuebersetzung</li>
+          <li>Stripe Split Payments</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ══ INCLUDED ══ -->
+<!-- ═══════════════════════════════════════ MENU ═══════════════════════════════════════ -->
 
-<div id="pg-inc" class="pg">
+<div id="pg-menu" class="pg">
   <div class="wrap">
-    <p class="ey m" id="iey">Im Base Package inklusive</p>
-    <h2 id="ih">Alles drin.<br>Kein Aufpreis.</h2>
-    <div class="ibox"><p id="ii">Diese Features sind im Base Package enthalten. Go-Live vor Ende Sommer 2026.</p></div>
-    <div class="ig">
-      <div class="ic"><div class="ictag"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#0a7a3e" stroke-width="1.5" stroke-linecap="round"/></svg><span>Inklusive</span></div><svg class="icico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="16" cy="16" r="14"/><ellipse cx="16" cy="16" rx="6" ry="14"/><line x1="2" y1="16" x2="30" y2="16"/><line x1="4" y1="9" x2="28" y2="9"/><line x1="4" y1="23" x2="28" y2="23"/></svg><div class="icit">Dreisprachige Website</div><div class="icd">DE / EN / FR &mdash; vollstaendige UI inkl. System-E-Mails. CMS-verwaltete Inhaltsbereiche.</div></div>
-      <div class="ic"><div class="ictag"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#0a7a3e" stroke-width="1.5" stroke-linecap="round"/></svg><span>Inklusive</span></div><svg class="icico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="14" cy="14" r="10"/><line x1="22" y1="22" x2="30" y2="30"/></svg><div class="icit">Kurssuche &amp; Filter</div><div class="icd">Filter nach Kategorie, Alter, Datum, Preis. Teilbare URLs. Vollstaendig responsive.</div></div>
-      <div class="ic"><div class="ictag"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#0a7a3e" stroke-width="1.5" stroke-linecap="round"/></svg><span>Inklusive</span></div><svg class="icico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="10" r="5"/><path d="M2 28c0-6 4-10 10-10s10 4 10 10"/><circle cx="24" cy="10" r="4"/><path d="M28 28c0-5-2-9-7-10"/></svg><div class="icit">Familienkonten</div><div class="icd">Registrierung via E-Mail oder Google OAuth. Buchungshistorie mit Self-Service-Stornierung.</div></div>
-      <div class="ic"><div class="ictag"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#0a7a3e" stroke-width="1.5" stroke-linecap="round"/></svg><span>Inklusive</span></div><svg class="icico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="28" height="20" rx="2"/><line x1="2" y1="13" x2="30" y2="13"/><line x1="7" y1="20" x2="13" y2="20"/></svg><div class="icit">Stripe-Zahlung</div><div class="icd">TWINT, Apple Pay, Google Pay, Kreditkarte. Konfigurierbares Refund-Policy-System.</div></div>
-      <div class="ic"><div class="ictag"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#0a7a3e" stroke-width="1.5" stroke-linecap="round"/></svg><span>Inklusive</span></div><svg class="icico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h24l-3 10H7L4 4z"/><rect x="4" y="14" width="24" height="16" rx="1"/><line x1="12" y1="14" x2="12" y2="30"/><line x1="20" y1="14" x2="20" y2="30"/></svg><div class="icit">Anbieter Self-Service</div><div class="icd">Registrierung, Profil, Approval-Status. Kurse erstellen/bearbeiten/deaktivieren.</div></div>
-      <div class="ic"><div class="ictag"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#0a7a3e" stroke-width="1.5" stroke-linecap="round"/></svg><span>Inklusive</span></div><svg class="icico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="16" cy="16" r="4"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4M7 7l3 3M22 22l3 3M7 25l3-3M22 10l3-3"/></svg><div class="icit">Admin-Modul</div><div class="icd">Anbieter-Approval. Enrollment-Dashboard. Manuelle Buchungskorrektur.</div></div>
-      <div class="ic"><div class="ictag"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#0a7a3e" stroke-width="1.5" stroke-linecap="round"/></svg><span>Inklusive</span></div><svg class="icico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="28" height="20" rx="2"/><polyline points="2,6 16,18 30,6"/></svg><div class="icit">Auto E-Mails</div><div class="icd">Buchung, Stornierung, 48h-Reminder &mdash; alle in DE/EN/FR automatisch.</div></div>
-      <div class="ic"><div class="ictag"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#0a7a3e" stroke-width="1.5" stroke-linecap="round"/></svg><span>Inklusive</span></div><svg class="icico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="10" width="20" height="16" rx="3"/><circle cx="12" cy="18" r="2"/><circle cx="20" cy="18" r="2"/><line x1="16" y1="2" x2="16" y2="10"/><circle cx="16" cy="2" r="2"/></svg><div class="icit">goSNOB.ai KI-Chatbot</div><div class="icd">Kontextbewusst eingebettet. Session-Uebergabe (Kurs, Sprache, Login-Status).</div></div>
-      <div class="ic"><div class="ictag"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#0a7a3e" stroke-width="1.5" stroke-linecap="round"/></svg><span>Inklusive</span></div><svg class="icico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="10" height="10" rx="1"/><rect x="18" y="4" width="10" height="10" rx="1"/><rect x="4" y="18" width="10" height="10" rx="1"/><rect x="18" y="18" width="10" height="10" rx="1"/></svg><div class="icit">UX Design</div><div class="icd">15&ndash;20+ Screens. 2&ndash;3 Iterationsrunden via Screenshare. Alle drei Rollen.</div></div>
-    </div>
-    <div style="text-align:center;padding:8px 0 40px;"><button class="btn-mg" onclick="gp('ao',document.getElementById('na'))" id="ibt">Add-ons konfigurieren &#8594;</button></div>
+    <p class="ey m" id="mey">Leistungen &amp; Preise</p>
+    <h2 id="mh">Was ist drin.<br>Was kostet extra.</h2>
+
+```
+<!-- PRICE OVERVIEW -->
+<div class="price-summary">
+  <div class="ps-item">
+    <span class="ps-label" id="psl1">Base Package</span>
+    <span class="ps-val" id="psv1">auf Anfrage</span>
+    <span class="ps-sub" id="pss1">Alle 9 Features inklusive</span>
+  </div>
+  <div class="ps-item">
+    <span class="ps-label" id="psl2">Add-ons (ausgewaehlt)</span>
+    <span class="ps-val mag" id="psv2">0 Manntage</span>
+    <span class="ps-sub" id="pss2">Klicke unten zum Hinzufuegen</span>
+  </div>
+  <div class="ps-item">
+    <span class="ps-label" id="psl3">Laufende Kosten / Monat</span>
+    <span class="ps-val" id="psv3">&lt; CHF 200</span>
+    <span class="ps-sub" id="pss3">Hosting, E-Mail, Storage</span>
   </div>
 </div>
 
-<!-- ══ ADD-ONS ══ -->
-
-<div id="pg-ao" class="pg">
-  <div class="wrap">
-    <p class="ey" id="aoey">Optionale Add-ons</p>
-    <h2 id="aoh">Waehle was<br>du willst.</h2>
-    <div class="ibox"><p id="aoi">Klicke auf ein Add-on um es hinzuzufuegen oder zu entfernen. Phase-2-Items sind ausgegraut und kommen spaeter.</p></div>
-    <div class="cfg">
-      <div class="cfg-hd"><h3 id="cfgh">Add-ons konfigurieren</h3><span class="cfg-cnt" id="cfgc">0 ausgewaehlt</span></div>
-      <div class="ao" onclick="tog(this,'wl')" data-id="wl" data-days="2"><div class="ack"><svg class="cm" viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div><div class="ab"><div class="an" id="a1n">Wartelisten-Management</div><div class="ad" id="a1d">Warteliste beitreten &rarr; E-Mail wenn Platz frei &rarr; First-come-first-served.</div><div class="aps"><span class="pill pd">+2 Manntage</span><span class="pill pr" id="a1p">Empfohlen</span></div></div></div>
-      <div class="ao" onclick="tog(this,'cal')" data-id="cal" data-days="0.5"><div class="ack"><svg class="cm" viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div><div class="ab"><div class="an" id="a2n">Kalender-Integration (.ics)</div><div class="ad" id="a2d">Zu Google/Apple/Outlook Kalender hinzufuegen-Button bei gebuchten Kursen.</div><div class="aps"><span class="pill pd">+0.5 Manntage</span><span class="pill pr" id="a2p">Empfohlen</span></div></div></div>
-      <div class="ao" onclick="tog(this,'rat')" data-id="rat" data-days="1"><div class="ack"><svg class="cm" viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div><div class="ab"><div class="an" id="a3n">Reviews &amp; Ratings (minimal)</div><div class="ad" id="a3d">1&ndash;5 Sterne nach Kursabschluss. Phase 2: Kommentare + Anbieter-Antworten.</div><div class="aps"><span class="pill pd">+1 Manntag</span><span class="pill pr" id="a3p">Empfohlen</span></div></div></div>
-      <div class="ao" onclick="tog(this,'xl')" data-id="xl" data-days="0.25"><div class="ack"><svg class="cm" viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div><div class="ab"><div class="an" id="a4n">XLSX-Export Admin</div><div class="ad" id="a4d">Export aller Anmeldungen gefiltert nach Kurskategorie und Preisband.</div><div class="aps"><span class="pill pd">+0.25 Manntage</span><span class="pill po" id="a4p">Optional</span></div></div></div>
-      <div class="ao" onclick="tog(this,'pas')" data-id="pas" data-days="1"><div class="ack"><svg class="cm" viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div><div class="ab"><div class="an" id="a5n">Ferienpass-Kauf + PDF</div><div class="ad" id="a5d">Online-Kauf mit automatischer PDF-Bestaetigung. Phase 2: QR-Code-Tickets.</div><div class="aps"><span class="pill pd">+0.5&ndash;1 Manntag</span><span class="pill po" id="a5p">Optional</span></div></div></div>
-      <div class="ao" onclick="tog(this,'ts')" data-id="ts" data-days="1"><div class="ack"><svg class="cm" viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div><div class="ab"><div class="an" id="a6n">Zweistufige Kurs-Genehmigung</div><div class="ad" id="a6d">Admin genehmigt einzelne Kurse zusaetzlich zur Anbieter-Approval.</div><div class="aps"><span class="pill pd">+1 Manntag</span><span class="pill po" id="a6p">Optional</span></div></div></div>
-      <div class="ao" onclick="tog(this,'msg')" data-id="msg" data-days="2"><div class="ack"><svg class="cm" viewBox="0 0 10 10" fill="none"><polyline points="1,5 4,8 9,2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div><div class="ab"><div class="an" id="a7n">Kurs-Kommunikationsraum</div><div class="ad" id="a7d">Eltern koennen Anbieter direkt ueber Plattform kontaktieren. DSGVO-konform.</div><div class="aps"><span class="pill pd">+2 Manntage</span><span class="pill po" id="a7p">Optional</span></div></div></div>
-      <div class="ao p2"><div class="ack"></div><div class="ab"><div class="an">Stripe Split Payments</div><div class="ad">Anbieter-Auszahlungen via Stripe Connect. Erfordert KYC, Schweizer Regulatorik.</div><div class="aps"><span class="pill po">Phase 2</span></div></div></div>
-      <div class="ao p2"><div class="ack"></div><div class="ab"><div class="an">Mobile App / PWA</div><div class="ad">Native App oder PWA mit Push-Notifikationen.</div><div class="aps"><span class="pill po">Phase 2</span></div></div></div>
-      <div class="ao p2"><div class="ack"></div><div class="ab"><div class="an">SMS / WhatsApp</div><div class="ad">Zusaetzlicher Kommunikationskanal nach Basis-E-Mail-System etabliert.</div><div class="aps"><span class="pill po">Phase 2</span></div></div></div>
+<!-- SECTION A: INCLUDED -->
+<div style="margin-bottom: 40px;">
+  <div class="ms-hd">
+    <span class="ms-title" id="ms1t">&#10003; Im Base Package inklusive &mdash; kein Aufpreis</span>
+    <span class="ms-count" id="ms1c">9 Features</span>
+  </div>
+  <div class="mi inc">
+    <div class="chk"><svg class="chk-svg" viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="mi-body">
+      <div class="mi-name">Dreisprachige Website &mdash; DE / EN / FR</div>
+      <div class="mi-desc">Homepage, Navigation, CMS-Inhaltsbereiche vollstaendig dreisprachig. Alle System-E-Mails in drei Sprachen.</div>
+      <div class="mi-tags"><span class="tag tag-inc">Inklusive</span></div>
     </div>
-    <div style="text-align:center;margin-top:24px;"><button class="btn-mg" onclick="gp('sum',document.getElementById('ns'))" id="aobt">Zusammenfassung ansehen &#8594;</button></div>
+    <div class="mi-price"><span class="mi-pval">Inkl.</span><span class="mi-punit">im Paket</span></div>
+  </div>
+  <div class="mi inc">
+    <div class="chk"><svg class="chk-svg" viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="mi-body">
+      <div class="mi-name">Kurssuche, Filter &amp; Detailseiten</div>
+      <div class="mi-desc">Filter nach Kategorie, Alter, Datum, Preis. Teilbare URLs. Kursdetail mit Galerie, Anbieterprofil, Kapazitaetsanzeige.</div>
+      <div class="mi-tags"><span class="tag tag-inc">Inklusive</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">Inkl.</span><span class="mi-punit">im Paket</span></div>
+  </div>
+  <div class="mi inc">
+    <div class="chk"><svg class="chk-svg" viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="mi-body">
+      <div class="mi-name">Familienkonten &amp; Online-Buchungsflow</div>
+      <div class="mi-desc">Google OAuth oder E-Mail/Passwort. Buchungshistorie. Self-Service-Stornierung. Serverseitige Kapazitaetspruefung.</div>
+      <div class="mi-tags"><span class="tag tag-inc">Inklusive</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">Inkl.</span><span class="mi-punit">im Paket</span></div>
+  </div>
+  <div class="mi inc">
+    <div class="chk"><svg class="chk-svg" viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="mi-body">
+      <div class="mi-name">Stripe-Zahlung &mdash; TWINT, Apple Pay, Google Pay, Kreditkarte</div>
+      <div class="mi-desc">Stripe-Checkout mit konfigurierbarem Refund-System. Automatische Stornierungsabwicklung. Echtzeit-Statusupdates.</div>
+      <div class="mi-tags"><span class="tag tag-inc">Inklusive</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">Inkl.</span><span class="mi-punit">im Paket</span></div>
+  </div>
+  <div class="mi inc">
+    <div class="chk"><svg class="chk-svg" viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="mi-body">
+      <div class="mi-name">Anbieter Self-Service Portal</div>
+      <div class="mi-desc">Registrierung, Profil einreichen, Approval-Status verfolgen. Kurse erstellen / bearbeiten / deaktivieren. Teilnehmerliste.</div>
+      <div class="mi-tags"><span class="tag tag-inc">Inklusive</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">Inkl.</span><span class="mi-punit">im Paket</span></div>
+  </div>
+  <div class="mi inc">
+    <div class="chk"><svg class="chk-svg" viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="mi-body">
+      <div class="mi-name">Ferienpass Admin-Modul</div>
+      <div class="mi-desc">Anbieter-Approval mit Feedback-E-Mail. Plattformweites Enrollment-Dashboard. Manuelle Buchungskorrektur. Filterbar.</div>
+      <div class="mi-tags"><span class="tag tag-inc">Inklusive</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">Inkl.</span><span class="mi-punit">im Paket</span></div>
+  </div>
+  <div class="mi inc">
+    <div class="chk"><svg class="chk-svg" viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="mi-body">
+      <div class="mi-name">Automatisierte E-Mails (DE / EN / FR)</div>
+      <div class="mi-desc">Buchungsbestaetigung, Stornierung, 48h-Kurs-Reminder, Anbieter-Update &mdash; alle dreisprachig, vollautomatisch.</div>
+      <div class="mi-tags"><span class="tag tag-inc">Inklusive</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">Inkl.</span><span class="mi-punit">im Paket</span></div>
+  </div>
+  <div class="mi inc">
+    <div class="chk"><svg class="chk-svg" viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="mi-body">
+      <div class="mi-name">goSNOB.ai KI-Chatbot Integration</div>
+      <div class="mi-desc">Kontextbewusste Einbettung auf relevanten Seiten. Session-Uebergabe (Kurs, Sprache, Login-Status). Konsistente UI.</div>
+      <div class="mi-tags"><span class="tag tag-inc">Inklusive</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">Inkl.</span><span class="mi-punit">im Paket</span></div>
+  </div>
+  <div class="mi inc">
+    <div class="chk"><svg class="chk-svg" viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="mi-body">
+      <div class="mi-name">UX Design (15&ndash;20+ Screens)</div>
+      <div class="mi-desc">Funktionaler Spec &rarr; UI Designs &rarr; 2&ndash;3 Iterationsrunden via Screenshare. Alle Rollen abgedeckt.</div>
+      <div class="mi-tags"><span class="tag tag-inc">Inklusive</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">Inkl.</span><span class="mi-punit">im Paket</span></div>
   </div>
 </div>
 
-<!-- ══ JOURNEY ══ -->
+<!-- SECTION B: ADD-ONS -->
+<div style="margin-bottom: 40px;">
+  <div class="ms-hd">
+    <span class="ms-title" id="ms2t">+ Optionale Add-ons &mdash; anklicken zum Waehlen</span>
+    <span class="ms-count" id="ms2c">0 ausgewaehlt</span>
+  </div>
+  <div class="mi clickable" onclick="tog(this,'wl')" data-id="wl" data-days="2">
+    <div class="chk"><svg class="chk-svg" viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="mi-body">
+      <div class="mi-name">Wartelisten-Management</div>
+      <div class="mi-desc">Warteliste beitreten &rarr; E-Mail wenn Platz frei &rarr; First-come-first-served. Phase 2: Queue-Position + Zeitfenster.</div>
+      <div class="mi-tags"><span class="tag-days">+2 Manntage</span><span class="tag tag-rec">Empfohlen</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">+2 MT</span><span class="mi-punit">Manntage</span></div>
+  </div>
+  <div class="mi clickable" onclick="tog(this,'cal')" data-id="cal" data-days="0.5">
+    <div class="chk"><svg class="chk-svg" viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="mi-body">
+      <div class="mi-name">Kalender-Integration (.ics)</div>
+      <div class="mi-desc">Zu Google / Apple / Outlook Kalender hinzufuegen-Button bei gebuchten Kursen. Direkt im persoenlichen Kalender.</div>
+      <div class="mi-tags"><span class="tag-days">+0.5 Manntage</span><span class="tag tag-rec">Empfohlen</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">+0.5 MT</span><span class="mi-punit">Manntage</span></div>
+  </div>
+  <div class="mi clickable" onclick="tog(this,'rat')" data-id="rat" data-days="1">
+    <div class="chk"><svg class="chk-svg" viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="mi-body">
+      <div class="mi-name">Reviews &amp; Ratings (minimal)</div>
+      <div class="mi-desc">1&ndash;5 Sterne nach Kursabschluss. Keine Kommentare in Phase 1. Phase 2: Kommentare + Anbieter-Antworten.</div>
+      <div class="mi-tags"><span class="tag-days">+1 Manntag</span><span class="tag tag-rec">Empfohlen</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">+1 MT</span><span class="mi-punit">Manntag</span></div>
+  </div>
+  <div class="mi clickable" onclick="tog(this,'xlsx')" data-id="xlsx" data-days="0.25">
+    <div class="chk"><svg class="chk-svg" viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="mi-body">
+      <div class="mi-name">XLSX-Export Admin</div>
+      <div class="mi-desc">Export aller Anmeldungen gefiltert nach Kurskategorie und Preisband. Quick Win fuer das Admin-Team.</div>
+      <div class="mi-tags"><span class="tag-days">+0.25 Manntage</span><span class="tag tag-opt">Optional</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">+0.25 MT</span><span class="mi-punit">Manntage</span></div>
+  </div>
+  <div class="mi clickable" onclick="tog(this,'pass')" data-id="pass" data-days="1">
+    <div class="chk"><svg class="chk-svg" viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="mi-body">
+      <div class="mi-name">Ferienpass-Kauf + PDF-Bestaetigung</div>
+      <div class="mi-desc">Online-Kauf des Ferienpasses mit automatischer PDF-Bestaetigung per E-Mail. Phase 2: QR-Code-Tickets.</div>
+      <div class="mi-tags"><span class="tag-days">+1 Manntag</span><span class="tag tag-opt">Optional</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">+1 MT</span><span class="mi-punit">Manntag</span></div>
+  </div>
+  <div class="mi clickable" onclick="tog(this,'ts')" data-id="ts" data-days="1">
+    <div class="chk"><svg class="chk-svg" viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="mi-body">
+      <div class="mi-name">Zweistufige Kurs-Genehmigung</div>
+      <div class="mi-desc">Admin genehmigt einzelne Kurse zusaetzlich zur Anbieter-Approval. Mehr Qualitaetskontrolle ohne volles Moderationssystem.</div>
+      <div class="mi-tags"><span class="tag-days">+1 Manntag</span><span class="tag tag-opt">Optional</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">+1 MT</span><span class="mi-punit">Manntag</span></div>
+  </div>
+  <div class="mi clickable" onclick="tog(this,'msg')" data-id="msg" data-days="2">
+    <div class="chk"><svg class="chk-svg" viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="mi-body">
+      <div class="mi-name">Kurs-Kommunikationsraum</div>
+      <div class="mi-desc">Eltern koennen Anbieter direkt ueber Plattform kontaktieren. DSGVO-konform. Phase 2: Messaging + File Sharing.</div>
+      <div class="mi-tags"><span class="tag-days">+2 Manntage</span><span class="tag tag-opt">Optional</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">+2 MT</span><span class="mi-punit">Manntage</span></div>
+  </div>
+</div>
 
-<div id="pg-jou" class="pg">
+<!-- SECTION C: PHASE 2 -->
+<div style="margin-bottom: 40px;">
+  <div class="ms-hd">
+    <span class="ms-title" id="ms3t">Phase 2 &mdash; nicht jetzt buchbar</span>
+    <span class="ms-count" id="ms3c">spaeter</span>
+  </div>
+  <div class="mi p2">
+    <div class="chk"></div>
+    <div class="mi-body">
+      <div class="mi-name">Stripe Split Payments / Marketplace Payouts</div>
+      <div class="mi-desc">Erfordert Stripe Connect, KYC-Verifikation, Schweizer Regulatorik. Phase 1: Ferienpass zentralisiert alle Zahlungen.</div>
+      <div class="mi-tags"><span class="tag tag-p2">Phase 2</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">Phase 2</span><span class="mi-punit">spaeter</span></div>
+  </div>
+  <div class="mi p2">
+    <div class="chk"></div>
+    <div class="mi-body">
+      <div class="mi-name">Kids-Profile &amp; AI-Matching</div>
+      <div class="mi-desc">Komplexes Datenmodell fuer Minderjaehrige. Erhoehte DSGVO-Anforderungen. Fuer Phase 2 nach Plattform-Validierung geplant.</div>
+      <div class="mi-tags"><span class="tag tag-p2">Phase 2</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">Phase 2</span><span class="mi-punit">spaeter</span></div>
+  </div>
+  <div class="mi p2">
+    <div class="chk"></div>
+    <div class="mi-body">
+      <div class="mi-name">Mobile App / PWA mit Push-Notifikationen</div>
+      <div class="mi-desc">Native App oder PWA &mdash; nach Validierung der Web-Plattform und User-Feedback geplant.</div>
+      <div class="mi-tags"><span class="tag tag-p2">Phase 2</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">Phase 2</span><span class="mi-punit">spaeter</span></div>
+  </div>
+  <div class="mi p2">
+    <div class="chk"></div>
+    <div class="mi-body">
+      <div class="mi-name">SMS / WhatsApp Kanal</div>
+      <div class="mi-desc">Zusaetzlicher Kommunikationskanal nach Basis-E-Mail-System etabliert und getestet.</div>
+      <div class="mi-tags"><span class="tag tag-p2">Phase 2</span></div>
+    </div>
+    <div class="mi-price"><span class="mi-pval">Phase 2</span><span class="mi-punit">spaeter</span></div>
+  </div>
+</div>
+
+<div style="text-align:center;">
+  <button class="btn btn-mag" onclick="gp('sum',document.getElementById('n5'))" id="mbtn">Zusammenfassung ansehen &rarr;</button>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ JOURNEY ═══════════════════════════════════════ -->
+
+<div id="pg-journey" class="pg">
   <div class="wrap">
     <p class="ey" id="jey">Customer Journey Map</p>
-    <h2 id="jh">7 Phasen.<br>Ein Erlebnis.</h2>
-    <div class="jt-wrap">
-      <button class="jt on" onclick="showJ(0,this)"><span class="jtn">1</span><span class="jtl" id="jt1">Profile</span></button>
-      <button class="jt" onclick="showJ(1,this)"><span class="jtn">2</span><span class="jtl" id="jt2">Pass kaufen</span></button>
-      <button class="jt" onclick="showJ(2,this)"><span class="jtn">3</span><span class="jtl" id="jt3">Browsen</span></button>
-      <button class="jt" onclick="showJ(3,this)"><span class="jtn">4</span><span class="jtl" id="jt4">Buchen</span></button>
-      <button class="jt" onclick="showJ(4,this)"><span class="jtn">5</span><span class="jtl" id="jt5">Aenderungen</span></button>
-      <button class="jt" onclick="showJ(5,this)"><span class="jtn">6</span><span class="jtl" id="jt6">Updates</span></button>
-      <button class="jt" onclick="showJ(6,this)"><span class="jtn">7</span><span class="jtl" id="jt7">Bewertung</span></button>
+    <h2 id="jh">7 Phasen. Ein Erlebnis.</h2>
+    <div class="j-tabs">
+      <button class="jt on" onclick="showJ(0,this)"><span class="jt-n">1</span><span class="jt-l" id="jt1">Profil</span></button>
+      <button class="jt" onclick="showJ(1,this)"><span class="jt-n">2</span><span class="jt-l" id="jt2">Pass kaufen</span></button>
+      <button class="jt" onclick="showJ(2,this)"><span class="jt-n">3</span><span class="jt-l" id="jt3">Browsen</span></button>
+      <button class="jt" onclick="showJ(3,this)"><span class="jt-n">4</span><span class="jt-l" id="jt4">Buchen</span></button>
+      <button class="jt" onclick="showJ(4,this)"><span class="jt-n">5</span><span class="jt-l" id="jt5">Aenderungen</span></button>
+      <button class="jt" onclick="showJ(5,this)"><span class="jt-n">6</span><span class="jt-l" id="jt6">Updates</span></button>
+      <button class="jt" onclick="showJ(6,this)"><span class="jt-n">7</span><span class="jt-l" id="jt7">Bewertung</span></button>
     </div>
-    <div id="j0" class="jp on"><div class="jc"><div class="jch">Aktionen</div><ul><li>Landet auf attraktiver Homepage</li><li>Registriert via E-Mail oder Google</li><li>Vervollstaendigt Familienprofil</li><li>Speichert Zahlungsmethode</li><li>Richtet Kurs-Reminders ein</li></ul></div><div class="jc"><div class="jch">Pain Points heute</div><ul><li>Homepage veraltet und ueberladen</li><li>Zu viele Felder, kein Google Login</li><li>Kids-Profile fehlen</li><li>Keine Kalender-Integration</li></ul></div><div class="jc"><div class="jch">goSNOB.ai Loesung</div><ul><li>Modernes, dreisprachiges Design</li><li>Streamlined Sign-up (Google OAuth)</li><li>Gefuehrtes Profil-Setup</li><li>iCal / Google / Outlook Integration</li></ul></div><div class="jc"><div class="jch">Touchpoints</div><ul><li>Ferienpass Website</li><li>E-Mail / Push Notifications</li><li>Stripe</li><li>goSNOB.ai Chatbot</li></ul></div></div>
-    <div id="j1" class="jp"><div class="jc"><div class="jch">Aktionen</div><ul><li>Prueft Leistungen des Ferienpasses</li><li>Kauft via Zahlungsmethode</li><li>Erhaelt Bestaetigung per E-Mail + PDF</li><li>Fuegt Ferienpass zu Wallet hinzu</li></ul></div><div class="jc"><div class="jch">Pain Points heute</div><ul><li>Physische Karte leicht verloren</li><li>Keine modernen Zahlungsoptionen</li><li>Kein digitaler Nachweis</li></ul></div><div class="jc"><div class="jch">goSNOB.ai Loesung</div><ul><li>Digitaler Ferienpass fuer alle sichtbar</li><li>Stripe: TWINT, Apple/Google Pay</li><li>Automatische PDF-Bestaetigung</li><li>Phase 2: QR-Tickets</li></ul></div><div class="jc"><div class="jch">Touchpoints</div><ul><li>Website (Kauf-Flow)</li><li>Stripe Checkout</li><li>E-Mail + Digital Wallet</li></ul></div></div>
-    <div id="j2" class="jp"><div class="jc"><div class="jch">Aktionen</div><ul><li>Erhaelt Verfuegbarkeits-Reminder</li><li>Filtert nach Kategorie, Alter, Datum</li><li>Liest Reviews und Ratings</li><li>Speichert Favoriten</li></ul></div><div class="jc"><div class="jch">Pain Points heute</div><ul><li>Keine personalisierten Filter</li><li>Kurspraesentation inkonsistent</li><li>Keine Reviews vorhanden</li><li>Keine Favoritenliste</li></ul></div><div class="jc"><div class="jch">goSNOB.ai Loesung</div><ul><li>Einheitliche Kurspraesentation</li><li>Smarte Filter + KI-Empfehlungen</li><li>Kursfavoriten (Add-on)</li><li>Reviews &amp; Ratings (Add-on)</li></ul></div><div class="jc"><div class="jch">Touchpoints</div><ul><li>Kurslistung &amp; Detailseite</li><li>E-Mail / Push</li><li>goSNOB.ai Chatbot</li></ul></div></div>
-    <div id="j3" class="jp"><div class="jc"><div class="jch">Aktionen</div><ul><li>Waehlt Kurs aus Favoriten</li><li>Prueft freie Plaetze</li><li>Waehlt Kind, bestaetigt, zahlt</li><li>Erhaelt Buchungsbestaetigung</li><li>Bei voll: tritt Warteliste bei</li></ul></div><div class="jc"><div class="jch">Pain Points heute</div><ul><li>Keine Online-Buchung mit Echtzeit</li><li>Buchungs-Deadline-Angst</li><li>Keine Warteliste sichtbar</li><li>Buchung = manuelle E-Mail</li></ul></div><div class="jc"><div class="jch">goSNOB.ai Loesung</div><ul><li>Serverseitige Kapazitaetspruefung</li><li>Stripe: TWINT, Apple Pay</li><li>Auto-Buchungsbestaetigung</li><li>Warteliste: Platz beitreten</li></ul></div><div class="jc"><div class="jch">Touchpoints</div><ul><li>Buchungsflow Website</li><li>Stripe Checkout</li><li>Auto-E-Mail + Chatbot</li></ul></div></div>
-    <div id="j4" class="jp"><div class="jc"><div class="jch">Aktionen</div><ul><li>Initiiert Stornierung Self-Service</li><li>Prueft Richtlinien &amp; Gebuehren</li><li>Erhaelt Rueckerstattung oder Gutschrift</li><li>Erhaelt KI-basierte Alternativen</li></ul></div><div class="jc"><div class="jch">Pain Points heute</div><ul><li>Jede Aenderung = Telefon/E-Mail</li><li>Kein Self-Service</li><li>Stornierungspolitik unklar</li></ul></div><div class="jc"><div class="jch">goSNOB.ai Loesung</div><ul><li>Self-Service Stornierung</li><li>Konfigurierbares Refund-System</li><li>KI schlaegt Alternativen vor</li></ul></div><div class="jc"><div class="jch">Touchpoints</div><ul><li>Familienkonto</li><li>E-Mail + Stripe Refund</li><li>Chatbot</li></ul></div></div>
-    <div id="j5" class="jp"><div class="jc"><div class="jch">Aktionen</div><ul><li>Erhaelt Kursvorbereitungsinfos</li><li>Erhaelt Aenderungs-Notifikationen</li><li>Erhaelt Echtzeit-Check-in-Alert</li></ul></div><div class="jc"><div class="jch">Pain Points heute</div><ul><li>Updates nur sporadisch via E-Mail</li><li>Keine Live-Updates</li><li>Kursinfos inkonsistent</li></ul></div><div class="jc"><div class="jch">goSNOB.ai Loesung</div><ul><li>Automatisierter 48h-Reminder</li><li>Anbieter postet Updates</li><li>Phase 2: WhatsApp/SMS</li></ul></div><div class="jc"><div class="jch">Touchpoints</div><ul><li>E-Mail / Push</li><li>Kurs-Detailseite + Chatbot</li></ul></div></div>
-    <div id="j6" class="jp"><div class="jc"><div class="jch">Aktionen</div><ul><li>Kids bewerten Kurs (Sterne)</li><li>Eltern schreiben Kommentar</li><li>Erhaelt KI-Kursvorschlaege</li><li>Plant naechste Saison</li></ul></div><div class="jc"><div class="jch">Pain Points heute</div><ul><li>Kein Kalender, jede Saison von null</li><li>Keine Kursempfehlungen</li><li>Keine Ratings moeglich</li></ul></div><div class="jc"><div class="jch">goSNOB.ai Loesung</div><ul><li>Bewertungssystem (Add-on)</li><li>KI-Folgeempfehlungen</li><li>Kalenderintegration (Add-on)</li><li>Phase 2: Loyalty &amp; Rewards</li></ul></div><div class="jc"><div class="jch">Touchpoints</div><ul><li>Familienkonto</li><li>KI-Empfehlungen</li></ul></div></div>
+    <div id="j0" class="jp on"><div class="jc dk"><div class="jc-h">Aktionen</div><ul><li>Landet auf Homepage</li><li>Registriert via E-Mail oder Google</li><li>Vervollstaendigt Familienprofil</li><li>Speichert Zahlungsmethode</li><li>Richtet Kurs-Reminders ein</li></ul></div><div class="jc pain"><div class="jc-h">Pain Points heute</div><ul><li>Homepage veraltet &amp; ueberladen</li><li>Zu viele Felder, kein Google Login</li><li>Kids-Profile fehlen</li><li>Keine Kalender-Integration</li></ul></div><div class="jc opps"><div class="jc-h">goSNOB.ai Loesung</div><ul><li>Modernes, dreisprachiges Design</li><li>Streamlined Sign-up (Google OAuth)</li><li>Gefuehrtes Profil-Setup</li><li>iCal / Google / Outlook Integration</li></ul></div><div class="jc touch"><div class="jc-h">Touchpoints</div><ul><li>Website (mobile responsive)</li><li>E-Mail / Push</li><li>Stripe</li><li>goSNOB.ai Chatbot</li></ul></div></div>
+    <div id="j1" class="jp"><div class="jc dk"><div class="jc-h">Aktionen</div><ul><li>Prueft Leistungen des Ferienpasses</li><li>Kauft via Zahlungsmethode</li><li>Erhaelt Bestaetigung per E-Mail + PDF</li></ul></div><div class="jc pain"><div class="jc-h">Pain Points heute</div><ul><li>Physische Karte leicht verloren</li><li>Keine modernen Zahlungsoptionen</li><li>Kein digitaler Nachweis</li></ul></div><div class="jc opps"><div class="jc-h">goSNOB.ai Loesung</div><ul><li>TWINT, Apple Pay, Kreditkarte</li><li>Automatische PDF-Bestaetigung</li><li>Phase 2: QR-Tickets</li></ul></div><div class="jc touch"><div class="jc-h">Touchpoints</div><ul><li>Website + Stripe Checkout</li><li>E-Mail + Digital Wallet</li></ul></div></div>
+    <div id="j2" class="jp"><div class="jc dk"><div class="jc-h">Aktionen</div><ul><li>Erhaelt Verfuegbarkeits-Reminder</li><li>Filtert nach Kategorie, Alter, Datum</li><li>Liest Reviews und Ratings</li><li>Speichert Favoriten</li></ul></div><div class="jc pain"><div class="jc-h">Pain Points heute</div><ul><li>Keine personalisierten Filter</li><li>Kurspraesentation inkonsistent</li><li>Keine Reviews vorhanden</li><li>Keine Favoritenliste</li></ul></div><div class="jc opps"><div class="jc-h">goSNOB.ai Loesung</div><ul><li>Einheitliche Kurspraesentation</li><li>Smarte Filter + KI-Empfehlungen</li><li>Reviews &amp; Ratings (Add-on)</li><li>Kursfavoriten (Add-on)</li></ul></div><div class="jc touch"><div class="jc-h">Touchpoints</div><ul><li>Kurslistung &amp; Detailseite</li><li>E-Mail / Push + Chatbot</li></ul></div></div>
+    <div id="j3" class="jp"><div class="jc dk"><div class="jc-h">Aktionen</div><ul><li>Waehlt Kurs aus Favoriten</li><li>Prueft freie Plaetze</li><li>Zahlt via Stripe</li><li>Erhaelt Buchungsbestaetigung</li><li>Bei voll: tritt Warteliste bei</li></ul></div><div class="jc pain"><div class="jc-h">Pain Points heute</div><ul><li>Keine Online-Buchung mit Echtzeit</li><li>Buchungs-Deadline-Angst</li><li>Keine Warteliste sichtbar</li><li>Buchung = manuelle E-Mail</li></ul></div><div class="jc opps"><div class="jc-h">goSNOB.ai Loesung</div><ul><li>Serverseitige Kapazitaetspruefung</li><li>Stripe: TWINT, Apple Pay</li><li>Auto-Buchungsbestaetigung</li><li>Warteliste (Add-on)</li></ul></div><div class="jc touch"><div class="jc-h">Touchpoints</div><ul><li>Website + Stripe Checkout</li><li>Auto-E-Mail + Chatbot</li></ul></div></div>
+    <div id="j4" class="jp"><div class="jc dk"><div class="jc-h">Aktionen</div><ul><li>Initiiert Stornierung Self-Service</li><li>Prueft Richtlinien &amp; Gebuehren</li><li>Erhaelt Rueckerstattung</li></ul></div><div class="jc pain"><div class="jc-h">Pain Points heute</div><ul><li>Jede Aenderung = Telefon/E-Mail</li><li>Kein Self-Service</li><li>Stornierungspolitik unklar</li></ul></div><div class="jc opps"><div class="jc-h">goSNOB.ai Loesung</div><ul><li>Self-Service Stornierung</li><li>Konfigurierbares Refund-System</li><li>KI schlaegt Alternativen vor</li></ul></div><div class="jc touch"><div class="jc-h">Touchpoints</div><ul><li>Familienkonto + Stripe Refund</li></ul></div></div>
+    <div id="j5" class="jp"><div class="jc dk"><div class="jc-h">Aktionen</div><ul><li>Erhaelt Kursvorbereitungsinfos</li><li>Erhaelt Aenderungs-Notifikationen</li><li>Erhaelt Check-in-Alert</li></ul></div><div class="jc pain"><div class="jc-h">Pain Points heute</div><ul><li>Updates nur sporadisch via E-Mail</li><li>Keine Live-Updates</li></ul></div><div class="jc opps"><div class="jc-h">goSNOB.ai Loesung</div><ul><li>Automatisierter 48h-Reminder</li><li>Anbieter postet Updates direkt</li><li>Phase 2: WhatsApp/SMS</li></ul></div><div class="jc touch"><div class="jc-h">Touchpoints</div><ul><li>E-Mail + Kurs-Detailseite</li><li>Chatbot</li></ul></div></div>
+    <div id="j6" class="jp"><div class="jc dk"><div class="jc-h">Aktionen</div><ul><li>Kids bewerten Kurs (Sterne)</li><li>Eltern schreiben Kommentar</li><li>Erhaelt KI-Folgevorschlaege</li></ul></div><div class="jc pain"><div class="jc-h">Pain Points heute</div><ul><li>Kein Kalender, von null jede Saison</li><li>Keine Ratings moeglich</li></ul></div><div class="jc opps"><div class="jc-h">goSNOB.ai Loesung</div><ul><li>Bewertungssystem (Add-on)</li><li>KI-Folgeempfehlungen</li><li>Phase 2: Loyalty &amp; Rewards</li></ul></div><div class="jc touch"><div class="jc-h">Touchpoints</div><ul><li>Familienkonto + KI</li></ul></div></div>
   </div>
 </div>
 
-<!-- ══ TIMELINE ══ -->
+<!-- ═══════════════════════════════════════ TIMELINE ═══════════════════════════════════════ -->
 
-<div id="pg-tl" class="pg">
+<div id="pg-timeline" class="pg">
   <div class="wrap">
     <p class="ey" id="tley">Delivery Plan</p>
-    <h2 id="tlh">15 Wochen.<br>Puentlich zum Sommer.</h2>
-    <div class="ibox"><h4 id="tlih">Go-Live: vor Ende Sommer 2026</h4><p id="tlip">Start Mitte Mai 2026. Kritisch: Stripe-Zugangsdaten ab Kick-off und Hosting-Entscheid in Woche 1&ndash;2.</p></div>
-    <div class="wkg" id="wkg"></div>
-    <div class="tlw">
-      <div class="tlr"><div class="tlwl" id="tw1">Wo 1&ndash;2</div><div class="tldot"></div><div class="tli"><div class="tlt" id="tt1">Kick-off &amp; Alignment</div><div class="tldesc" id="td1">Technisches Setup. Design-Brief bestaetigt. Hosting-Entscheid (Vercel/Supabase). Stripe-Zugang konfiguriert.</div><div class="tlbw"><div class="tlbf" style="width:100%"></div></div></div></div>
-      <div class="tlr"><div class="tlwl" id="tw2">Wo 2&ndash;4</div><div class="tldot"></div><div class="tli"><div class="tlt" id="tt2">UX &amp; Design</div><div class="tldesc" id="td2">Key Screens designt: Homepage, Kurslistung, Buchungsflow, Anbieter-Portal, Admin-Modul. 2&ndash;3 Iterationsrunden.</div><div class="tlbw"><div class="tlbf" style="width:85%"></div></div></div></div>
-      <div class="tlr"><div class="tlwl" id="tw3">Wo 4&ndash;9</div><div class="tldot"></div><div class="tli"><div class="tlt" id="tt3">Build &mdash; Oeffentliche Plattform</div><div class="tldesc" id="td3">Dreisprachige Website live auf Staging: Homepage, Kurslistung, Familienkonten, Buchungs- und Zahlungsflow.</div><div class="tlbw"><div class="tlbf" style="width:70%"></div></div></div></div>
-      <div class="tlr"><div class="tlwl" id="tw4">Wo 9&ndash;12</div><div class="tldot"></div><div class="tli"><div class="tlt" id="tt4">Build &mdash; Portale &amp; Integrationen</div><div class="tldesc" id="td4">Anbieter-Portal, Admin-Modul, E-Mail-Automatisierung, goSNOB.ai Chatbot &mdash; alle auf Staging fertig.</div><div class="tlbw"><div class="tlbf" style="width:55%"></div></div></div></div>
-      <div class="tlr"><div class="tlwl" id="tw5">Wo 12&ndash;14</div><div class="tldot"></div><div class="tli"><div class="tlt" id="tt5">Testing &amp; UAT</div><div class="tldesc" id="td5">End-to-End-Testing. Client-Team fuehrt UAT auf Staging durch. Bugs behoben.</div><div class="tlbw"><div class="tlbf" style="width:30%"></div></div></div></div>
-      <div class="tlr"><div class="tlwl" id="tw6">Wo 15</div><div class="tldot go"></div><div class="tli"><div class="tlt go" id="tt6">Go-Live</div><div class="tldesc" id="td6">Production Deployment. Plattform live. Ferienpass-Team uebernimmt via Admin-Modul. Handover-Dokumentation.</div><div class="tlbw"><div class="tlbf go" style="width:100%"></div></div></div></div>
+    <h2 id="tlh">15 Wochen.<br>Go-Live Sommer 2026.</h2>
+    <div class="ibox">
+      <h4 id="tlih">Kritische Voraussetzungen</h4>
+      <p id="tlip">Stripe-Zugangsdaten (Test + Prod) ab Kick-off. Hosting-Entscheid in Woche 1&ndash;2 (Vercel / Supabase empfohlen). Beides blockiert den Start.</p>
+    </div>
+    <div class="wk-row" id="wkrow"></div>
+    <div class="tl-wrap">
+      <div class="tlr"><div class="tl-wl" id="tw1">Wo 1&ndash;2</div><div class="tl-dot"></div><div class="tli"><div class="tl-t" id="tt1">Kick-off &amp; Alignment</div><div class="tl-d" id="td1">Technisches Setup. Design-Brief bestaetigt. Hosting-Entscheid. Stripe-Zugang konfiguriert. Offene Fragen abgeschlossen.</div><div class="tl-bar"><div class="tl-fill" style="width:100%"></div></div></div></div>
+      <div class="tlr"><div class="tl-wl" id="tw2">Wo 2&ndash;4</div><div class="tl-dot"></div><div class="tli"><div class="tl-t" id="tt2">UX &amp; Design</div><div class="tl-d" id="td2">15&ndash;20+ Screens designt und freigegeben: Homepage, Kurslistung, Buchungsflow, Anbieter-Portal, Admin-Modul. 2&ndash;3 Iterationsrunden.</div><div class="tl-bar"><div class="tl-fill" style="width:85%"></div></div></div></div>
+      <div class="tlr"><div class="tl-wl" id="tw3">Wo 4&ndash;9</div><div class="tl-dot"></div><div class="tli"><div class="tl-t" id="tt3">Build &mdash; Oeffentliche Plattform</div><div class="tl-d" id="td3">Dreisprachige Website live auf Staging: Homepage, Kurslistung, Detailseiten, Familienkonten, Buchungs- und Zahlungsflow.</div><div class="tl-bar"><div class="tl-fill" style="width:70%"></div></div></div></div>
+      <div class="tlr"><div class="tl-wl" id="tw4">Wo 9&ndash;12</div><div class="tl-dot"></div><div class="tli"><div class="tl-t" id="tt4">Build &mdash; Portale &amp; Integrationen</div><div class="tl-d" id="td4">Anbieter-Portal, Admin-Modul, E-Mail-Automatisierung (DE/EN/FR), goSNOB.ai KI-Chatbot &mdash; alle auf Staging fertig.</div><div class="tl-bar"><div class="tl-fill" style="width:55%"></div></div></div></div>
+      <div class="tlr"><div class="tl-wl" id="tw5">Wo 12&ndash;14</div><div class="tl-dot"></div><div class="tli"><div class="tl-t" id="tt5">Testing &amp; UAT</div><div class="tl-d" id="td5">End-to-End-Testing. Client-Team fuehrt User Acceptance Testing auf Staging durch. Bugs behoben, Feedback eingearbeitet.</div><div class="tl-bar"><div class="tl-fill" style="width:30%"></div></div></div></div>
+      <div class="tlr"><div class="tl-wl" id="tw6">Wo 15</div><div class="tl-dot go"></div><div class="tli"><div class="tl-t go" id="tt6">Go-Live</div><div class="tl-d" id="td6">Production Deployment. Plattform live. Ferienpass-Team uebernimmt via Admin-Modul. Handover-Dokumentation uebergeben.</div><div class="tl-bar"><div class="tl-fill go" style="width:100%"></div></div></div></div>
     </div>
   </div>
 </div>
 
-<!-- ══ CONDITIONS ══ -->
+<!-- ═══════════════════════════════════════ CONDITIONS ═══════════════════════════════════════ -->
 
 <div id="pg-cond" class="pg">
   <div class="wrap">
     <p class="ey" id="cey">Rahmenbedingungen</p>
-    <h2 id="ch">Was wir voraussetzen.<br>Was der Kunde liefert.</h2>
-    <div class="ibox warn"><h4 id="cih">Kritisch: vor Woche 1&ndash;2 klaeren</h4><p id="cip">Verzoegerungen bei Stripe-Zugang oder Hosting verschieben den Go-Live direkt.</p></div>
+    <h2 id="ch">Was wir voraussetzen.</h2>
+    <div class="ibox warn">
+      <h4 id="cih">Kritisch &mdash; vor Woche 1&ndash;2 klaeren</h4>
+      <p id="cip">Verzoegerungen bei Stripe-Zugang oder Hosting verschieben den Go-Live direkt. Nicht optional.</p>
+    </div>
     <div class="cg">
-      <div class="cc crit"><h4 id="c1h">Stripe-Zugang</h4><p id="c1p">Zugang (Test + Prod) ab Projekt-Start. Ohne Stripe kein Zahlungsflow.</p></div>
-      <div class="cc crit"><h4 id="c2h">Hosting-Entscheid Wo 1&ndash;2</h4><p id="c2p">Betrifft Architektur, DB, Deployment. Empfehlung: Vercel / Supabase.</p></div>
-      <div class="cc crit"><h4 id="c3h">Drittanbieter-Konten</h4><p id="c3p">E-Mail-Delivery (SendGrid/Mailgun) &mdash; Kunde erstellt, goSNOB.ai erhaelt Zugang.</p></div>
-      <div class="cc"><h4 id="c4h">Zahlungsmodell</h4><p id="c4p">Ferienpass zentralisiert Zahlungen. Anbieter-Auszahlungen offline. Marketplace = Phase 2.</p></div>
-      <div class="cc"><h4 id="c5h">Kein Datenmigration</h4><p id="c5p">Greenfield-Plattform. Anbieter registrieren selbst. Inhalte via Admin-Modul.</p></div>
-      <div class="cc"><h4 id="c6h">Copy vom Kunden</h4><p id="c6p">Statische Inhalte auf DE vom Kunden. goSNOB.ai adaptiert fuer EN/FR.</p></div>
-      <div class="cc"><h4 id="c7h">Kursinhalt-Sprache</h4><p id="c7p">Kursbeschreibungen in Originalsprache. Platform-UI dreisprachig. Auto-Uebersetzung = Phase 2.</p></div>
-      <div class="cc"><h4 id="c8h">Subventions-Validierung</h4><p id="c8p">Rabatte offline. Digitale Validierung = separater Scope.</p></div>
-      <div class="cc"><h4 id="c9h">Hosting-Kosten Post-Launch</h4><p id="c9p">Cloud-Kosten auf Kunden. Geschaetzt: unter CHF 200/Monat bei Launch-Scale.</p></div>
-      <div class="cc"><h4 id="c10h">Ein Environment</h4><p id="c10p">Staging wird zu Production. Kein Dev/Staging/Prod-Setup.</p></div>
-      <div class="cc"><h4 id="c11h">Registrierungspflicht</h4><p id="c11p">Jede Aktion erfordert Login. Kein Guest Checkout.</p></div>
-      <div class="cc"><h4 id="c12h">CI/CD via GitHub Actions</h4><p id="c12p">Deployment via GitHub Actions. Kein Custom-Infrastructure-Management.</p></div>
+      <div class="cc crit"><h4>Stripe-Zugang</h4><p>Test + Prod Credentials ab Projekt-Start. Ohne Stripe kein Zahlungsflow moeglich.</p></div>
+      <div class="cc crit"><h4>Hosting-Entscheid Woche 1&ndash;2</h4><p>Betrifft Architektur, DB, Deployment, File Storage. Empfehlung: Vercel / Supabase.</p></div>
+      <div class="cc crit"><h4>Drittanbieter-Konten</h4><p>E-Mail-Delivery (SendGrid/Mailgun) &mdash; Kunde erstellt, goSNOB.ai erhaelt Zugang. Gilt auch fuer Image-Hosting.</p></div>
+      <div class="cc"><h4>Zahlungsmodell</h4><p>Ferienpass zentralisiert alle Zahlungen. Anbieter-Auszahlungen offline. Marketplace Payouts = Phase 2.</p></div>
+      <div class="cc"><h4>Kein Datenmigration</h4><p>Greenfield-Plattform. Anbieter registrieren selbst. Initiale Inhalte via Admin-Modul befuellt.</p></div>
+      <div class="cc"><h4>Copy vom Kunden</h4><p>Statische Inhalte (Homepage, About, FAQ) werden auf Deutsch geliefert. goSNOB.ai adaptiert fuer EN/FR.</p></div>
+      <div class="cc"><h4>Kursinhalt-Sprache</h4><p>Kursbeschreibungen in Originalsprache des Anbieters. Platform-UI dreisprachig. Auto-Uebersetzung = Phase 2.</p></div>
+      <div class="cc"><h4>Subventions-Validierung</h4><p>Rabatte und Karten-Rabatte offline abgewickelt. Digitale Validierung beim Checkout = separater Scope.</p></div>
+      <div class="cc"><h4>Laufende Kosten</h4><p>Hosting, E-Mail-Delivery, Stripe-Transaktionsgebuehren gehen auf den Kunden. Unter CHF 200/Monat erwartet.</p></div>
+      <div class="cc"><h4>Ein Environment</h4><p>Staging wird zu Production. Kein Dev/Staging/Prod-Drei-Environment-Setup im Scope.</p></div>
+      <div class="cc"><h4>Registrierungspflicht</h4><p>Jede Aktion ueber Browsen erfordert Login. Kein Guest Checkout im Scope.</p></div>
+      <div class="cc"><h4>CI/CD via GitHub Actions</h4><p>Deployment via GitHub Actions mit platform-nativem Deployment. Kein Custom-Infrastructure-Management.</p></div>
     </div>
     <div class="div"></div>
-    <p class="ey" id="fey">FAQ</p>
+    <p class="ey" id="faqey">FAQ</p>
     <div style="margin-top:16px;">
-      <div class="fi"><div class="fh" onclick="doFaq(this)"><h4 id="fq1">Kann ich Add-ons nach Vertragsabschluss noch hinzufuegen?</h4><div class="ftog">+</div></div><div class="fb" id="fa1">Add-ons muessen grundsaetzlich vor Vertragsabschluss definiert werden. Einige koennen spaeter separat beauftragt werden.</div></div>
-      <div class="fi"><div class="fh" onclick="doFaq(this)"><h4 id="fq2">Was passiert ohne Stripe-Account?</h4><div class="ftog">+</div></div><div class="fb" id="fa2">Ein Stripe-Account muss vor Projekt-Start eingerichtet sein. Ohne Stripe kein Zahlungsflow moeglich.</div></div>
-      <div class="fi"><div class="fh" onclick="doFaq(this)"><h4 id="fq3">Wer schreibt die Inhalte?</h4><div class="ftog">+</div></div><div class="fb" id="fa3">Der Kunde liefert statische Inhalte auf DE. goSNOB.ai adaptiert fuer EN/FR. Content-Erstellung ist kein Teil des Scopes.</div></div>
-      <div class="fi"><div class="fh" onclick="doFaq(this)"><h4 id="fq4">DSGVO / DSG (Schweiz)?</h4><div class="ftog">+</div></div><div class="fb" id="fa4">Plattform wird DSGVO-konform gebaut. Daten Minderjaehriger besonders geschuetzt. Rechtliche Beratung beim Kunden.</div></div>
-      <div class="fi"><div class="fh" onclick="doFaq(this)"><h4 id="fq5">Wie kontaktiere ich goSNOB.ai?</h4><div class="ftog">+</div></div><div class="fb" id="fa5">Alle Anfragen gehen direkt an <a href="mailto:team@gosnob.com" style="color:var(--mag);">team@gosnob.com</a></div></div>
+      <div class="faq-item"><div class="faq-hd" onclick="doFaq(this)"><h4>Kann ich Add-ons nach Vertragsabschluss noch hinzufuegen?</h4><div class="faq-tog">+</div></div><div class="faq-body">Grundsaetzlich muessen Add-ons vor Vertragsabschluss definiert werden, da sie Scope und Timeline beeinflussen. Technisch einfache Add-ons wie XLSX-Export koennen spaeter separat beauftragt werden.</div></div>
+      <div class="faq-item"><div class="faq-hd" onclick="doFaq(this)"><h4>Was passiert ohne Stripe-Account?</h4><div class="faq-tog">+</div></div><div class="faq-body">Ein Stripe-Account muss vor Projekt-Start eingerichtet und goSNOB.ai zugaenglich gemacht werden. Ohne Stripe-Zugang kann der gesamte Zahlungsflow nicht entwickelt werden.</div></div>
+      <div class="faq-item"><div class="faq-hd" onclick="doFaq(this)"><h4>Wer schreibt die Inhalte (Texte, FAQs)?</h4><div class="faq-tog">+</div></div><div class="faq-body">Der Kunde liefert alle statischen Seiteninhalte auf Deutsch. goSNOB.ai implementiert und adaptiert fuer EN/FR. Content-Erstellung ist kein Teil des Scopes.</div></div>
+      <div class="faq-item"><div class="faq-hd" onclick="doFaq(this)"><h4>DSGVO / DSG (Schweiz)?</h4><div class="faq-tog">+</div></div><div class="faq-body">Die Plattform wird DSGVO-konform gebaut: Datenminimierung, Consent-Management, sichere Verarbeitung. Daten Minderjaehriger werden besonders geschuetzt. Rechtliche Beratung liegt beim Kunden.</div></div>
+      <div class="faq-item"><div class="faq-hd" onclick="doFaq(this)"><h4>Wie kontaktiere ich goSNOB.ai?</h4><div class="faq-tog">+</div></div><div class="faq-body">Alle Anfragen direkt an <a href="mailto:team@gosnob.com" style="color:var(--mag);font-weight:700;">team@gosnob.com</a> &mdash; kein Pitch, nur SNOB.</div></div>
     </div>
   </div>
 </div>
 
-<!-- ══ SUMMARY ══ -->
+<!-- ═══════════════════════════════════════ SUMMARY ═══════════════════════════════════════ -->
 
 <div id="pg-sum" class="pg">
   <div class="wrap">
-    <p class="ey m" id="sey">Deine Zusammenfassung</p>
-    <h2 id="sh">Alles auf<br>einen Blick.</h2>
-    <div class="smg">
-      <div class="smi">
-        <h3 id="sih">Base Package</h3>
-        <div class="si"><span class="sin">Dreisprachige Website DE/EN/FR</span><span class="sitag">inkl.</span></div>
-        <div class="si"><span class="sin">Kurssuche &amp; Filter</span><span class="sitag">inkl.</span></div>
-        <div class="si"><span class="sin">Familienkonten &amp; Buchungsflow</span><span class="sitag">inkl.</span></div>
-        <div class="si"><span class="sin">Stripe (TWINT, Apple Pay)</span><span class="sitag">inkl.</span></div>
-        <div class="si"><span class="sin">Anbieter Self-Service Portal</span><span class="sitag">inkl.</span></div>
-        <div class="si"><span class="sin">Ferienpass Admin-Modul</span><span class="sitag">inkl.</span></div>
-        <div class="si"><span class="sin">Auto E-Mails (DE/EN/FR)</span><span class="sitag">inkl.</span></div>
-        <div class="si"><span class="sin">goSNOB.ai KI-Chatbot</span><span class="sitag">inkl.</span></div>
-        <div class="si"><span class="sin">UX Design (15&ndash;20+ Screens)</span><span class="sitag">inkl.</span></div>
-        <div style="padding-top:16px;margin-top:8px;border-top:1px solid #1a1a1a;">
-          <div style="font-family:var(--fm);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#333;margin-bottom:4px;" id="sdl">Delivery</div>
-          <div style="font-size:14px;color:#fff;font-weight:600;" id="sdv">15 Wochen &middot; Mai &#8594; August 2026</div>
+    <p class="ey m" id="smey">Zusammenfassung</p>
+    <h2 id="smh">Deine Offerte.</h2>
+    <div class="sum-grid">
+      <div class="sum-inc">
+        <h3 id="smih">Base Package &mdash; inklusive</h3>
+        <div class="srow"><span class="sn">Dreisprachige Website DE/EN/FR</span><span class="stag">inkl.</span></div>
+        <div class="srow"><span class="sn">Kurssuche &amp; Filter</span><span class="stag">inkl.</span></div>
+        <div class="srow"><span class="sn">Familienkonten &amp; Buchungsflow</span><span class="stag">inkl.</span></div>
+        <div class="srow"><span class="sn">Stripe (TWINT, Apple/Google Pay)</span><span class="stag">inkl.</span></div>
+        <div class="srow"><span class="sn">Anbieter Self-Service Portal</span><span class="stag">inkl.</span></div>
+        <div class="srow"><span class="sn">Ferienpass Admin-Modul</span><span class="stag">inkl.</span></div>
+        <div class="srow"><span class="sn">Auto E-Mails (DE/EN/FR)</span><span class="stag">inkl.</span></div>
+        <div class="srow"><span class="sn">goSNOB.ai KI-Chatbot</span><span class="stag">inkl.</span></div>
+        <div class="srow"><span class="sn">UX Design (15&ndash;20+ Screens)</span><span class="stag">inkl.</span></div>
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid #1a1a1a;">
+          <div style="font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#333;margin-bottom:4px;" id="smdl">Delivery</div>
+          <div style="font-size:15px;color:#fff;font-weight:700;" id="smdelv">15 Wochen &middot; Mai &rarr; August 2026</div>
         </div>
       </div>
-      <div class="sma">
-        <h3 id="sah">Deine Add-ons</h3>
-        <div id="saol"><div class="sem" id="sae">Noch keine Add-ons ausgewaehlt.<br><br><span style="cursor:pointer;color:var(--mag);" onclick="gp('ao',document.getElementById('na'))">&#8592; Add-ons konfigurieren</span></div></div>
-        <div class="stot"><span class="stl" id="stl">Zusaetzliche Manntage</span><span class="stv" id="stv">0 MT</span></div>
+      <div class="sum-ao">
+        <h3 id="smah">Deine Add-ons</h3>
+        <div id="smaol"><div class="sum-empty" id="smempty">Noch keine Add-ons ausgewaehlt.<br><br><span style="cursor:pointer;color:var(--mag);" onclick="gp('menu',document.getElementById('n1'))">&#8592; Add-ons konfigurieren</span></div></div>
+        <div class="sum-tot"><span class="st-l" id="smtl">Zusaetzliche Manntage</span><span class="st-v" id="smtv">0 MT</span></div>
       </div>
     </div>
-    <div class="scta-box">
-      <p id="snp">Offerte als PDF herunterladen und als Auftrag an <a href="mailto:team@gosnob.com" style="color:var(--mag);font-weight:600;">team@gosnob.com</a> zurueckschicken &mdash; oder direkt ein Gespraech anfragen.</p>
-      <div class="sbtns">
-        <button class="btn-dk" onclick="window.print()" id="spdf">Als PDF herunterladen &#8594;</button>
-        <button class="btn-mg" onclick="mailTo()" id="scon">team@gosnob.com &#8594;</button>
-        <button class="btn-ol" onclick="gp('ao',document.getElementById('na'))" id="sedt">Add-ons bearbeiten</button>
+    <div class="cta-box">
+      <p id="smnp">Offerte als PDF herunterladen und als Auftrag an <a href="mailto:team@gosnob.com" style="color:var(--mag);font-weight:700;">team@gosnob.com</a> zurueckschicken &mdash; oder direkt anfragen.</p>
+      <div class="cta-btns">
+        <button class="btn btn-dark" onclick="window.print()" id="smpdf">Als PDF &rarr;</button>
+        <button class="btn btn-mag" onclick="mailTo()" id="smcon">team@gosnob.com &rarr;</button>
+        <button class="btn btn-out" onclick="gp('menu',document.getElementById('n1'))" id="smedit">Add-ons bearbeiten</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-// CURSOR
-document.addEventListener('mousemove',e=>{const c=document.getElementById('cur');c.style.left=(e.clientX-4)+'px';c.style.top=(e.clientY-4)+'px';});
-document.querySelectorAll('button,a,.sc,.ao,.ic,.cc,.hs').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{const c=document.getElementById('cur');c.style.transform='scale(4)';});
-  el.addEventListener('mouseleave',()=>{const c=document.getElementById('cur');c.style.transform='scale(1)';});
-});
+/* ── MAIL ── */
+function mailTo(){ window.location.href='mailto:team@gosnob.com?subject=Ferienpass+Offerte+2026&body=Hallo+goSNOB.ai+Team%2C%0A%0AIch+interessiere+mich+fuer+die+Ferienpass-Plattform.'; }
 
-// MAIL
-function mailTo(){window.location.href='mailto:team@gosnob.com?subject=Ferienpass Offerte 2026&body=Hallo goSNOB.ai Team,%0D%0A%0D%0AIch interessiere mich fuer die Ferienpass-Plattform.';}
-
-// STATE
-const SEL={};
-const AD={wl:2,cal:.5,rat:1,xl:.25,pas:1,ts:1,msg:2};
-const AN={wl:'Wartelisten-Management',cal:'Kalender-Integration (.ics)',rat:'Reviews & Ratings (minimal)',xl:'XLSX-Export Admin',pas:'Ferienpass-Kauf + PDF',ts:'Zweistufige Kurs-Genehmigung',msg:'Kurs-Kommunikationsraum'};
+/* ── STATE ── */
+const SEL={}, AD={wl:2,cal:.5,rat:1,xlsx:.25,pass:1,ts:1,msg:2};
+const AN={wl:'Wartelisten-Management',cal:'Kalender-Integration (.ics)',rat:'Reviews & Ratings',xlsx:'XLSX-Export Admin',pass:'Ferienpass-Kauf + PDF',ts:'Zweistufige Genehmigung',msg:'Kurs-Kommunikationsraum'};
 let LANG='de';
 
-// PAGE NAV
-const PGS=['home','inc','ao','jou','tl','cond','sum'];
+/* ── PAGES ── */
+const PGS=['home','menu','journey','timeline','cond','sum'];
 function gp(id,btn){
   PGS.forEach(p=>{const el=document.getElementById('pg-'+p);if(el)el.classList.toggle('on',p===id);});
-  document.querySelectorAll('.np').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.nt').forEach(b=>b.classList.remove('on'));
   if(btn)btn.classList.add('on');
   window.scrollTo({top:0,behavior:'smooth'});
-  if(id==='tl')buildWk();
+  if(id==='timeline')buildWk();
   if(id==='sum')buildSum();
 }
 
-// ADDON
+/* ── ADDON TOGGLE ── */
 function tog(el,id){
   if(el.classList.contains('p2'))return;
-  if(SEL[id]){delete SEL[id];el.classList.remove('on');}
-  else{SEL[id]=true;el.classList.add('on');}
-  updBar();updCnt();
+  if(SEL[id]){delete SEL[id];el.classList.remove('sel');}
+  else{SEL[id]=true;el.classList.add('sel');}
+  updBar();updCnt();updPriceBox();
 }
 function totDays(){let t=0;Object.keys(SEL).forEach(k=>t+=AD[k]||0);return t;}
+
 function updBar(){
-  const n=Object.keys(SEL).length;
-  const ba=document.getElementById('ba');
-  ba.textContent=n?'+ '+n+' Add-on'+(n>1?'s':'')+' ('+totDays()+' MT)':'';
+  const n=Object.keys(SEL).length,bbe=document.getElementById('bbe');
+  if(n>0){bbe.style.display='block';bbe.textContent='+'+n+' Add-on'+(n>1?'s':'')+' (+'+totDays()+' MT)';}
+  else{bbe.style.display='none';}
 }
 function updCnt(){
-  const n=Object.keys(SEL).length;
-  const el=document.getElementById('cfgc');
+  const n=Object.keys(SEL).length,el=document.getElementById('ms2c');
   if(el)el.textContent=n+' '+(LANG==='en'?'selected':LANG==='fr'?'sélectionné(s)':'ausgewaehlt');
 }
+function updPriceBox(){
+  const el=document.getElementById('psv2');
+  if(el)el.textContent=totDays()>0?'+'+totDays()+' Manntage':'0 Manntage';
+}
 
-// JOURNEY
+/* ── JOURNEY ── */
 function showJ(i,btn){
   for(let j=0;j<7;j++){const p=document.getElementById('j'+j);if(p)p.classList.toggle('on',j===i);}
   document.querySelectorAll('.jt').forEach(b=>b.classList.remove('on'));
   if(btn)btn.classList.add('on');
 }
 
-// FAQ
+/* ── FAQ ── */
 function doFaq(head){
-  const body=head.nextElementSibling;
-  const was=head.classList.contains('on');
-  document.querySelectorAll('.fh').forEach(h=>h.classList.remove('on'));
-  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  const body=head.nextElementSibling,was=head.classList.contains('on');
+  document.querySelectorAll('.faq-hd').forEach(h=>h.classList.remove('on'));
+  document.querySelectorAll('.faq-body').forEach(b=>b.classList.remove('on'));
   if(!was){head.classList.add('on');body.classList.add('on');}
 }
 
-// WEEK GRID
+/* ── WEEK GRID ── */
 function buildWk(){
-  const g=document.getElementById('wkg');
+  const g=document.getElementById('wkrow');
   if(!g||g.children.length)return;
-  const data=[
-    {n:'1',lbl:'',go:false,active:true},{n:'2',lbl:'Kick-off',go:false,active:true},
-    {n:'3',lbl:'',go:false,active:true},{n:'4',lbl:'Design',go:false,active:true},
-    {n:'5',lbl:'',go:false,active:true},{n:'6',lbl:'Build',go:false,active:true},
-    {n:'7',lbl:'',go:false,active:true},{n:'8',lbl:'',go:false,active:true},
-    {n:'9',lbl:'',go:false,active:true},{n:'10',lbl:'Portale',go:false,active:true},
-    {n:'11',lbl:'',go:false,active:true},{n:'12',lbl:'',go:false,active:true},
-    {n:'13',lbl:'Test',go:false,active:true},{n:'14',lbl:'',go:false,active:true},
-    {n:'15',lbl:'LIVE',go:true,active:true}
-  ];
+  const data=[{n:'1',l:'',c:'#111'},{n:'2',l:'Kick-off',c:'var(--mag)'},{n:'3',l:'',c:'#111'},{n:'4',l:'Design',c:'var(--mag)'},{n:'5',l:'',c:'#111'},{n:'6',l:'Build',c:'var(--mag)'},{n:'7',l:'',c:'#111'},{n:'8',l:'',c:'#111'},{n:'9',l:'',c:'#111'},{n:'10',l:'Portale',c:'var(--mag)'},{n:'11',l:'',c:'#111'},{n:'12',l:'',c:'#111'},{n:'13',l:'Test',c:'var(--mag)'},{n:'14',l:'',c:'#111'},{n:'15',l:'LIVE',c:'var(--green)'}];
   data.forEach(w=>{
     const el=document.createElement('div');
-    el.className='wk';
-    const bg=w.go?'#0a7a3e':w.lbl?'#cc00ff':'#111';
-    const c=w.go||w.lbl?'#fff':'#333';
-    el.style.background=bg;
-    el.innerHTML='<span class="wkl" style="color:'+c+'">Wo '+w.n+'</span>'+(w.lbl?'<span class="wkn" style="color:'+c+'">'+w.lbl+'</span>':'');
+    el.className='wk';el.style.background=w.c;
+    const tc=(w.l||w.c==='var(--green)')?'#fff':'#333';
+    el.innerHTML='<span class="wk-n" style="color:'+tc+'">Wo '+w.n+'</span>'+(w.l?'<span class="wk-l" style="color:'+tc+'">'+w.l+'</span>':'');
     g.appendChild(el);
   });
 }
 
-// SUMMARY
+/* ── SUMMARY ── */
 function buildSum(){
-  const list=document.getElementById('saol');
-  const tv=document.getElementById('stv');
+  const list=document.getElementById('smaol'),tv=document.getElementById('smtv');
   if(!list)return;
   const keys=Object.keys(SEL);
   if(!keys.length){
-    list.innerHTML='<div class="sem">'+( LANG==='en'?'No add-ons selected.':LANG==='fr'?'Aucune option sélectionnée.':'Noch keine Add-ons ausgewaehlt.')+'<br><br><span style="cursor:pointer;color:var(--mag);" onclick="gp(\'ao\',document.getElementById(\'na\'))">&#8592; '+(LANG==='en'?'Configure add-ons':LANG==='fr'?'Configurer':'Add-ons konfigurieren')+'</span></div>';
-    tv.textContent='0 MT';return;
+    list.innerHTML='<div class="sum-empty">Noch keine Add-ons ausgewaehlt.<br><br><span style="cursor:pointer;color:var(--mag);" onclick="gp('menu',document.getElementById('n1'))">&#8592; Add-ons konfigurieren</span></div>';
+    if(tv)tv.textContent='0 MT';return;
   }
   list.innerHTML='';
   keys.forEach(id=>{
     const row=document.createElement('div');
-    row.className='asi';
-    row.innerHTML='<span>'+AN[id]+'</span><span class="adays">+'+AD[id]+' MT</span>';
+    row.className='ao-row';
+    row.innerHTML='<span>'+AN[id]+'</span><span class="ao-d">+'+AD[id]+' MT</span>';
     list.appendChild(row);
   });
-  tv.textContent=totDays()+' MT';
+  if(tv)tv.textContent=totDays()+' MT';
 }
 
-// LANG
+/* ── LANG ── */
 const TX={
-  de:{ot:'Offerte 2026',nh:'Start',ni:'Inklusive',na:'Add-ons',nj:'Journey',ntl:'Timeline',nc:'Bedingungen',ns:'Zusammenfassung',bl:'Gesamt exkl. MWST',bp:'Base Package',bpdf:'Offerte als PDF &#8594;',bcon:'Gespraech anfragen &#8594;',
-  hey:'Website-Offerte',hd:'Module auswaehlen. Leistungen verstehen.<br>Als PDF herunterladen und als Auftrag zurueckschicken.',
-  hs1:'Wochen Delivery',hs2:'Sprachen DE/EN/FR',hs3:'Nutzergruppen',hs4:'Journey Phasen',
-  he1:'So funktioniert diese Offerte',hh1:'Klicken.<br>Auswaehlen.<br>Fertig.',
-  sn1:'01',st1:'Inklusive ansehen',sd1:'Alles im Base Package ohne Aufpreis.',sc1:'Anzeigen &#8594;',
-  sn2:'02',st2:'Add-ons waehlen',sd2:'Klicke was du willst. Preis live berechnet.',sc2:'Konfigurieren &#8594;',
-  sn3:'03',st3:'Als PDF herunterladen',sd3:'Zusammenfassung und als Auftrag an team@gosnob.com.',sc3:'Zusammenfassung &#8594;',
-  he2:'Ausgangslage',hh2:'Das Problem<br>ist real.',hih:'Warum jetzt',hip:'Die aktuelle Ferienpass-Plattform laesst alle drei Nutzergruppen im Stich. goSNOB.ai liefert die Infrastruktur in 15 Wochen.',
-  pl1:'Eltern',pt1:'Fragmentiert & chaotisch',pd1:'Dutzende Websites, kein Kalender, keine Reviews, kein TWINT. Buchung via E-Mail 2026.',
-  pl2:'Kursanbieter',pt2:'Alles manuell',pd2:'Kein Self-Service-Portal. Jede Aenderung = Telefonat.',
-  pl3:'Ferienpass-Team',pt3:'Kein Ueberblick',pd3:'Kein Dashboard, keine automatisierte Kommunikation.',
-  he3:'Unser Ansatz',hh3:'Zwei Phasen.<br>Eine Vision.',p1l:'Phase 1 — Base Package',p1h:'Mai &#8594; August 2026',p2l:'Phase 2 — Further Development',p2h:'Ab Herbst 2026',
-  iey:'Im Base Package inklusive',ih:'Alles drin.<br>Kein Aufpreis.',ii:'Diese Features sind im Base Package. Go-Live vor Ende Sommer 2026.',ibt:'Add-ons konfigurieren &#8594;',
-  aoey:'Optionale Add-ons',aoh:'Waehle was<br>du willst.',aoi:'Klicke auf ein Add-on um es hinzuzufuegen. Phase-2-Items kommen spaeter.',aobt:'Zusammenfassung ansehen &#8594;',cfgh:'Add-ons konfigurieren',
-  jey:'Customer Journey Map',jh:'7 Phasen.<br>Ein Erlebnis.',jt1:'Profile',jt2:'Pass kaufen',jt3:'Browsen',jt4:'Buchen',jt5:'Aenderungen',jt6:'Updates',jt7:'Bewertung',
-  tley:'Delivery Plan',tlh:'15 Wochen.<br>Puentlich zum Sommer.',tlih:'Go-Live: vor Ende Sommer 2026',tlip:'Start Mitte Mai 2026. Kritisch: Stripe und Hosting-Entscheid in Woche 1–2.',
-  tw1:'Wo 1–2',tt1:'Kick-off & Alignment',td1:'Technisches Setup. Design-Brief. Hosting-Entscheid. Stripe-Zugang.',
-  tw2:'Wo 2–4',tt2:'UX & Design',td2:'15–20+ Screens: Homepage, Kurslistung, Buchungsflow, Anbieter-Portal, Admin.',
-  tw3:'Wo 4–9',tt3:'Build — Oeffentliche Plattform',td3:'Dreisprachige Website auf Staging: Kurslistung, Familienkonten, Buchungs- und Zahlungsflow.',
-  tw4:'Wo 9–12',tt4:'Build — Portale & Integrationen',td4:'Anbieter-Portal, Admin-Modul, E-Mail-Automatisierung, goSNOB.ai Chatbot.',
-  tw5:'Wo 12–14',tt5:'Testing & UAT',td5:'End-to-End-Testing. Client-Team UAT auf Staging. Bugs behoben.',
-  tw6:'Wo 15',tt6:'Go-Live',td6:'Production Deployment. Plattform live. Handover-Dokumentation.',
-  cey:'Rahmenbedingungen',ch:'Was wir voraussetzen.<br>Was der Kunde liefert.',cih:'Kritisch: vor Woche 1–2 klaeren',cip:'Verzoegerungen verschieben den Go-Live direkt.',
-  c1h:'Stripe-Zugang',c1p:'Zugang (Test + Prod) ab Projekt-Start. Ohne Stripe kein Zahlungsflow.',
-  c2h:'Hosting-Entscheid Wo 1–2',c2p:'Betrifft Architektur, DB, Deployment. Empfehlung: Vercel / Supabase.',
-  c3h:'Drittanbieter-Konten',c3p:'E-Mail-Delivery (SendGrid/Mailgun) — Kunde erstellt, goSNOB.ai erhaelt Zugang.',
-  c4h:'Zahlungsmodell',c4p:'Ferienpass zentralisiert Zahlungen. Anbieter offline. Marketplace = Phase 2.',
-  c5h:'Kein Datenmigration',c5p:'Greenfield-Plattform. Anbieter registrieren selbst.',
-  c6h:'Copy vom Kunden',c6p:'Statische Inhalte auf DE. goSNOB.ai adaptiert fuer EN/FR.',
-  c7h:'Kursinhalt-Sprache',c7p:'Kursbeschreibungen in Originalsprache. Auto-Uebersetzung = Phase 2.',
-  c8h:'Subventions-Validierung',c8p:'Rabatte offline. Digitale Validierung = separater Scope.',
-  c9h:'Hosting-Kosten Post-Launch',c9p:'Cloud-Kosten auf Kunden. Geschaetzt: unter CHF 200/Monat.',
-  c10h:'Ein Environment',c10p:'Staging wird zu Production. Kein Dev/Staging/Prod-Setup.',
-  c11h:'Registrierungspflicht',c11p:'Jede Aktion erfordert Login. Kein Guest Checkout.',
-  c12h:'CI/CD via GitHub Actions',c12p:'Deployment via GitHub Actions.',
-  fey:'FAQ',fq1:'Kann ich Add-ons nach Vertragsabschluss noch hinzufuegen?',fa1:'Add-ons muessen vor Vertragsabschluss definiert werden. Einige koennen spaeter separat beauftragt werden.',
-  fq2:'Was passiert ohne Stripe-Account?',fa2:'Ein Stripe-Account muss vor Projekt-Start eingerichtet sein.',
-  fq3:'Wer schreibt die Inhalte?',fa3:'Der Kunde liefert statische Inhalte auf DE. goSNOB.ai adaptiert fuer EN/FR.',
-  fq4:'DSGVO / DSG (Schweiz)?',fa4:'Plattform wird DSGVO-konform gebaut. Daten Minderjaehriger besonders geschuetzt.',
-  fq5:'Wie kontaktiere ich goSNOB.ai?',fa5:'Alle Anfragen gehen direkt an <a href="mailto:team@gosnob.com" style="color:var(--mag);">team@gosnob.com</a>',
-  sey:'Deine Zusammenfassung',sh:'Alles auf<br>einen Blick.',sih:'Base Package',sah:'Deine Add-ons',sdl:'Delivery',sdv:'15 Wochen &middot; Mai &#8594; August 2026',stl:'Zusaetzliche Manntage',
-  snp:'Offerte als PDF herunterladen und als Auftrag an <a href="mailto:team@gosnob.com" style="color:var(--mag);font-weight:600;">team@gosnob.com</a> zurueckschicken.',
-  spdf:'Als PDF herunterladen &#8594;',scon:'team@gosnob.com &#8594;',sedt:'Add-ons bearbeiten',
-  a1n:'Wartelisten-Management',a1d:'Warteliste beitreten → E-Mail wenn Platz frei.',a1p:'Empfohlen',
-  a2n:'Kalender-Integration (.ics)',a2d:'Zu Google/Apple/Outlook Kalender hinzufuegen-Button.',a2p:'Empfohlen',
-  a3n:'Reviews & Ratings (minimal)',a3d:'1–5 Sterne nach Kursabschluss. Phase 2: Kommentare.',a3p:'Empfohlen',
-  a4n:'XLSX-Export Admin',a4d:'Export aller Anmeldungen gefiltert nach Kategorie und Preisband.',a4p:'Optional',
-  a5n:'Ferienpass-Kauf + PDF',a5d:'Online-Kauf mit automatischer PDF-Bestaetigung.',a5p:'Optional',
-  a6n:'Zweistufige Kurs-Genehmigung',a6d:'Admin genehmigt einzelne Kurse zusaetzlich zur Anbieter-Approval.',a6p:'Optional',
-  a7n:'Kurs-Kommunikationsraum',a7d:'Eltern koennen Anbieter direkt ueber Plattform kontaktieren.',a7p:'Optional',
-  },
-  en:{ot:'Quote 2026',nh:'Start',ni:'Included',na:'Add-ons',nj:'Journey',ntl:'Timeline',nc:'Conditions',ns:'Summary',bl:'Total excl. VAT',bp:'Base Package',bpdf:'Download PDF &#8594;',bcon:'Request a call &#8594;',
-  hey:'Website Quote',hd:'Select modules. Understand services.<br>Download as PDF and return as order.',hs1:'Weeks Delivery',hs2:'Languages DE/EN/FR',hs3:'User Groups',hs4:'Journey Phases',
-  he1:'How this quote works',hh1:'Click.<br>Select.<br>Done.',
-  sn1:'01',st1:'View included',sd1:'Everything in the Base Package at no extra cost.',sc1:'View &#8594;',
-  sn2:'02',st2:'Choose add-ons',sd2:'Click what you want. Price calculated live.',sc2:'Configure &#8594;',
-  sn3:'03',st3:'Download as PDF',sd3:'View summary and return as order to team@gosnob.com.',sc3:'Summary &#8594;',
-  he2:'Starting point',hh2:'The problem<br>is real.',hih:'Why now',hip:'The current platform fails all three user groups. goSNOB.ai delivers the infrastructure in 15 weeks.',
-  pl1:'Parents',pt1:'Fragmented & chaotic',pd1:'Dozens of websites, no calendar, no reviews, no modern payments.',
-  pl2:'Course providers',pt2:'Everything manual',pd2:'No self-service portal. Every change = phone call.',
-  pl3:'Ferienpass team',pt3:'No overview',pd3:'No dashboard, no automated communication, no approval system.',
-  he3:'Our approach',hh3:'Two phases.<br>One vision.',p1l:'Phase 1 — Base Package',p1h:'May &#8594; August 2026',p2l:'Phase 2 — Further Development',p2h:'From Autumn 2026',
-  iey:'Included in Base Package',ih:'All included.<br>No extra cost.',ii:'These features are in the Base Package. Go-live before end of summer 2026.',ibt:'Configure add-ons &#8594;',
-  aoey:'Optional add-ons',aoh:'Choose what<br>you want.',aoi:'Click an add-on to add or remove it. Phase-2 items come later.',aobt:'View summary &#8594;',cfgh:'Configure add-ons',
-  jey:'Customer Journey Map',jh:'7 Phases.<br>One experience.',jt1:'Profile',jt2:'Buy pass',jt3:'Browse',jt4:'Book',jt5:'Changes',jt6:'Updates',jt7:'Review',
-  tley:'Delivery Plan',tlh:'15 Weeks.<br>On time for summer.',tlih:'Go-live: before end of summer 2026',tlip:'Start mid-May 2026. Critical: Stripe credentials and hosting decision by weeks 1-2.',
-  tw1:'Wk 1-2',tt1:'Kick-off & Alignment',td1:'Technical setup. Design brief. Hosting decision. Stripe access.',
-  tw2:'Wk 2-4',tt2:'UX & Design',td2:'15-20+ screens: homepage, course listing, booking flow, provider portal, admin.',
-  tw3:'Wk 4-9',tt3:'Build — Public Platform',td3:'Trilingual website on staging: course listing, family accounts, booking and payment flow.',
-  tw4:'Wk 9-12',tt4:'Build — Portals & Integrations',td4:'Provider portal, admin module, email automation, goSNOB.ai chatbot.',
-  tw5:'Wk 12-14',tt5:'Testing & UAT',td5:'End-to-end testing. Client UAT on staging. Bugs fixed.',
-  tw6:'Wk 15',tt6:'Go-Live',td6:'Production deployment. Platform live. Handover documentation.',
-  cey:'Conditions',ch:'What we assume.<br>What the client delivers.',cih:'Critical: clarify before weeks 1-2',cip:'Delays in Stripe access or hosting decision directly delay go-live.',
-  c1h:'Stripe access',c1p:'Access (test + prod) from project start. No Stripe = no payment flow.',
-  c2h:'Hosting decision wk 1-2',c2p:'Affects architecture, DB, deployment. Recommendation: Vercel / Supabase.',
-  c3h:'Third-party accounts',c3p:'Email delivery (SendGrid/Mailgun) — client creates, goSNOB.ai gets access.',
-  c4h:'Payment model',c4p:'Ferienpass centralises all payments. Provider payouts offline. Marketplace = Phase 2.',
-  c5h:'No data migration',c5p:'Greenfield platform. Providers register themselves.',
-  c6h:'Copy from client',c6p:'Static content in German from client. goSNOB.ai adapts for EN/FR.',
-  c7h:'Course language',c7p:'Course descriptions in original language. Auto-translation = Phase 2.',
-  c8h:'Subsidy validation',c8p:'Discounts handled offline. Digital validation = separate scope.',
-  c9h:'Post-launch costs',c9p:'Cloud costs to client. Estimated: under CHF 200/month.',
-  c10h:'One environment',c10p:'Staging becomes production. No dev/staging/prod setup.',
-  c11h:'Registration required',c11p:'All actions require login. No guest checkout.',
-  c12h:'CI/CD via GitHub Actions',c12p:'Deployment via GitHub Actions.',
-  fey:'FAQ',fq1:'Can I add add-ons after signing?',fa1:'Add-ons should be defined before signing. Some can be commissioned later.',
-  fq2:'What if we have no Stripe account?',fa2:'A Stripe account must be set up before project start.',
-  fq3:'Who writes the content?',fa3:'Client delivers content in German. goSNOB.ai adapts for EN/FR.',
-  fq4:'GDPR / DSG (Switzerland)?',fa4:'Platform built GDPR-compliant. Minor data specially protected.',
-  fq5:'How do I contact goSNOB.ai?',fa5:'All enquiries go directly to <a href="mailto:team@gosnob.com" style="color:var(--mag);">team@gosnob.com</a>',
-  sey:'Your Summary',sh:'Everything at<br>a glance.',sih:'Base Package',sah:'Your add-ons',sdl:'Delivery',sdv:'15 Weeks &middot; May &#8594; August 2026',stl:'Additional man-days',
-  snp:'Download as PDF and return as order to <a href="mailto:team@gosnob.com" style="color:var(--mag);font-weight:600;">team@gosnob.com</a> — or request a call.',
-  spdf:'Download as PDF &#8594;',scon:'team@gosnob.com &#8594;',sedt:'Edit add-ons',
-  a1n:'Waitlist management',a1d:'Join waitlist → email when spot opens → first-come-first-served.',a1p:'Recommended',
-  a2n:'Calendar integration (.ics)',a2d:'Add to Google/Apple/Outlook calendar button on booked courses.',a2p:'Recommended',
-  a3n:'Reviews & Ratings (minimal)',a3d:'1-5 star rating after course. Phase 2: comments + replies.',a3p:'Recommended',
-  a4n:'XLSX export admin',a4d:'Export all bookings filtered by course category and price band.',a4p:'Optional',
-  a5n:'Ferienpass purchase + PDF',a5d:'Online purchase with automatic PDF confirmation.',a5p:'Optional',
-  a6n:'Two-step course approval',a6d:'Admin approves individual courses in addition to provider approval.',a6p:'Optional',
-  a7n:'Course communication space',a7d:'Parents can contact providers directly through the platform.',a7p:'Optional',
-  },
-  fr:{ot:'Offre 2026',nh:'Accueil',ni:'Inclus',na:'Options',nj:'Parcours',ntl:'Planning',nc:'Conditions',ns:'Résumé',bl:'Total excl. TVA',bp:'Package de base',bpdf:'Télécharger PDF &#8594;',bcon:'Demander un entretien &#8594;',
-  hey:'Offre Web',hd:'Sélectionner les modules. Comprendre les prestations.<br>Télécharger en PDF et renvoyer comme commande.',hs1:'Semaines de livraison',hs2:'Langues DE/EN/FR',hs3:"Groupes d'utilisateurs",hs4:'Phases du parcours',
-  he1:'Comment fonctionne cette offre',hh1:'Cliquer.<br>Sélectionner.<br>Terminé.',
-  sn1:'01',st1:'Voir les inclus',sd1:'Tout dans le package de base sans supplément.',sc1:'Voir &#8594;',
-  sn2:'02',st2:'Choisir les options',sd2:'Cliquez ce que vous voulez. Prix calculé en direct.',sc2:'Configurer &#8594;',
-  sn3:'03',st3:'Télécharger PDF',sd3:'Voir le résumé et renvoyer à team@gosnob.com.',sc3:'Résumé &#8594;',
-  he2:'Point de départ',hh2:'Le problème<br>est réel.',hih:'Pourquoi maintenant',hip:"La plateforme actuelle laisse tomber les trois groupes. goSNOB.ai fournit l'infrastructure en 15 semaines.",
-  pl1:'Parents',pt1:'Fragmenté & chaotique',pd1:'Des dizaines de sites, pas de calendrier, pas de reviews.',
-  pl2:'Fournisseurs de cours',pt2:'Tout manuel',pd2:'Pas de portail self-service. Chaque changement = appel téléphonique.',
-  pl3:"Équipe Ferienpass",pt3:'Pas de vue globale',pd3:"Pas de tableau de bord, pas de communication automatisée.",
-  he3:'Notre approche',hh3:'Deux phases.<br>Une vision.',p1l:'Phase 1 — Package de base',p1h:'Mai &#8594; Août 2026',p2l:'Phase 2 — Développement',p2h:'Dès automne 2026',
-  iey:'Inclus dans le package de base',ih:'Tout inclus.<br>Sans supplément.',ii:'Ces fonctionnalités sont incluses. Mise en ligne avant fin été 2026.',ibt:'Configurer les options &#8594;',
-  aoey:'Options supplémentaires',aoh:'Choisissez ce<br>que vous voulez.',aoi:"Cliquez pour ajouter ou supprimer. Les éléments Phase 2 sont grisés.",aobt:'Voir le résumé &#8594;',cfgh:'Configurer les options',
-  jey:'Carte du parcours client',jh:'7 phases.<br>Une expérience.',jt1:'Profil',jt2:'Acheter pass',jt3:'Parcourir',jt4:'Réserver',jt5:'Modifications',jt6:'Mises à jour',jt7:'Évaluation',
-  tley:'Plan de livraison',tlh:'15 semaines.<br>À temps pour l\'été.',tlih:'Mise en ligne: avant fin été 2026',tlip:'Démarrage mi-mai 2026. Critique: identifiants Stripe et décision hébergement semaines 1–2.',
-  tw1:'Sem 1–2',tt1:'Kick-off & Cadrage',td1:'Configuration technique. Brief design. Décision hébergement. Accès Stripe.',
-  tw2:'Sem 2–4',tt2:'UX & Design',td2:'15–20+ écrans: accueil, liste cours, réservation, portail fournisseur, admin.',
-  tw3:'Sem 4–9',tt3:'Build — Plateforme publique',td3:'Site trilingue en staging: liste cours, comptes famille, flux réservation et paiement.',
-  tw4:'Sem 9–12',tt4:'Build — Portails & Intégrations',td4:'Portail fournisseur, module admin, automatisation e-mails, chatbot goSNOB.ai.',
-  tw5:'Sem 12–14',tt5:'Tests & UAT',td5:"Tests de bout en bout. UAT client en staging. Bugs corrigés.",
-  tw6:'Sem 15',tt6:'Mise en ligne',td6:"Déploiement en production. Plateforme en ligne. Documentation de passation.",
-  cey:'Conditions',ch:'Ce que nous supposons.<br>Ce que le client fournit.',cih:'Critique: à clarifier avant les semaines 1–2',cip:'Les retards retardent directement la mise en ligne.',
-  c1h:'Accès Stripe',c1p:'Accès (test + prod) dès le début. Sans Stripe, pas de flux de paiement.',
-  c2h:'Décision hébergement sem 1–2',c2p:'Affecte architecture, BDD, déploiement. Recommandation: Vercel / Supabase.',
-  c3h:'Comptes tiers',c3p:'Livraison e-mail (SendGrid/Mailgun) — client crée, goSNOB.ai reçoit accès.',
-  c4h:'Modèle de paiement',c4p:'Ferienpass centralise tous les paiements. Versements fournisseurs hors ligne.',
-  c5h:'Pas de migration de données',c5p:'Plateforme greenfield. Les fournisseurs s\'inscrivent eux-mêmes.',
-  c6h:'Contenu fourni par le client',c6p:'Contenu statique en allemand par le client. goSNOB.ai adapte pour EN/FR.',
-  c7h:'Langue du contenu cours',c7p:'Descriptions en langue originale. Traduction automatique = Phase 2.',
-  c8h:'Validation des subventions',c8p:'Remises gérées hors ligne. Validation numérique = scope séparé.',
-  c9h:'Coûts d\'hébergement post-lancement',c9p:'Coûts cloud à la charge du client. Estimé: moins de CHF 200/mois.',
-  c10h:'Un environnement',c10p:'Staging devient production. Pas de setup dev/staging/prod.',
-  c11h:'Inscription obligatoire',c11p:'Toute action nécessite une connexion. Pas de paiement invité.',
-  c12h:'CI/CD via GitHub Actions',c12p:'Déploiement via GitHub Actions.',
-  fey:'FAQ',fq1:'Puis-je ajouter des options après la signature?',fa1:'Les options doivent être définies avant la signature. Certaines peuvent être commandées plus tard.',
-  fq2:'Que se passe-t-il sans compte Stripe?',fa2:'Un compte Stripe doit être configuré avant le début du projet.',
-  fq3:'Qui rédige le contenu?',fa3:'Le client fournit le contenu en allemand. goSNOB.ai adapte pour EN/FR.',
-  fq4:'RGPD / LPD (Suisse)?',fa4:'Plateforme construite conformément au RGPD. Données des mineurs spécialement protégées.',
-  fq5:'Comment contacter goSNOB.ai?',fa5:'Toutes les demandes vont directement à <a href="mailto:team@gosnob.com" style="color:var(--mag);">team@gosnob.com</a>',
-  sey:'Votre résumé',sh:'Tout en<br>un coup d\'oeil.',sih:'Package de base',sah:'Vos options',sdl:'Livraison',sdv:'15 semaines &middot; Mai &#8594; Août 2026',stl:'Jours-hommes supplémentaires',
-  snp:'Télécharger en PDF et renvoyer à <a href="mailto:team@gosnob.com" style="color:var(--mag);font-weight:600;">team@gosnob.com</a>.',
-  spdf:'Télécharger en PDF &#8594;',scon:'team@gosnob.com &#8594;',sedt:'Modifier les options',
-  a1n:'Gestion liste d\'attente',a1d:'Rejoindre liste d\'attente → email si place libre.',a1p:'Recommandé',
-  a2n:'Intégration calendrier (.ics)',a2d:'Bouton ajout à Google/Apple/Outlook sur les cours réservés.',a2p:'Recommandé',
-  a3n:'Avis & évaluations (minimal)',a3d:'1–5 étoiles après le cours. Phase 2: commentaires.',a3p:'Recommandé',
-  a4n:'Export XLSX admin',a4d:'Export de toutes les inscriptions filtré par catégorie.',a4p:'Optionnel',
-  a5n:'Achat Ferienpass + PDF',a5d:'Achat en ligne avec confirmation PDF automatique.',a5p:'Optionnel',
-  a6n:'Approbation cours en deux étapes',a6d:"L'admin approuve les cours individuels en plus de l'approbation fournisseur.",a6p:'Optionnel',
-  a7n:'Espace de communication cours',a7d:'Les parents peuvent contacter les fournisseurs via la plateforme.',a7p:'Optionnel',
-  }
+  de:{badge:'Offerte 2026',n0:'Start',n1:'Leistungen & Preise',n2:'Journey',n3:'Timeline',n4:'Bedingungen',n5:'Zusammenfassung',bbl:'Gesamt exkl. MWST',bbpdf:'Offerte als PDF →',bbcon:'Anfragen bei team@gosnob.com →',hey:'Website-Offerte',hdesc:'Leistungen auswaehlen.
+Preis berechnet sich automatisch.
+Als Auftrag an team@gosnob.com senden.',hs1:'Wochen Delivery',hs2:'Sprachen DE/EN/FR',hs3:'Nutzergruppen',hs4:'Journey Phasen',hey1:'So einfach geht es',hh1:'3 Schritte.
+Fertig.',sn1:'01',st1:'Leistungen & Preise',sd1:'Alles inklusive und optionale Add-ons mit Preisen auf einen Blick.',sc1:'Anzeigen →',sn2:'02',st2:'Add-ons anklicken',sd2:'Klicke was du willst. Preis berechnet sich live unten in der Bar.',sc2:'Konfigurieren →',sn3:'03',st3:'Als Auftrag senden',sd3:'PDF herunterladen und an team@gosnob.com schicken.',sc3:'Zusammenfassung →',hey2:'Zwei Phasen',hh2:'Jetzt: Base Package.
+Spaeter: Phase 2.',p1l:'Phase 1 — Base Package',p1h:'Mai → August 2026',p2l:'Phase 2 — Later',p2h:'Ab Herbst 2026',mey:'Leistungen & Preise',mh:'Was ist drin.
+Was kostet extra.',psl1:'Base Package',psv1:'auf Anfrage',pss1:'Alle 9 Features inklusive',psl2:'Add-ons (ausgewaehlt)',pss2:'Klicke unten zum Hinzufuegen',psl3:'Laufende Kosten / Monat',psv3:'< CHF 200',pss3:'Hosting, E-Mail, Storage',ms1t:'✓ Im Base Package inklusive — kein Aufpreis',ms1c:'9 Features',ms2t:'+ Optionale Add-ons — anklicken zum Waehlen',ms3t:'Phase 2 — nicht jetzt buchbar',ms3c:'spaeter',mbtn:'Zusammenfassung ansehen →',jey:'Customer Journey Map',jh:'7 Phasen. Ein Erlebnis.',tley:'Delivery Plan',tlh:'15 Wochen.
+Go-Live Sommer 2026.',tlih:'Kritische Voraussetzungen',tlip:'Stripe-Zugangsdaten ab Kick-off. Hosting-Entscheid in Woche 1–2 (Vercel / Supabase empfohlen).',cey:'Rahmenbedingungen',ch:'Was wir voraussetzen.',cih:'Kritisch — vor Woche 1–2 klaeren',cip:'Verzoegerungen verschieben den Go-Live direkt.',faqey:'FAQ',smey:'Zusammenfassung',smh:'Deine Offerte.',smih:'Base Package — inklusive',smah:'Deine Add-ons',smdl:'Delivery',smdelv:'15 Wochen · Mai → August 2026',smtl:'Zusaetzliche Manntage',smnp:'Offerte als PDF herunterladen und an team@gosnob.com zurueckschicken.',smpdf:'Als PDF →',smcon:'team@gosnob.com →',smedit:'Add-ons bearbeiten'},
+  en:{badge:'Quote 2026',n0:'Start',n1:'Services & Pricing',n2:'Journey',n3:'Timeline',n4:'Conditions',n5:'Summary',bbl:'Total excl. VAT',bbpdf:'Download PDF →',bbcon:'Request at team@gosnob.com →',hey:'Website Quote',hdesc:'Select services.
+Price calculated automatically.
+Send as order to team@gosnob.com.',hs1:'Weeks Delivery',hs2:'Languages DE/EN/FR',hs3:'User groups',hs4:'Journey phases',hey1:'How it works',hh1:'3 Steps.
+Done.',sn1:'01',st1:'Services & Pricing',sd1:'All included and optional add-ons with pricing at a glance.',sc1:'View →',sn2:'02',st2:'Click add-ons',sd2:'Click what you want. Price calculated live in the bar below.',sc2:'Configure →',sn3:'03',st3:'Send as order',sd3:'Download PDF and send to team@gosnob.com.',sc3:'Summary →',hey2:'Two phases',hh2:'Now: Base Package.
+Later: Phase 2.',p1l:'Phase 1 — Base Package',p1h:'May → August 2026',p2l:'Phase 2 — Later',p2h:'From Autumn 2026',mey:'Services & Pricing',mh:'What is included.
+What costs extra.',psl1:'Base Package',psv1:'on request',pss1:'All 9 features included',psl2:'Add-ons (selected)',pss2:'Click below to add',psl3:'Monthly running costs',psv3:'< CHF 200',pss3:'Hosting, email, storage',ms1t:'✓ Included in Base Package — no extra cost',ms1c:'9 features',ms2t:'+ Optional add-ons — click to select',ms3t:'Phase 2 — not bookable now',ms3c:'later',mbtn:'View summary →',jey:'Customer Journey Map',jh:'7 Phases. One experience.',tley:'Delivery Plan',tlh:'15 Weeks.
+Go-Live Summer 2026.',tlih:'Critical prerequisites',tlip:'Stripe credentials from kick-off. Hosting decision weeks 1–2 (Vercel / Supabase recommended).',cey:'Conditions',ch:'What we assume.',cih:'Critical — clarify before weeks 1–2',cip:'Delays directly delay go-live.',faqey:'FAQ',smey:'Summary',smh:'Your Quote.',smih:'Base Package — included',smah:'Your add-ons',smdl:'Delivery',smdelv:'15 Weeks · May → August 2026',smtl:'Additional man-days',smnp:'Download as PDF and return as order to team@gosnob.com.',smpdf:'As PDF →',smcon:'team@gosnob.com →',smedit:'Edit add-ons'},
+  fr:{badge:'Offre 2026',n0:'Accueil',n1:'Prestations & Prix',n2:'Parcours',n3:'Planning',n4:'Conditions',n5:'Résumé',bbl:'Total excl. TVA',bbpdf:'Télécharger PDF →',bbcon:'Demander à team@gosnob.com →',hey:'Offre Web',hdesc:'Sélectionner les prestations.
+Le prix se calcule automatiquement.
+Envoyer à team@gosnob.com.',hs1:'Semaines',hs2:'Langues DE/EN/FR',hs3:"Groupes d'util.",hs4:'Phases parcours',hey1:'Comment ça marche',hh1:'3 étapes.
+Terminé.',sn1:'01',st1:'Prestations & Prix',sd1:'Tout inclus et options avec prix en un coup d’œil.',sc1:'Voir →',sn2:'02',st2:'Cliquer les options',sd2:'Cliquez ce que vous voulez. Prix calculé en direct.',sc2:'Configurer →',sn3:'03',st3:'Envoyer comme commande',sd3:'PDF et envoyer à team@gosnob.com.',sc3:'Résumé →',hey2:'Deux phases',hh2:'Maintenant: Package de base.
+Plus tard: Phase 2.',p1l:'Phase 1 — Package de base',p1h:'Mai → Août 2026',p2l:'Phase 2 — Plus tard',p2h:'Dès automne 2026',mey:'Prestations & Prix',mh:'Ce qui est inclus.
+Ce qui coûte en plus.',psl1:'Package de base',psv1:'sur demande',pss1:'9 fonctionnalités incluses',psl2:'Options (sélectionnées)',pss2:'Cliquez ci-dessous pour ajouter',psl3:'Coûts mensuels',psv3:'< CHF 200',pss3:'Hébergement, email, stockage',ms1t:'✓ Inclus dans le package de base — sans supplément',ms1c:'9 fonctionnalités',ms2t:'+ Options — cliquer pour sélectionner',ms3t:'Phase 2 — pas encore disponible',ms3c:'plus tard',mbtn:'Voir le résumé →',jey:'Carte du parcours client',jh:'7 phases. Une expérience.',tley:'Plan de livraison',tlh:'15 semaines.
+Mise en ligne été 2026.',tlih:'Prérequis critiques',tlip:'Identifiants Stripe dès le kick-off. Décision hébergement semaines 1–2.',cey:'Conditions',ch:'Ce que nous supposons.',cih:'Critique — à clarifier avant semaines 1–2',cip:'Les retards retardent directement la mise en ligne.',faqey:'FAQ',smey:'Résumé',smh:'Votre offre.',smih:'Package de base — inclus',smah:'Vos options',smdl:'Livraison',smdelv:'15 semaines · Mai → Août 2026',smtl:'Jours-hommes suppl.',smnp:'Télécharger en PDF et renvoyer à team@gosnob.com.',smpdf:'En PDF →',smcon:'team@gosnob.com →',smedit:'Modifier les options'}
 };
 
 function setLang(lang,btn){
@@ -801,11 +943,37 @@ function setLang(lang,btn){
   btn.classList.add('on');
   applyLang();
 }
+
 function s(id,v){const el=document.getElementById(id);if(el&&v!==undefined)el.innerHTML=v;}
+function nl(v){return v?v.replace(/\n/g,'<br>'):'';} 
+
 function applyLang(){
-  const T=TX[LANG];
-  Object.keys(T).forEach(k=>s(k,T[k]));
-  updCnt();buildSum();
+  const Tx=TX[LANG];
+  s('hbadge',Tx.badge);
+  const nts=document.querySelectorAll('.nt');
+  ['n0','n1','n2','n3','n4','n5'].forEach((k,i)=>{if(nts[i])nts[i].innerHTML=Tx[k];});
+  s('bbl',Tx.bbl);s('bbpdf',Tx.bbpdf);s('bbcon',Tx.bbcon);
+  s('hey',Tx.hey);s('hdesc',nl(Tx.hdesc));
+  s('hs1',Tx.hs1);s('hs2',Tx.hs2);s('hs3',Tx.hs3);s('hs4',Tx.hs4);
+  s('hey1',Tx.hey1);s('hh1',nl(Tx.hh1));
+  s('sn1',Tx.sn1);s('st1',Tx.st1);s('sd1',Tx.sd1);s('sc1',Tx.sc1);
+  s('sn2',Tx.sn2);s('st2',Tx.st2);s('sd2',Tx.sd2);s('sc2',Tx.sc2);
+  s('sn3',Tx.sn3);s('st3',Tx.st3);s('sd3',Tx.sd3);s('sc3',Tx.sc3);
+  s('hey2',Tx.hey2);s('hh2',nl(Tx.hh2));
+  s('p1l',Tx.p1l);s('p1h',Tx.p1h);s('p2l',Tx.p2l);s('p2h',Tx.p2h);
+  s('mey',Tx.mey);s('mh',nl(Tx.mh));
+  s('psl1',Tx.psl1);s('psv1',Tx.psv1);s('pss1',Tx.pss1);
+  s('psl2',Tx.psl2);s('pss2',Tx.pss2);
+  s('psl3',Tx.psl3);s('psv3',Tx.psv3);s('pss3',Tx.pss3);
+  s('ms1t',Tx.ms1t);s('ms1c',Tx.ms1c);s('ms2t',Tx.ms2t);
+  s('ms3t',Tx.ms3t);s('ms3c',Tx.ms3c);s('mbtn',Tx.mbtn);
+  s('jey',Tx.jey);s('jh',Tx.jh);
+  s('tley',Tx.tley);s('tlh',nl(Tx.tlh));s('tlih',Tx.tlih);s('tlip',Tx.tlip);
+  s('cey',Tx.cey);s('ch',Tx.ch);s('cih',Tx.cih);s('cip',Tx.cip);s('faqey',Tx.faqey);
+  s('smey',Tx.smey);s('smh',Tx.smh);s('smih',Tx.smih);s('smah',Tx.smah);
+  s('smdl',Tx.smdl);s('smdelv',Tx.smdelv);s('smtl',Tx.smtl);
+  s('smnp',Tx.smnp);s('smpdf',Tx.smpdf);s('smcon',Tx.smcon);s('smedit',Tx.smedit);
+  updCnt();updPriceBox();buildSum();
 }
 </script>
 
