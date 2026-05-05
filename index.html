@@ -1249,7 +1249,7 @@
   </section>
 
   <!-- ══════════════════════════════════════════════
-       TIMELINE / PHASEN SLIDER
+       PHASEN (VERTIKALE TIMELINE)
   ══════════════════════════════════════════════ -->
 
   <section id="timeline">
@@ -1261,71 +1261,37 @@
       </div>
 
 ```
-  <!-- Phase Slider -->
-  <div class="phase-slider fade-in">
-    <div class="phase-tabs">
-      <button class="phase-btn active" onclick="showPhase(0)" data-i18n="tl_p1">KICKOFF</button>
-      <button class="phase-btn" onclick="showPhase(1)" data-i18n="tl_p2">KONZEPT & DESIGN</button>
-      <button class="phase-btn" onclick="showPhase(2)" data-i18n="tl_p3">UMSETZUNG</button>
-      <button class="phase-btn" onclick="showPhase(3)" data-i18n="tl_p4">TESTING & QA</button>
-      <button class="phase-btn" onclick="showPhase(4)" data-i18n="tl_p5">GO-LIVE</button>
-      <button class="phase-btn" onclick="showPhase(5)" data-i18n="tl_p6">SUPPORT & ITERATION</button>
+  <!-- Vertikale Timeline -->
+  <div class="timeline fade-in">
+    <div class="tl-item active">
+      <div class="tl-dot"></div>
+      <div class="tl-phase" data-i18n="tl_p1">KICKOFF</div>
+      <div class="tl-desc" data-i18n="tl_d1">Projekt-Setup, Anforderungen finalisieren, Zugriffe & Accounts einrichten, Branding-Briefing.</div>
     </div>
-    <div class="phase-detail">
-      <div class="phase-panel active" id="phase-0">
-        <div class="phase-content">
-          <div>
-            <div class="phase-label" data-i18n="tl_p1">KICKOFF</div>
-            <div class="phase-desc" data-i18n="tl_d1">Projekt-Setup, Anforderungen finalisieren, Zugriffe & Accounts einrichten, Branding-Briefing.</div>
-          </div>
-          <div class="phase-price">CHF 5'000</div>
-        </div>
-      </div>
-      <div class="phase-panel" id="phase-1">
-        <div class="phase-content">
-          <div>
-            <div class="phase-label" data-i18n="tl_p2">KONZEPT & DESIGN</div>
-            <div class="phase-desc" data-i18n="tl_d2">UI/UX Design für alle drei User-Perspektiven (Familien, Anbieter, Team). Freigabe durch Ferienpass.</div>
-          </div>
-          <div class="phase-price">CHF 8'000</div>
-        </div>
-      </div>
-      <div class="phase-panel" id="phase-2">
-        <div class="phase-content">
-          <div>
-            <div class="phase-label" data-i18n="tl_p3">UMSETZUNG</div>
-            <div class="phase-desc" data-i18n="tl_d3">Entwicklung aller Features: Registration, Marketplace, Payments/Waitlists, Analytics, AI Advice. Iterative Builds mit wöchentlichen Reviews.</div>
-          </div>
-          <div class="phase-price">CHF 32'000</div>
-        </div>
-      </div>
-      <div class="phase-panel" id="phase-3">
-        <div class="phase-content">
-          <div>
-            <div class="phase-label" data-i18n="tl_p4">TESTING & QA</div>
-            <div class="phase-desc" data-i18n="tl_d4">End-to-End Testing aller Flows, Payment-Tests (Stripe/TWINT), Multilingual-Check, Performance & Security Review.</div>
-          </div>
-          <div class="phase-price">CHF 5'000</div>
-        </div>
-      </div>
-      <div class="phase-panel" id="phase-4">
-        <div class="phase-content">
-          <div>
-            <div class="phase-label" data-i18n="tl_p5">GO-LIVE</div>
-            <div class="phase-desc" data-i18n="tl_d5">Launch auf Metanet.ch, DNS-Migration, Monitoring-Setup, Team-Onboarding & Dokumentation.</div>
-          </div>
-          <div class="phase-price">CHF 5'000</div>
-        </div>
-      </div>
-      <div class="phase-panel" id="phase-5">
-        <div class="phase-content">
-          <div>
-            <div class="phase-label" data-i18n="tl_p6">SUPPORT & ITERATION</div>
-            <div class="phase-desc" data-i18n="tl_d6">Laufende Unterstützung, Fehlerbehebung, iterative Erweiterungen. Bereit für nächste Feature-Iteration.</div>
-          </div>
-          <div class="phase-price">CHF 5'000</div>
-        </div>
-      </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-phase" data-i18n="tl_p2">KONZEPT & DESIGN</div>
+      <div class="tl-desc" data-i18n="tl_d2">UI/UX Design für alle drei User-Perspektiven. Freigabe durch Ferienpass.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-phase" data-i18n="tl_p3">UMSETZUNG</div>
+      <div class="tl-desc" data-i18n="tl_d3">Entwicklung aller Features: Registration, Marketplace, Payments/Waitlists, Analytics, AI Advice. Iterative Builds mit wöchentlichen Reviews.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-phase" data-i18n="tl_p4">TESTING & QA</div>
+      <div class="tl-desc" data-i18n="tl_d4">End-to-End Testing aller Flows, Payment-Tests (Stripe/TWINT), Multilingual-Check, Performance & Security Review.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-phase" data-i18n="tl_p5">GO-LIVE</div>
+      <div class="tl-desc" data-i18n="tl_d5">Launch auf Metanet.ch, DNS-Migration, Monitoring-Setup, Team-Onboarding & Dokumentation.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-phase" data-i18n="tl_p6">SUPPORT & ITERATION</div>
+      <div class="tl-desc" data-i18n="tl_d6">Laufende Unterstützung, Fehlerbehebung, iterative Erweiterungen. Bereit für nächste Feature-Iteration.</div>
     </div>
   </div>
 
@@ -1407,6 +1373,16 @@
       </div>
       <div class="why-grid fade-in">
         <div class="why-card">
+          <div class="why-icon">🌍</div>
+          <h4 data-i18n="why_7_title">Diversity & Inklusion</h4>
+          <p data-i18n="why_7_desc">Für alle kulturellen Hintergründe & Nationalitäten. Der Ferienpass ist für jede Familie — unabhängig von Herkunft oder Budget.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🗣</div>
+          <h4 data-i18n="why_8_title">Sprachbarrieren überwinden</h4>
+          <p data-i18n="why_8_desc">Niederschwelliger Zugang in DE / FR / EN — damit keine Familie aufgrund der Sprache ausgeschlossen wird.</p>
+        </div>
+        <div class="why-card">
           <div class="why-icon">🇨🇭</div>
           <h4 data-i18n="why_1_title">Swiss-Based & Reliable</h4>
           <p data-i18n="why_1_desc">Wir sind in der Schweiz zu Hause. Datenspeicherung in der Schweiz, direkter Kontakt, kein Offshore-Support.</p>
@@ -1435,16 +1411,6 @@
           <div class="why-icon">∞</div>
           <h4 data-i18n="why_6_title">Massive Effizienzgewinne</h4>
           <p data-i18n="why_6_desc">Automatische Payments, Waitlists und Review-Workflows — das Ferienpass-Team fokussiert sich auf das Portfolio, nicht auf Transaktionen.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">🌍</div>
-          <h4 data-i18n="why_7_title">Diversity & Inklusion</h4>
-          <p data-i18n="why_7_desc">Für alle kulturellen Hintergründe & Nationalitäten. Der Ferienpass ist für jede Familie — unabhängig von Herkunft oder Budget.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">🗣</div>
-          <h4 data-i18n="why_8_title">Sprachbarrieren überwinden</h4>
-          <p data-i18n="why_8_desc">Niederschwelliger Zugang in DE / FR / EN — damit keine Familie aufgrund der Sprache ausgeschlossen wird.</p>
         </div>
       </div>
     </div>
