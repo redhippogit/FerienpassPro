@@ -353,6 +353,25 @@
     .footer-logo { font-family: var(--font-head); font-size: 1.2rem; color: var(--white); letter-spacing: 0.1em; }
     .footer-logo span { color: var(--pink); }
 
+    /* ── Hero Claims ───────────────────────────────────────── */
+    .hero-claims {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--grey30);
+      margin-top: 3rem; max-width: 700px;
+    }
+    .claim-card {
+      background: var(--grey10); padding: 1.5rem;
+      transition: background 0.2s;
+    }
+    .claim-card:hover { background: var(--grey20); }
+    .claim-title {
+      font-family: var(--font-head); font-size: 1.1rem;
+      letter-spacing: 0.05em; color: var(--pink); margin-bottom: 0.4rem;
+    }
+    .claim-desc { font-size: 0.78rem; color: var(--grey80); line-height: 1.5; }
+
+    @media (max-width: 768px) { .hero-claims { grid-template-columns: 1fr; } }
+
     /* ── Scroll Animations ─────────────────────────────────── */
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -440,7 +459,26 @@
         <button class="btn-primary" onclick="window.print()" data-i18n="btn_download">↓ PROPOSAL DOWNLOADEN</button>
         <a href="mailto:team@gosnob.com" class="btn-outline" data-i18n="btn_contact">→ KONTAKT AUFNEHMEN</a>
       </div>
+
+```
+  <!-- Claim Box -->
+  <div class="hero-claims fade-in">
+    <div class="claim-card">
+      <div class="claim-title" data-i18n="claim_1_title">FÜR ALLE FAMILIEN</div>
+      <div class="claim-desc" data-i18n="claim_1_desc">Unabhängig von Hintergrund & Budget</div>
     </div>
+    <div class="claim-card">
+      <div class="claim-title" data-i18n="claim_2_title">NIEDERSCHWELLIG</div>
+      <div class="claim-desc" data-i18n="claim_2_desc">Einfach. Digital. Für jeden zugänglich.</div>
+    </div>
+    <div class="claim-card">
+      <div class="claim-title" data-i18n="claim_3_title">INKLUSIV</div>
+      <div class="claim-desc" data-i18n="claim_3_desc">DE / FR / EN — keine Sprachbarrieren</div>
+    </div>
+  </div>
+</div>
+```
+
   </section>
 
   <!-- ══════════════════════════════════════════════
@@ -1271,6 +1309,12 @@
         hero_date: 'DATUM: MAI 2026',
         hero_client: 'KUNDE:',
         hero_title_1: 'BASLER FERIENPASS',
+        claim_1_title: 'FÜR ALLE FAMILIEN',
+        claim_1_desc: 'Unabhängig von Hintergrund & Budget',
+        claim_2_title: 'NIEDERSCHWELLIG',
+        claim_2_desc: 'Einfach. Digital. Für jeden zugänglich.',
+        claim_3_title: 'INKLUSIV',
+        claim_3_desc: 'DE / FR / EN — keine Sprachbarrieren',
         hero_sub: 'Komplette Neugestaltung der Präsenz und manuellen Prozesse des Basler Ferienpasses — AI-gestützt, modular, skalierbar.',
         hero_investment: 'GESAMTINVESTITION',
         hero_exvat: 'exkl. MwSt. · Hosting separat',
@@ -1458,8 +1502,13 @@
         hero_ref: 'REF: SNOB-2026-001',
         hero_date: 'DATE: MAY 2026',
         hero_client: 'CLIENT:',
-        hero_title_1: 'DIGITAL',
-        
+        hero_title_1: 'BASLER FERIENPASS',
+        claim_1_title: 'FOR ALL FAMILIES',
+        claim_1_desc: 'Regardless of background & budget',
+        claim_2_title: 'LOW-THRESHOLD',
+        claim_2_desc: 'Simple. Digital. Accessible to everyone.',
+        claim_3_title: 'INCLUSIVE',
+        claim_3_desc: 'DE / FR / EN — no language barriers',
         hero_sub: 'Complete redesign of the presence and manual processes of Basler Ferienpass — AI-powered, modular, scalable.',
         hero_investment: 'TOTAL INVESTMENT',
         hero_exvat: 'excl. VAT · Hosting separate',
@@ -1647,7 +1696,13 @@
         hero_ref: 'RÉF: SNOB-2026-001',
         hero_date: 'DATE: MAI 2026',
         hero_client: 'CLIENT:',
-        hero_title_1: 'TRANSFORMATION',
+        hero_title_1: 'BASLER FERIENPASS',
+        claim_1_title: 'POUR TOUTES LES FAMILLES',
+        claim_1_desc: 'Indépendamment de l\'origine & du budget',
+        claim_2_title: 'ACCESSIBLE',
+        claim_2_desc: 'Simple. Numérique. Pour tous.',
+        claim_3_title: 'INCLUSIF',
+        claim_3_desc: 'DE / FR / EN — aucune barrière linguistique',
         hero_title_2: 'DIGITALE',
         hero_sub: 'Refonte complète de la présence et des processus manuels du Basler Ferienpass — propulsé par l\'IA, modulaire, évolutif.',
         hero_investment: 'INVESTISSEMENT TOTAL',
