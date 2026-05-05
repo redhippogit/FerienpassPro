@@ -353,6 +353,93 @@
     .footer-logo { font-family: var(--font-head); font-size: 1.2rem; color: var(--white); letter-spacing: 0.1em; }
     .footer-logo span { color: var(--pink); }
 
+    /* ── Datenschutz Accordion ─────────────────────────────── */
+    .ds-accordion { border: 1px solid var(--grey30); }
+    .ds-acc-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 1.5rem; cursor: crosshair; transition: background 0.2s;
+    }
+    .ds-acc-header:hover { background: var(--grey20); }
+    .ds-acc-header.open { border-bottom: 1px solid var(--grey30); }
+    .ds-acc-title {
+      font-family: var(--font-mono); font-size: 0.85rem;
+      letter-spacing: 0.08em; color: var(--white);
+    }
+    .ds-acc-toggle {
+      font-size: 1.2rem; color: var(--grey50);
+      transition: transform 0.3s; font-family: var(--font-mono);
+    }
+    .ds-acc-header.open .ds-acc-toggle { transform: rotate(45deg); color: var(--pink); }
+    .ds-acc-body { display: none; padding: 1.5rem; }
+    .ds-acc-body.open { display: block; }
+    .ds-acc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .ds-acc-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .ds-acc-label { font-size: 1.3rem; flex-shrink: 0; }
+    .ds-acc-name { font-family: var(--font-head); font-size: 1rem; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+    .ds-acc-desc { font-size: 0.78rem; color: var(--grey80); line-height: 1.5; }
+    @media (max-width: 768px) { .ds-acc-grid { grid-template-columns: 1fr; } }
+
+    /* ── Phase Slider ──────────────────────────────────────── */
+    .phase-slider { margin-bottom: 3rem; }
+    .phase-tabs {
+      display: flex; overflow-x: auto; gap: 0;
+      border-bottom: 1px solid var(--grey30); margin-bottom: 0;
+      scrollbar-width: none;
+    }
+    .phase-tabs::-webkit-scrollbar { display: none; }
+    .phase-btn {
+      background: none; border: none; border-bottom: 2px solid transparent;
+      color: var(--grey50); font-family: var(--font-mono); font-size: 0.72rem;
+      letter-spacing: 0.08em; padding: 1rem 1.5rem; cursor: crosshair;
+      white-space: nowrap; transition: all 0.2s; margin-bottom: -1px;
+      flex-shrink: 0;
+    }
+    .phase-btn.active { color: var(--white); border-bottom-color: var(--pink); }
+    .phase-btn:hover:not(.active) { color: var(--grey80); }
+    .phase-panel { display: none; }
+    .phase-panel.active { display: block; }
+    .phase-content {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 2rem; padding: 2rem; border: 1px solid var(--pink);
+      border-top: none;
+    }
+    .phase-label {
+      font-family: var(--font-head); font-size: 1.8rem;
+      letter-spacing: 0.05em; margin-bottom: 0.8rem;
+    }
+    .phase-desc { font-size: 0.85rem; color: var(--grey80); max-width: 500px; line-height: 1.6; }
+    .phase-price {
+      font-family: var(--font-head); font-size: 2.5rem;
+      color: var(--pink); white-space: nowrap; text-align: right;
+    }
+
+    /* ── Milestone Box ─────────────────────────────────────── */
+    .milestone-box {
+      border: 1px solid var(--grey30); padding: 2rem; margin-top: 2rem;
+    }
+    .milestone-label {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--pink); margin-bottom: 1.5rem;
+    }
+    .milestone-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--grey30); margin-bottom: 1px; }
+    .milestone-item { background: var(--grey10); padding: 1.5rem; }
+    .milestone-num { font-family: var(--font-head); font-size: 2rem; color: var(--grey30); margin-bottom: 0.5rem; }
+    .milestone-name { font-size: 0.8rem; color: var(--grey80); margin-bottom: 0.8rem; }
+    .milestone-amount { font-family: var(--font-head); font-size: 1.6rem; color: var(--white); }
+    .milestone-total {
+      background: rgba(217,70,239,0.08); border: 1px solid var(--pink);
+      border-top: none; padding: 1rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .milestone-total span { font-size: 0.7rem; letter-spacing: 0.15em; color: var(--grey50); }
+    .milestone-total-amount { font-family: var(--font-head); font-size: 2rem; color: var(--pink) !important; letter-spacing: 0.05em; }
+
+    @media (max-width: 768px) {
+      .milestone-grid { grid-template-columns: 1fr; }
+      .phase-content { flex-direction: column; }
+      .phase-price { font-size: 2rem; }
+    }
+
     /* ── Hero Claims ───────────────────────────────────────── */
     .hero-claims {
       display: grid; grid-template-columns: repeat(3, 1fr);
@@ -1073,7 +1160,7 @@
     <div class="price-card total">
       <div class="pc-label" data-i18n="pc_total_label">GESAMTINVESTITION</div>
       <div class="pc-name" data-i18n="pc_total_name">Base Package</div>
-      <div class="pc-amount">40'000</div>
+      <div class="pc-amount">60'000</div>
       <div class="pc-note" data-i18n="pc_exvat">CHF · exkl. MwSt. · Hosting separat</div>
     </div>
     <div class="price-card" style="border-top: 1px solid var(--grey30);">
@@ -1116,58 +1203,193 @@
       ⚠ TWINT bietet kein 3-Way-Payment. Refund = gleicher Prozess in Umkehrung. Ferienpass Team: keine direkte Involvierung in Payments/Waitlists/Refunds.
     </p>
   </div>
+
+  <!-- Datenschutz Accordion -->
+  <div class="ds-accordion fade-in" style="margin-top:3rem;">
+    <div class="ds-acc-header" onclick="toggleDsAccordion(this)">
+      <span class="ds-acc-title" data-i18n="ds_acc_title">🔒 Wie schützen wir Ihre Daten?</span>
+      <span class="ds-acc-toggle">+</span>
+    </div>
+    <div class="ds-acc-body">
+      <div class="ds-acc-grid">
+        <div class="ds-acc-item">
+          <div class="ds-acc-label">🇨🇭</div>
+          <div>
+            <div class="ds-acc-name" data-i18n="ds_1_title">Swiss Hosted</div>
+            <div class="ds-acc-desc" data-i18n="ds_1_desc">Alle Daten auf Metanet.ch Servern in der Schweiz. Kein Offshore-Hosting.</div>
+          </div>
+        </div>
+        <div class="ds-acc-item">
+          <div class="ds-acc-label">🔒</div>
+          <div>
+            <div class="ds-acc-name" data-i18n="ds_2_title">Datensouveränität</div>
+            <div class="ds-acc-desc" data-i18n="ds_2_desc">Alle Daten gehören ausschliesslich JuAr / Basler Ferienpass. SNOB hat keinen eigenständigen Zugriff.</div>
+          </div>
+        </div>
+        <div class="ds-acc-item">
+          <div class="ds-acc-label">⏱</div>
+          <div>
+            <div class="ds-acc-name" data-i18n="ds_3_title">90-Tage Retention</div>
+            <div class="ds-acc-desc" data-i18n="ds_3_desc">Aufzeichnungen werden nach 90 Tagen automatisch gelöscht. Transparent und konfigurierbar.</div>
+          </div>
+        </div>
+        <div class="ds-acc-item">
+          <div class="ds-acc-label">✅</div>
+          <div>
+            <div class="ds-acc-name" data-i18n="ds_4_title">DSG / revDSG Konform</div>
+            <div class="ds-acc-desc" data-i18n="ds_4_desc">Vollständig nach Schweizer Datenschutzgesetz umgesetzt. Professioneller Umgang mit allen Personendaten.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 ```
 
   </section>
 
   <!-- ══════════════════════════════════════════════
-       TIMELINE
+       TIMELINE / PHASEN SLIDER
   ══════════════════════════════════════════════ -->
 
   <section id="timeline">
     <div class="container">
-      <span class="section-label" data-i18n="timeline_label">04 — TIMELINE</span>
+      <span class="section-label" data-i18n="timeline_label">04 — PHASEN</span>
       <div class="section-intro fade-in">
-        <h2 data-i18n="timeline_title">Projektplan.</h2>
-        <p data-i18n="timeline_desc">Strukturierte Umsetzung in klar definierten Phasen. Datum wird nach Auftragserteilung finalisiert.</p>
+        <h2 data-i18n="timeline_title">Projektphasen.</h2>
+        <p data-i18n="timeline_desc">Strukturierte Umsetzung in klar definierten Phasen.</p>
       </div>
-      <div class="timeline fade-in">
-        <div class="tl-item active">
-          <div class="tl-dot"></div>
-          <div class="tl-week" data-i18n="tl_w1">WOCHE 1</div>
-          <div class="tl-phase" data-i18n="tl_p1">KICKOFF</div>
-          <div class="tl-desc" data-i18n="tl_d1">Projekt-Setup, Anforderungen finalisieren, Zugriffe & Accounts einrichten, Branding-Briefing.</div>
+
+```
+  <!-- Phase Slider -->
+  <div class="phase-slider fade-in">
+    <div class="phase-tabs">
+      <button class="phase-btn active" onclick="showPhase(0)" data-i18n="tl_p1">KICKOFF</button>
+      <button class="phase-btn" onclick="showPhase(1)" data-i18n="tl_p2">KONZEPT & DESIGN</button>
+      <button class="phase-btn" onclick="showPhase(2)" data-i18n="tl_p3">UMSETZUNG</button>
+      <button class="phase-btn" onclick="showPhase(3)" data-i18n="tl_p4">TESTING & QA</button>
+      <button class="phase-btn" onclick="showPhase(4)" data-i18n="tl_p5">GO-LIVE</button>
+      <button class="phase-btn" onclick="showPhase(5)" data-i18n="tl_p6">SUPPORT & ITERATION</button>
+    </div>
+    <div class="phase-detail">
+      <div class="phase-panel active" id="phase-0">
+        <div class="phase-content">
+          <div>
+            <div class="phase-label" data-i18n="tl_p1">KICKOFF</div>
+            <div class="phase-desc" data-i18n="tl_d1">Projekt-Setup, Anforderungen finalisieren, Zugriffe & Accounts einrichten, Branding-Briefing.</div>
+          </div>
+          <div class="phase-price">CHF 5'000</div>
         </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-week" data-i18n="tl_w2">WOCHE 2–3</div>
-          <div class="tl-phase" data-i18n="tl_p2">KONZEPT & DESIGN</div>
-          <div class="tl-desc" data-i18n="tl_d2">UI/UX Design für alle drei User-Perspektiven (Familien, Anbieter, Team). Freigabe durch Ferienpass.</div>
+      </div>
+      <div class="phase-panel" id="phase-1">
+        <div class="phase-content">
+          <div>
+            <div class="phase-label" data-i18n="tl_p2">KONZEPT & DESIGN</div>
+            <div class="phase-desc" data-i18n="tl_d2">UI/UX Design für alle drei User-Perspektiven (Familien, Anbieter, Team). Freigabe durch Ferienpass.</div>
+          </div>
+          <div class="phase-price">CHF 8'000</div>
         </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-week" data-i18n="tl_w3">WOCHE 4–8</div>
-          <div class="tl-phase" data-i18n="tl_p3">UMSETZUNG</div>
-          <div class="tl-desc" data-i18n="tl_d3">Entwicklung aller Features: Registration, Marketplace, Payments/Waitlists, Analytics, AI Advice. Iterative Builds mit wöchentlichen Reviews.</div>
+      </div>
+      <div class="phase-panel" id="phase-2">
+        <div class="phase-content">
+          <div>
+            <div class="phase-label" data-i18n="tl_p3">UMSETZUNG</div>
+            <div class="phase-desc" data-i18n="tl_d3">Entwicklung aller Features: Registration, Marketplace, Payments/Waitlists, Analytics, AI Advice. Iterative Builds mit wöchentlichen Reviews.</div>
+          </div>
+          <div class="phase-price">CHF 32'000</div>
         </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-week" data-i18n="tl_w4">WOCHE 9</div>
-          <div class="tl-phase" data-i18n="tl_p4">TESTING & QA</div>
-          <div class="tl-desc" data-i18n="tl_d4">End-to-End Testing aller Flows, Payment-Tests (Stripe/TWINT), Multilingual-Check, Performance & Security Review.</div>
+      </div>
+      <div class="phase-panel" id="phase-3">
+        <div class="phase-content">
+          <div>
+            <div class="phase-label" data-i18n="tl_p4">TESTING & QA</div>
+            <div class="phase-desc" data-i18n="tl_d4">End-to-End Testing aller Flows, Payment-Tests (Stripe/TWINT), Multilingual-Check, Performance & Security Review.</div>
+          </div>
+          <div class="phase-price">CHF 5'000</div>
         </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-week" data-i18n="tl_w5">WOCHE 10</div>
-          <div class="tl-phase" data-i18n="tl_p5">GO-LIVE</div>
-          <div class="tl-desc" data-i18n="tl_d5">Launch auf Metanet.ch Hosting, DNS-Migration, Monitoring-Setup, Team-Onboarding & Dokumentation.</div>
+      </div>
+      <div class="phase-panel" id="phase-4">
+        <div class="phase-content">
+          <div>
+            <div class="phase-label" data-i18n="tl_p5">GO-LIVE</div>
+            <div class="phase-desc" data-i18n="tl_d5">Launch auf Metanet.ch, DNS-Migration, Monitoring-Setup, Team-Onboarding & Dokumentation.</div>
+          </div>
+          <div class="phase-price">CHF 5'000</div>
         </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-week" data-i18n="tl_w6">AB WOCHE 11</div>
-          <div class="tl-phase" data-i18n="tl_p6">SUPPORT & ITERATION</div>
-          <div class="tl-desc" data-i18n="tl_d6">Laufende Unterstützung, Fehlerbehebung, iterative Erweiterungen nach Bedarf. Bereit für nächste Feature-Iteration.</div>
+      </div>
+      <div class="phase-panel" id="phase-5">
+        <div class="phase-content">
+          <div>
+            <div class="phase-label" data-i18n="tl_p6">SUPPORT & ITERATION</div>
+            <div class="phase-desc" data-i18n="tl_d6">Laufende Unterstützung, Fehlerbehebung, iterative Erweiterungen. Bereit für nächste Feature-Iteration.</div>
+          </div>
+          <div class="phase-price">CHF 5'000</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Milestone Payment Box -->
+  <div class="milestone-box fade-in">
+    <div class="milestone-label" data-i18n="milestone_label">ZAHLUNGSPLAN — 3 MILESTONES</div>
+    <div class="milestone-grid">
+      <div class="milestone-item">
+        <div class="milestone-num">01</div>
+        <div class="milestone-name" data-i18n="ms1_name">Bei Vertragsunterzeichnung</div>
+        <div class="milestone-amount">CHF 20'000</div>
+      </div>
+      <div class="milestone-item">
+        <div class="milestone-num">02</div>
+        <div class="milestone-name" data-i18n="ms2_name">Nach Go-Live</div>
+        <div class="milestone-amount">CHF 25'000</div>
+      </div>
+      <div class="milestone-item">
+        <div class="milestone-num">03</div>
+        <div class="milestone-name" data-i18n="ms3_name">Nach 3 Monaten Support</div>
+        <div class="milestone-amount">CHF 15'000</div>
+      </div>
+    </div>
+    <div class="milestone-total">
+      <span data-i18n="milestone_total">TOTAL</span>
+      <span class="milestone-total-amount">CHF 60'000</span>
+    </div>
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       DATENSCHUTZ
+  ══════════════════════════════════════════════ -->
+
+  <section id="datenschutz">
+    <div class="container">
+      <span class="section-label" data-i18n="ds_label">05 — DATENSCHUTZ & SICHERHEIT</span>
+      <div class="section-intro fade-in">
+        <h2 data-i18n="ds_title">Ihre Daten. Sicher. In der Schweiz.</h2>
+        <p data-i18n="ds_desc">Datenschutz ist kein Feature — es ist die Grundlage. Alle Daten gehören ausschliesslich JuAr / Basler Ferienpass.</p>
+      </div>
+      <div class="why-grid fade-in">
+        <div class="why-card">
+          <div class="why-icon">🇨🇭</div>
+          <h4 data-i18n="ds_1_title">Swiss Hosted</h4>
+          <p data-i18n="ds_1_desc">Alle Daten werden ausschliesslich auf Metanet.ch Servern in der Schweiz gespeichert. Kein Offshore-Hosting.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🔒</div>
+          <h4 data-i18n="ds_2_title">Datensouveränität</h4>
+          <p data-i18n="ds_2_desc">Alle Daten gehören ausschliesslich JuAr / Basler Ferienpass. SNOB hat keinen eigenständigen Zugriff auf Ihre Daten.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">⏱</div>
+          <h4 data-i18n="ds_3_title">90-Tage Retention</h4>
+          <p data-i18n="ds_3_desc">Aufzeichnungen und Daten werden nach 90 Tagen automatisch gelöscht. Transparent und konfigurierbar.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">✅</div>
+          <h4 data-i18n="ds_4_title">DSG / revDSG Konform</h4>
+          <p data-i18n="ds_4_desc">Vollständig nach Schweizer Datenschutzgesetz (revDSG) umgesetzt. Professioneller Umgang mit allen Personendaten.</p>
         </div>
       </div>
     </div>
@@ -1214,6 +1436,16 @@
           <h4 data-i18n="why_6_title">Massive Effizienzgewinne</h4>
           <p data-i18n="why_6_desc">Automatische Payments, Waitlists und Review-Workflows — das Ferienpass-Team fokussiert sich auf das Portfolio, nicht auf Transaktionen.</p>
         </div>
+        <div class="why-card">
+          <div class="why-icon">🌍</div>
+          <h4 data-i18n="why_7_title">Diversity & Inklusion</h4>
+          <p data-i18n="why_7_desc">Für alle kulturellen Hintergründe & Nationalitäten. Der Ferienpass ist für jede Familie — unabhängig von Herkunft oder Budget.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🗣</div>
+          <h4 data-i18n="why_8_title">Sprachbarrieren überwinden</h4>
+          <p data-i18n="why_8_desc">Niederschwelliger Zugang in DE / FR / EN — damit keine Familie aufgrund der Sprache ausgeschlossen wird.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1257,6 +1489,22 @@
   ══════════════════════════════════════════════ -->
 
   <script>
+    // ── Datenschutz Accordion ─────────────────────────────
+    function toggleDsAccordion(header) {
+      header.classList.toggle('open');
+      header.nextElementSibling.classList.toggle('open');
+    }
+
+    // ── Phase Slider ──────────────────────────────────────
+    function showPhase(index) {
+      document.querySelectorAll('.phase-panel').forEach((p,i) => {
+        p.classList.toggle('active', i === index);
+      });
+      document.querySelectorAll('.phase-btn').forEach((b,i) => {
+        b.classList.toggle('active', i === index);
+      });
+    }
+
     // ── Login ─────────────────────────────────────────────
     const VALID_NAME = 'ferienpass';
     const VALID_CODE = 'ferien4all';
@@ -1472,23 +1720,38 @@
         pf_provider: 'ANBIETER',
         pf_net: 'Nettozahlung',
         pf_note: '⚠ TWINT bietet kein 3-Way-Payment. Refund = gleicher Prozess in Umkehrung. Ferienpass Team: keine direkte Involvierung in Payments/Waitlists/Refunds.',
-        timeline_label: '04 — TIMELINE',
-        timeline_title: 'Projektplan.',
-        timeline_desc: 'Strukturierte Umsetzung in klar definierten Phasen. Datum wird nach Auftragserteilung finalisiert.',
-        tl_w1: 'WOCHE 1', tl_p1: 'KICKOFF', tl_d1: 'Projekt-Setup, Anforderungen finalisieren, Zugriffe & Accounts einrichten, Branding-Briefing.',
-        tl_w2: 'WOCHE 2–3', tl_p2: 'KONZEPT & DESIGN', tl_d2: 'UI/UX Design für alle drei User-Perspektiven. Freigabe durch Ferienpass.',
-        tl_w3: 'WOCHE 4–8', tl_p3: 'UMSETZUNG', tl_d3: 'Entwicklung aller Features: Registration, Marketplace, Payments/Waitlists, Analytics, AI Advice. Iterative Builds mit wöchentlichen Reviews.',
-        tl_w4: 'WOCHE 9', tl_p4: 'TESTING & QA', tl_d4: 'End-to-End Testing aller Flows, Payment-Tests (Stripe/TWINT), Multilingual-Check, Performance & Security Review.',
-        tl_w5: 'WOCHE 10', tl_p5: 'GO-LIVE', tl_d5: 'Launch auf Metanet.ch Hosting, DNS-Migration, Monitoring-Setup, Team-Onboarding & Dokumentation.',
-        tl_w6: 'AB WOCHE 11', tl_p6: 'SUPPORT & ITERATION', tl_d6: 'Laufende Unterstützung, Fehlerbehebung, iterative Erweiterungen. Bereit für nächste Feature-Iteration.',
-        why_label: '05 — WARUM SNOB',
+        timeline_label: '04 — PHASEN',
+        timeline_title: 'Projektphasen.',
+        timeline_desc: 'Strukturierte Umsetzung in klar definierten Phasen.',
+        tl_p1: 'KICKOFF', tl_d1: 'Projekt-Setup, Anforderungen finalisieren, Zugriffe & Accounts einrichten, Branding-Briefing.',
+        tl_p2: 'KONZEPT & DESIGN', tl_d2: 'UI/UX Design für alle drei User-Perspektiven. Freigabe durch Ferienpass.',
+        tl_p3: 'UMSETZUNG', tl_d3: 'Entwicklung aller Features: Registration, Marketplace, Payments/Waitlists, Analytics, AI Advice. Iterative Builds mit wöchentlichen Reviews.',
+        tl_p4: 'TESTING & QA', tl_d4: 'End-to-End Testing aller Flows, Payment-Tests (Stripe/TWINT), Multilingual-Check, Performance & Security Review.',
+        tl_p5: 'GO-LIVE', tl_d5: 'Launch auf Metanet.ch, DNS-Migration, Monitoring-Setup, Team-Onboarding & Dokumentation.',
+        tl_p6: 'SUPPORT & ITERATION', tl_d6: 'Laufende Unterstützung, Fehlerbehebung, iterative Erweiterungen. Bereit für nächste Feature-Iteration.',
+        milestone_label: 'ZAHLUNGSPLAN — 3 MILESTONES',
+        ms1_name: 'Bei Vertragsunterzeichnung',
+        ms2_name: 'Nach Go-Live',
+        ms3_name: 'Nach 3 Monaten Support',
+        milestone_total: 'TOTAL',
+        ds_label: '05 — DATENSCHUTZ & SICHERHEIT',
+        ds_title: 'Ihre Daten. Sicher. In der Schweiz.',
+        ds_desc: 'Datenschutz ist kein Feature — es ist die Grundlage. Alle Daten gehören ausschliesslich JuAr / Basler Ferienpass.',
+        ds_1_title: 'Swiss Hosted', ds_1_desc: 'Alle Daten auf Metanet.ch Servern in der Schweiz. Kein Offshore-Hosting.',
+        ds_2_title: 'Datensouveränität', ds_2_desc: 'Alle Daten gehören ausschliesslich JuAr / Basler Ferienpass. SNOB hat keinen eigenständigen Zugriff.',
+        ds_3_title: '90-Tage Retention', ds_3_desc: 'Aufzeichnungen werden nach 90 Tagen automatisch gelöscht. Transparent und konfigurierbar.',
+        ds_4_title: 'DSG / revDSG Konform', ds_4_desc: 'Vollständig nach Schweizer Datenschutzgesetz umgesetzt. Professioneller Umgang mit allen Personendaten.',
+        ds_acc_title: '🔒 Wie schützen wir Ihre Daten?',
+        why_label: '06 — WARUM SNOB',
         why_title: 'Der Unterschied.',
         why_1_title: 'Swiss-Based & Reliable', why_1_desc: 'Wir sind in der Schweiz zu Hause. Datenspeicherung in der Schweiz, direkter Kontakt, kein Offshore-Support.',
         why_2_title: 'AI-Native', why_2_desc: 'AI ist kein Add-on — sie ist das Fundament. Vom intelligenten Advice-Agent bis zur automatisierten Prozesssteuerung.',
         why_3_title: 'Modular & Skalierbar', why_3_desc: 'Base Package heute — Advanced Features morgen. Architektur die mit dem Ferienpass wächst, ohne Systemwechsel.',
         why_4_title: 'Multilingual by Design', why_4_desc: 'DE / FR / EN von Anfang an integriert — nicht nachträglich übersetzt. Für alle Familien in der Region Basel.',
-        why_5_title: 'Zero Vendor Lock-in', why_5_desc: 'Offene Standards, direkt fakturiertes Hosting beim Metanet.ch — keine Abhängigkeiten, volle Kontrolle.',
-        why_6_title: 'Massive Effizienzgewinne', why_6_desc: 'Automatische Payments, Waitlists und Review-Workflows — das Ferienpass-Team fokussiert sich auf das Portfolio, nicht auf Transaktionen.',
+        why_5_title: 'Zero Vendor Lock-in', why_5_desc: 'Offene Standards, direkt fakturiertes Hosting bei Metanet.ch — keine Abhängigkeiten, volle Kontrolle.',
+        why_6_title: 'Massive Effizienzgewinne', why_6_desc: 'Automatische Payments, Waitlists und Review-Workflows — das Ferienpass-Team fokussiert sich auf das Portfolio.',
+        why_7_title: 'Diversity & Inklusion', why_7_desc: 'Für alle kulturellen Hintergründe & Nationalitäten. Der Ferienpass ist für jede Familie — unabhängig von Herkunft oder Budget.',
+        why_8_title: 'Sprachbarrieren überwinden', why_8_desc: 'Niederschwelliger Zugang in DE / FR / EN — damit keine Familie aufgrund der Sprache ausgeschlossen wird.',
         cta_label: '06 — NÄCHSTE SCHRITTE',
         cta_title: 'Bereit loszulegen?',
         cta_desc: 'Wir freuen uns auf das Gespräch. Meld dich direkt — wir sind schnell und unkompliziert.',
@@ -1666,7 +1929,38 @@
         pf_provider: 'PROVIDER',
         pf_net: 'Net payment',
         pf_note: '⚠ TWINT does not offer 3-way payments. Refund = same process in reverse. Ferienpass Team: no direct involvement in payments/waitlists/refunds.',
-        timeline_label: '04 — TIMELINE',
+        timeline_label: '04 — PHASES',
+        timeline_title: 'Project Phases.',
+        timeline_desc: 'Structured implementation in clearly defined phases.',
+        tl_p1: 'KICKOFF', tl_d1: 'Project setup, finalize requirements, set up access & accounts, branding briefing.',
+        tl_p2: 'CONCEPT & DESIGN', tl_d2: 'UI/UX design for all three user perspectives. Approval by Ferienpass.',
+        tl_p3: 'IMPLEMENTATION', tl_d3: 'Development of all features: Registration, Marketplace, Payments/Waitlists, Analytics, AI Advice. Iterative builds with weekly reviews.',
+        tl_p4: 'TESTING & QA', tl_d4: 'End-to-end testing of all flows, payment tests (Stripe/TWINT), multilingual check, performance & security review.',
+        tl_p5: 'GO-LIVE', tl_d5: 'Launch on Metanet.ch, DNS migration, monitoring setup, team onboarding & documentation.',
+        tl_p6: 'SUPPORT & ITERATION', tl_d6: 'Ongoing support, bug fixes, iterative enhancements. Ready for next feature iteration.',
+        milestone_label: 'PAYMENT PLAN — 3 MILESTONES',
+        ms1_name: 'Upon contract signing',
+        ms2_name: 'After Go-Live',
+        ms3_name: 'After 3 months support',
+        milestone_total: 'TOTAL',
+        ds_label: '05 — DATA PROTECTION & SECURITY',
+        ds_title: 'Your Data. Safe. In Switzerland.',
+        ds_desc: 'Data protection is not a feature — it is the foundation. All data belongs exclusively to JuAr / Basler Ferienpass.',
+        ds_1_title: 'Swiss Hosted', ds_1_desc: 'All data stored exclusively on Metanet.ch servers in Switzerland. No offshore hosting.',
+        ds_2_title: 'Data Sovereignty', ds_2_desc: 'All data belongs exclusively to JuAr / Basler Ferienpass. SNOB has no independent access.',
+        ds_3_title: '90-Day Retention', ds_3_desc: 'Recordings are automatically deleted after 90 days. Transparent and configurable.',
+        ds_4_title: 'DSG / revDSG Compliant', ds_4_desc: 'Fully implemented under Swiss data protection law. Professional handling of all personal data.',
+        ds_acc_title: '🔒 How do we protect your data?',
+        why_label: '06 — WHY SNOB',
+        why_title: 'The difference.',
+        why_1_title: 'Swiss-Based & Reliable', why_1_desc: 'We are at home in Switzerland. Data stored in Switzerland, direct contact, no offshore support.',
+        why_2_title: 'AI-Native', why_2_desc: 'AI is not an add-on — it is the foundation. From the intelligent advice agent to automated process control.',
+        why_3_title: 'Modular & Scalable', why_3_desc: 'Base package today — advanced features tomorrow. Architecture that grows with Ferienpass without system changes.',
+        why_4_title: 'Multilingual by Design', why_4_desc: 'DE / FR / EN integrated from day one — not translated afterwards. For all families in the Basel region.',
+        why_5_title: 'Zero Vendor Lock-in', why_5_desc: 'Open standards, directly invoiced hosting at Metanet.ch — no dependencies, full control.',
+        why_6_title: 'Massive Efficiency Gains', why_6_desc: 'Automatic payments, waitlists and review workflows — the Ferienpass team focuses on the portfolio.',
+        why_7_title: 'Diversity & Inclusion', why_7_desc: 'For all cultural backgrounds & nationalities. Ferienpass is for every family — regardless of origin or budget.',
+        why_8_title: 'Breaking Language Barriers', why_8_desc: 'Low-threshold access in DE / FR / EN — so no family is excluded because of language.',
         timeline_title: 'Project Plan.',
         timeline_desc: 'Structured implementation in clearly defined phases. Dates to be finalized after project start.',
         tl_w1: 'WEEK 1', tl_p1: 'KICKOFF', tl_d1: 'Project setup, finalize requirements, set up access & accounts, branding briefing.',
@@ -1861,7 +2155,38 @@
         pf_provider: 'PRESTATAIRE',
         pf_net: 'Paiement net',
         pf_note: '⚠ TWINT ne propose pas de paiements à 3 voies. Remboursement = même processus en sens inverse. Équipe Ferienpass: aucune implication directe dans les paiements/listes d\'attente/remboursements.',
-        timeline_label: '04 — CALENDRIER',
+        timeline_label: '04 — PHASES',
+        timeline_title: 'Phases du Projet.',
+        timeline_desc: 'Mise en œuvre structurée en phases clairement définies.',
+        tl_p1: 'LANCEMENT', tl_d1: 'Configuration du projet, finalisation des exigences, mise en place des accès & comptes, briefing branding.',
+        tl_p2: 'CONCEPT & DESIGN', tl_d2: 'Design UI/UX pour les trois perspectives utilisateurs. Validation par Ferienpass.',
+        tl_p3: 'MISE EN ŒUVRE', tl_d3: 'Développement de toutes les fonctionnalités: Inscription, Marketplace, Paiements/Listes d\'attente, Analytique, Conseil IA.',
+        tl_p4: 'TESTS & QA', tl_d4: 'Tests end-to-end de tous les flux, tests de paiement (Stripe/TWINT), vérification multilingue, performance & sécurité.',
+        tl_p5: 'MISE EN LIGNE', tl_d5: 'Lancement sur Metanet.ch, migration DNS, configuration monitoring, onboarding équipe & documentation.',
+        tl_p6: 'SUPPORT & ITÉRATION', tl_d6: 'Support continu, corrections de bugs, améliorations itératives. Prêt pour la prochaine itération.',
+        milestone_label: 'PLAN DE PAIEMENT — 3 JALONS',
+        ms1_name: 'À la signature du contrat',
+        ms2_name: 'Après la mise en ligne',
+        ms3_name: 'Après 3 mois de support',
+        milestone_total: 'TOTAL',
+        ds_label: '05 — PROTECTION DES DONNÉES',
+        ds_title: 'Vos données. En sécurité. En Suisse.',
+        ds_desc: 'La protection des données n\'est pas une fonctionnalité — c\'est le fondement. Toutes les données appartiennent exclusivement à JuAr / Basler Ferienpass.',
+        ds_1_title: 'Hébergé en Suisse', ds_1_desc: 'Toutes les données stockées exclusivement sur les serveurs Metanet.ch en Suisse. Pas d\'hébergement offshore.',
+        ds_2_title: 'Souveraineté des données', ds_2_desc: 'Toutes les données appartiennent exclusivement à JuAr / Basler Ferienpass. SNOB n\'a pas d\'accès indépendant.',
+        ds_3_title: 'Rétention 90 jours', ds_3_desc: 'Les enregistrements sont automatiquement supprimés après 90 jours. Transparent et configurable.',
+        ds_4_title: 'Conforme DSG / revDSG', ds_4_desc: 'Entièrement conforme à la loi suisse sur la protection des données. Traitement professionnel de toutes les données.',
+        ds_acc_title: '🔒 Comment protégeons-nous vos données?',
+        why_label: '06 — POURQUOI SNOB',
+        why_title: 'La différence.',
+        why_1_title: 'Basé en Suisse & Fiable', why_1_desc: 'Nous sommes chez nous en Suisse. Données stockées en Suisse, contact direct, pas de support offshore.',
+        why_2_title: 'IA-Natif', why_2_desc: 'L\'IA n\'est pas un ajout — c\'est le fondement. De l\'agent de conseil à la gestion automatisée des processus.',
+        why_3_title: 'Modulaire & Évolutif', why_3_desc: 'Package de base aujourd\'hui — fonctionnalités avancées demain. Architecture qui évolue avec Ferienpass.',
+        why_4_title: 'Multilingue par Conception', why_4_desc: 'DE / FR / EN intégré dès le premier jour. Pour toutes les familles de la région de Bâle.',
+        why_5_title: 'Zéro Dépendance', why_5_desc: 'Standards ouverts, hébergement facturé directement par Metanet.ch — aucune dépendance, contrôle total.',
+        why_6_title: 'Gains d\'Efficacité Massifs', why_6_desc: 'Paiements automatiques, listes d\'attente et flux de révision — l\'équipe se concentre sur le portfolio.',
+        why_7_title: 'Diversité & Inclusion', why_7_desc: 'Pour tous les origines culturelles & nationalités. Le Ferienpass est pour chaque famille — indépendamment de l\'origine ou du budget.',
+        why_8_title: 'Surmonter les Barrières Linguistiques', why_8_desc: 'Accès sans obstacles en DE / FR / EN — pour qu\'aucune famille ne soit exclue en raison de la langue.',
         timeline_title: 'Plan de Projet.',
         timeline_desc: 'Mise en œuvre structurée en phases clairement définies. Les dates seront finalisées après le démarrage du projet.',
         tl_w1: 'SEMAINE 1', tl_p1: 'LANCEMENT', tl_d1: 'Configuration du projet, finalisation des exigences, mise en place des accès & comptes, briefing branding.',
