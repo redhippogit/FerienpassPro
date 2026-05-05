@@ -15,6 +15,58 @@
   ============================================================ -->
 
   <style>
+    /* ── Login Overlay ─────────────────────────────────────── */
+    #login-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+    }
+    #login-overlay.hidden { display: none; }
+    .login-box {
+      border: 1px solid var(--grey30);
+      padding: 3rem 2.5rem; width: 100%; max-width: 400px;
+    }
+    .login-logo {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 1.8rem; letter-spacing: 0.1em;
+      color: var(--white); margin-bottom: 2rem;
+    }
+    .login-logo span { color: #d946ef; }
+    .login-label {
+      font-family: 'DM Mono', 'Courier New', monospace;
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: #555555; margin-bottom: 0.5rem; display: block;
+    }
+    .login-input {
+      width: 100%; background: #111111; border: 1px solid #2a2a2a;
+      color: #ffffff; font-family: 'DM Mono', 'Courier New', monospace;
+      font-size: 0.9rem; padding: 0.8rem 1rem; margin-bottom: 1rem;
+      outline: none; cursor: crosshair;
+      transition: border-color 0.2s;
+    }
+    .login-input:focus { border-color: #d946ef; }
+    .login-input.error { border-color: #ef4444; }
+    .login-btn {
+      width: 100%; background: #d946ef; color: #000000;
+      font-family: 'DM Mono', 'Courier New', monospace;
+      font-size: 0.8rem; letter-spacing: 0.1em;
+      padding: 0.9rem; border: none; cursor: crosshair;
+      transition: background 0.2s; margin-top: 0.5rem;
+    }
+    .login-btn:hover { background: #ffffff; }
+    .login-error {
+      font-family: 'DM Mono', 'Courier New', monospace;
+      font-size: 0.75rem; color: #ef4444; margin-top: 0.8rem;
+      display: none; letter-spacing: 0.05em;
+    }
+    .login-error.visible { display: block; }
+    .login-hint {
+      font-family: 'DM Mono', 'Courier New', monospace;
+      font-size: 0.7rem; color: #2a2a2a; margin-top: 3rem;
+      letter-spacing: 0.08em; text-align: center;
+    }
+
     /* ── CSS Variables ─────────────────────────────────────── */
     :root {
       --black:   #000000;
@@ -332,6 +384,23 @@
 
 </head>
 <body>
+
+  <!-- ══════════════════════════════════════════════
+       LOGIN OVERLAY
+  ══════════════════════════════════════════════ -->
+
+  <div id="login-overlay">
+    <div class="login-box">
+      <div class="login-logo">GO<span>SNOB</span>.AI</div>
+      <span class="login-label">NAME</span>
+      <input id="login-name" class="login-input" type="text" placeholder="Name eingeben" autocomplete="off" />
+      <span class="login-label">ZUGANGSCODE</span>
+      <input id="login-code" class="login-input" type="password" placeholder="••••••••••" autocomplete="off" />
+      <button class="login-btn" onclick="checkLogin()">→ ZUGANG ANFORDERN</button>
+      <div id="login-error" class="login-error">Ungültige Zugangsdaten. Bitte erneut versuchen.</div>
+    </div>
+    <div class="login-hint">VERTRAULICH · NUR FÜR AUTORISIERTE PERSONEN</div>
+  </div>
 
   <!-- ══════════════════════════════════════════════
        NAV
@@ -1142,6 +1211,38 @@
   ══════════════════════════════════════════════ -->
 
   <script>
+    // ── Login ─────────────────────────────────────────────
+    const VALID_NAME = 'ferienpass';
+    const VALID_CODE = 'ferien4all';
+
+    function checkLogin() {
+      const name = document.getElementById('login-name').value.trim().toLowerCase();
+      const code = document.getElementById('login-code').value.trim();
+      const errorEl = document.getElementById('login-error');
+      const nameEl = document.getElementById('login-name');
+      const codeEl = document.getElementById('login-code');
+
+      if (name === VALID_NAME && code === VALID_CODE) {
+        document.getElementById('login-overlay').classList.add('hidden');
+        errorEl.classList.remove('visible');
+      } else {
+        nameEl.classList.add('error');
+        codeEl.classList.add('error');
+        errorEl.classList.add('visible');
+        setTimeout(() => {
+          nameEl.classList.remove('error');
+          codeEl.classList.remove('error');
+        }, 1500);
+      }
+    }
+
+    // Allow Enter key to submit
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !document.getElementById('login-overlay').classList.contains('hidden')) {
+        checkLogin();
+      }
+    });
+
     // ── Font Injection (Safari-safe) ──────────────────────
     (function() {
       var link = document.createElement('link');
