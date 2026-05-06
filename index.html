@@ -353,6 +353,40 @@
     .footer-logo { font-family: var(--font-head); font-size: 1.2rem; color: var(--white); letter-spacing: 0.1em; }
     .footer-logo span { color: var(--pink); }
 
+    /* ── Optional Section ──────────────────────────────────── */
+    .optional-section { margin-top: 1px; border: 1px solid var(--grey30); }
+    .optional-header {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.5rem; cursor: crosshair;
+      background: var(--grey10); transition: background 0.2s;
+    }
+    .optional-header:hover { background: var(--grey20); }
+    .optional-label {
+      font-family: var(--font-mono); font-size: 0.75rem;
+      letter-spacing: 0.1em; color: var(--grey50); flex: 1;
+    }
+    .optional-badge {
+      font-family: var(--font-mono); font-size: 0.65rem;
+      letter-spacing: 0.1em; color: var(--grey50);
+      border: 1px solid var(--grey30); padding: 0.2rem 0.6rem;
+    }
+    .optional-toggle {
+      font-size: 1.1rem; color: var(--grey50);
+      transition: transform 0.3s; font-family: var(--font-mono);
+    }
+    .optional-header.open .optional-toggle { transform: rotate(45deg); color: var(--pink); }
+    .optional-header.open { border-bottom: 1px solid var(--grey30); }
+    .optional-body { display: none; }
+    .optional-body.open { display: block; }
+    .optional-row { border-left: 2px solid var(--grey30); margin-left: 0; }
+    .optional-row:hover { border-left-color: var(--grey50); }
+    .optional-row.open { border-left-color: var(--pink); border-color: var(--grey30); }
+    .optional-price {
+      font-family: var(--font-mono) !important; font-size: 0.7rem !important;
+      color: var(--grey50) !important; letter-spacing: 0.1em;
+      border: 1px solid var(--grey30); padding: 0.2rem 0.6rem;
+    }
+
     /* ── Datenschutz Accordion ─────────────────────────────── */
     .ds-accordion { border: 1px solid var(--grey30); }
     .ds-acc-header {
@@ -622,10 +656,10 @@
 ```
   <!-- Tab Navigation -->
   <div class="feature-tabs fade-in">
-    <button class="tab-btn active" onclick="showTab('families')" data-i18n="tab_families">FAMILIEN</button>
-    <button class="tab-btn" onclick="showTab('providers')" data-i18n="tab_providers">ANBIETER</button>
-    <button class="tab-btn" onclick="showTab('team')" data-i18n="tab_team">FERIENPASS TEAM</button>
-    <button class="tab-btn" onclick="showTab('infra')" data-i18n="tab_infra">WEB & ARCHITEKTUR</button>
+    <button class="tab-btn active" onclick="showTab('families', this)" data-i18n="tab_families">FAMILIEN</button>
+    <button class="tab-btn" onclick="showTab('providers', this)" data-i18n="tab_providers">ANBIETER</button>
+    <button class="tab-btn" onclick="showTab('team', this)" data-i18n="tab_team">FERIENPASS TEAM</button>
+    <button class="tab-btn" onclick="showTab('infra', this)" data-i18n="tab_infra">WEB & ARCHITEKTUR</button>
   </div>
 
   <!-- TAB: Familien -->
@@ -754,6 +788,69 @@
         </div>
       </div>
     </div>
+    </div>
+
+    <!-- Optional Features Familien -->
+    <div class="optional-section">
+      <div class="optional-header" onclick="toggleOptional(this)">
+        <span class="optional-label">+ OPTIONALE ERWEITERUNGEN</span>
+        <span class="optional-badge">NICHT IM BASE PACKAGE</span>
+        <span class="optional-toggle">+</span>
+      </div>
+      <div class="optional-body">
+        <div class="feature-row optional-row" onclick="toggleFeature(this)">
+          <div class="feature-header">
+            <h4>Interactive Preference Profiling & Personal Recommendations</h4>
+            <div class="feature-price optional-price">OPTIONAL</div>
+            <div class="feature-toggle">+</div>
+          </div>
+          <div class="feature-body">
+            <div class="feature-grid">
+              <div class="feature-col">
+                <div class="feature-col-label">WAS</div>
+                <ul>
+                  <li>Conversational AI führt Kinder & Eltern durch visuelles Self-Discovery</li>
+                  <li>Detailliertes Interesse-Mapping via AI Agent</li>
+                  <li>Hochgradig personalisierte Kursempfehlungen</li>
+                </ul>
+              </div>
+              <div class="feature-col">
+                <div class="feature-col-label">WARUM</div>
+                <ul>
+                  <li>Authentische Interesse-Profile fördern Talente von Kindern</li>
+                  <li>Detailliertes Interesse-Mapping liefert wertvolle Demand-Signals</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-row optional-row" onclick="toggleFeature(this)">
+          <div class="feature-header">
+            <h4>Course Planning Calendar</h4>
+            <div class="feature-price optional-price">OPTIONAL</div>
+            <div class="feature-toggle">+</div>
+          </div>
+          <div class="feature-body">
+            <div class="feature-grid">
+              <div class="feature-col">
+                <div class="feature-col-label">WAS</div>
+                <ul>
+                  <li>Kurslisten, Kalenderansicht, visuelles Drag & Drop</li>
+                  <li>Verbunden mit Outlook, Google, Apple Kalender</li>
+                </ul>
+              </div>
+              <div class="feature-col">
+                <div class="feature-col-label">WARUM</div>
+                <ul>
+                  <li>Vereinfacht Ferienplanung für beschäftigte Familien</li>
+                  <li>Nützlich für grosse Anbieter und das Ferienpass-Team</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- TAB: Anbieter -->
@@ -873,6 +970,117 @@
           <div class="feature-col">
             <div class="feature-col-label" data-i18n="col_why">WARUM</div>
             <ul><li data-i18n="p5_b1">AI Guidance verbessert Kurs-Präsentation & Analytics</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Optional Features Anbieter -->
+    <div class="optional-section">
+      <div class="optional-header" onclick="toggleOptional(this)">
+        <span class="optional-label">+ OPTIONALE ERWEITERUNGEN</span>
+        <span class="optional-badge">NICHT IM BASE PACKAGE</span>
+        <span class="optional-toggle">+</span>
+      </div>
+      <div class="optional-body">
+        <div class="feature-row optional-row" onclick="toggleFeature(this)">
+          <div class="feature-header">
+            <h4>Brand/Course Asset Library & Customized Templates</h4>
+            <div class="feature-price optional-price">OPTIONAL</div>
+            <div class="feature-toggle">+</div>
+          </div>
+          <div class="feature-body">
+            <div class="feature-grid">
+              <div class="feature-col">
+                <div class="feature-col-label">WAS</div>
+                <ul>
+                  <li>Upload, Speichern & Organisieren von Media Assets</li>
+                  <li>Konfigurierbare Kurs-Listing-Templates mit Dynamic Links</li>
+                </ul>
+              </div>
+              <div class="feature-col">
+                <div class="feature-col-label">WARUM</div>
+                <ul>
+                  <li>Professional-Grade Kurs-Listing-Erstellung</li>
+                  <li>Zieht qualitativ hochwertigere Anbieter an</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-row optional-row" onclick="toggleFeature(this)">
+          <div class="feature-header">
+            <h4>Automated Publishing Review</h4>
+            <div class="feature-price optional-price">OPTIONAL</div>
+            <div class="feature-toggle">+</div>
+          </div>
+          <div class="feature-body">
+            <div class="feature-grid">
+              <div class="feature-col">
+                <div class="feature-col-label">WAS</div>
+                <ul><li>AI-basierte Quality Readiness Checklist für Kurs-Listings</li></ul>
+              </div>
+              <div class="feature-col">
+                <div class="feature-col-label">WARUM</div>
+                <ul>
+                  <li>Verbessert Qualität der Listings automatisch</li>
+                  <li>Reduziert manuellen Review-Aufwand erheblich</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-row optional-row" onclick="toggleFeature(this)">
+          <div class="feature-header">
+            <h4>Dedicated Course Space & Live Updates</h4>
+            <div class="feature-price optional-price">OPTIONAL</div>
+            <div class="feature-toggle">+</div>
+          </div>
+          <div class="feature-body">
+            <div class="feature-grid">
+              <div class="feature-col">
+                <div class="feature-col-label">WAS</div>
+                <ul>
+                  <li>Sicherer Raum für Familien & Anbieter</li>
+                  <li>Live-Updates: Vorbereitung / Programm / Wetter / Check-in</li>
+                  <li>Kurs-Media-Speicher: Diplome / Zertifikate / Fotos</li>
+                </ul>
+              </div>
+              <div class="feature-col">
+                <div class="feature-col-label">WARUM</div>
+                <ul>
+                  <li>Direkter Austausch bereichert Kurs-Erfahrung</li>
+                  <li>Liefert neue Insights ohne Vermittlung durch Ferienpass</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-row optional-row" onclick="toggleFeature(this)">
+          <div class="feature-header">
+            <h4>Advanced Management Dashboard</h4>
+            <div class="feature-price optional-price">OPTIONAL</div>
+            <div class="feature-toggle">+</div>
+          </div>
+          <div class="feature-body">
+            <div class="feature-grid">
+              <div class="feature-col">
+                <div class="feature-col-label">WAS</div>
+                <ul>
+                  <li>Konfigurierbare analytische Dashboards</li>
+                  <li>AI-basierte Portfolio-Gap & Opportunity-Flags</li>
+                  <li>AI-basierte Kurs/Portfolio Action Recommendations</li>
+                </ul>
+              </div>
+              <div class="feature-col">
+                <div class="feature-col-label">WARUM</div>
+                <ul>
+                  <li>Proaktives Kurs/Portfolio-Management</li>
+                  <li>Verbessert Qualität taktischer & strategischer Entscheidungen</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1008,6 +1216,94 @@
         </div>
       </div>
     </div>
+    </div>
+
+    <!-- Optional Features Team -->
+    <div class="optional-section">
+      <div class="optional-header" onclick="toggleOptional(this)">
+        <span class="optional-label">+ OPTIONALE ERWEITERUNGEN</span>
+        <span class="optional-badge">NICHT IM BASE PACKAGE</span>
+        <span class="optional-toggle">+</span>
+      </div>
+      <div class="optional-body">
+        <div class="feature-row optional-row" onclick="toggleFeature(this)">
+          <div class="feature-header">
+            <h4>Gifts & Discounts</h4>
+            <div class="feature-price optional-price">OPTIONAL</div>
+            <div class="feature-toggle">+</div>
+          </div>
+          <div class="feature-body">
+            <div class="feature-grid">
+              <div class="feature-col">
+                <div class="feature-col-label">WAS</div>
+                <ul>
+                  <li>Ferienpass & Kurs-Teilnahme zahlbar mit Geschenk & Rabatt-Vouchers</li>
+                  <li>Sponsoring & Seasonal Discounts</li>
+                </ul>
+              </div>
+              <div class="feature-col">
+                <div class="feature-col-label">WARUM</div>
+                <ul>
+                  <li>Erschliesst neue moderne Kaufmodalitäten</li>
+                  <li>Family Gifts, Sponsoring & saisonale Rabatte</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-row optional-row" onclick="toggleFeature(this)">
+          <div class="feature-header">
+            <h4>Rating System</h4>
+            <div class="feature-price optional-price">OPTIONAL</div>
+            <div class="feature-toggle">+</div>
+          </div>
+          <div class="feature-body">
+            <div class="feature-grid">
+              <div class="feature-col">
+                <div class="feature-col-label">WAS</div>
+                <ul>
+                  <li>Stern & Kommentar-Bewertungssystem für Eltern & Kinder</li>
+                  <li>Provider-Response Option</li>
+                  <li>Exception Highlights für Ferienpass</li>
+                </ul>
+              </div>
+              <div class="feature-col">
+                <div class="feature-col-label">WARUM</div>
+                <ul>
+                  <li>Natürliche Feedback-Schleife für Kurs-Performance</li>
+                  <li>Insights fliessen in Advanced Management Dashboard</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-row optional-row" onclick="toggleFeature(this)">
+          <div class="feature-header">
+            <h4>Loyalty & Rewards</h4>
+            <div class="feature-price optional-price">OPTIONAL</div>
+            <div class="feature-toggle">+</div>
+          </div>
+          <div class="feature-body">
+            <div class="feature-grid">
+              <div class="feature-col">
+                <div class="feature-col-label">WAS</div>
+                <ul>
+                  <li>Gamifiziertes Loyalitäts- & Belohnungssystem</li>
+                  <li>Für Familien & Kursanbieter (konfigurierbar)</li>
+                </ul>
+              </div>
+              <div class="feature-col">
+                <div class="feature-col-label">WARUM</div>
+                <ul>
+                  <li>Stärkt Brand-Trust & langfristigen Wert des Ferienpass</li>
+                  <li>Liefert zusätzliche Verhaltens-Daten für Entscheidungen</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- TAB: Infra -->
@@ -1095,16 +1391,76 @@
         </div>
       </div>
     </div>
+
+    <!-- Optional Features Web & Architektur -->
+    <div class="optional-section">
+      <div class="optional-header" onclick="toggleOptional(this)">
+        <span class="optional-label">+ OPTIONALE ERWEITERUNGEN</span>
+        <span class="optional-badge">NICHT IM BASE PACKAGE</span>
+        <span class="optional-toggle">+</span>
+      </div>
+      <div class="optional-body">
+        <div class="feature-row optional-row" onclick="toggleFeature(this)">
+          <div class="feature-header">
+            <h4>Extended Language Assistance & Dynamic Translation</h4>
+            <div class="feature-price optional-price">OPTIONAL</div>
+            <div class="feature-toggle">+</div>
+          </div>
+          <div class="feature-body">
+            <div class="feature-grid">
+              <div class="feature-col">
+                <div class="feature-col-label">WAS</div>
+                <ul>
+                  <li>Multi-Agent AI Support in 100+ Sprachen</li>
+                  <li>Alle Website-Inhalte übersetzen sich dynamisch</li>
+                  <li>Neue Kurs-Listings werden automatisch übersetzt</li>
+                </ul>
+              </div>
+              <div class="feature-col">
+                <div class="feature-col-label">WARUM</div>
+                <ul>
+                  <li>Ultimativer Accessibility-Support für alle Nicht-Muttersprachler</li>
+                  <li>Keine Sprachbarriere mehr — für wirklich alle Familien</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-row optional-row" onclick="toggleFeature(this)">
+          <div class="feature-header">
+            <h4>Mobile Communication</h4>
+            <div class="feature-price optional-price">OPTIONAL</div>
+            <div class="feature-toggle">+</div>
+          </div>
+          <div class="feature-body">
+            <div class="feature-grid">
+              <div class="feature-col">
+                <div class="feature-col-label">WAS</div>
+                <ul>
+                  <li>AI Support Agent integriert in WhatsApp & SMS</li>
+                  <li>Notifications für neue Kurs-Listings</li>
+                </ul>
+              </div>
+              <div class="feature-col">
+                <div class="feature-col-label">WARUM</div>
+                <ul>
+                  <li>Mobile-native Experience für Familien ohne PC-Zugang</li>
+                  <li>Eltern on-the-go erreichen — keine App nötig</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 ```
 
   </section>
-
   <!-- ══════════════════════════════════════════════
        PRICING SUMMARY
   ══════════════════════════════════════════════ -->
-
   <section id="pricing">
     <div class="container">
       <span class="section-label" data-i18n="pricing_label">03 — INVESTITION</span>
@@ -1455,6 +1811,12 @@
   ══════════════════════════════════════════════ -->
 
   <script>
+    // ── Optional Section Toggle ───────────────────────────
+    function toggleOptional(header) {
+      header.classList.toggle('open');
+      header.nextElementSibling.classList.toggle('open');
+    }
+
     // ── Datenschutz Accordion ─────────────────────────────
     function toggleDsAccordion(header) {
       header.classList.toggle('open');
@@ -2197,18 +2559,22 @@
     }
 
     // ── Tab switching ─────────────────────────────────────
-    function showTab(tab) {
+    function showTab(tab, clickedBtn) {
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('tab-' + tab).classList.add('active');
-      event.currentTarget.classList.add('active');
+      var el = document.getElementById('tab-' + tab);
+      if (el) el.classList.add('active');
+      if (clickedBtn) clickedBtn.classList.add('active');
     }
 
     // ── Feature accordion ─────────────────────────────────
     function toggleFeature(row) {
       const isOpen = row.classList.contains('open');
-      // Close all in same tab
-      row.closest('.tab-content').querySelectorAll('.feature-row').forEach(r => r.classList.remove('open'));
+      // Find the parent container (tab-content or optional-body)
+      const parent = row.closest('.optional-body') || row.closest('.tab-content');
+      if (parent) {
+        parent.querySelectorAll('.feature-row').forEach(r => r.classList.remove('open'));
+      }
       if (!isOpen) row.classList.add('open');
     }
 
