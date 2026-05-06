@@ -354,20 +354,23 @@
     .footer-logo span { color: var(--pink); }
 
     /* ── Optional Section ──────────────────────────────────── */
-    .optional-section { margin-top: 1px; border: 1px solid var(--grey30); }
+    .optional-section { margin-top: 0.5rem; }
     .optional-header {
       display: flex; align-items: center; gap: 1rem;
-      padding: 1rem 1.5rem; cursor: crosshair;
-      background: var(--grey10); transition: background 0.2s;
+      padding: 0.8rem 1.5rem; cursor: crosshair;
+      background: var(--grey10); border: 1px solid var(--grey30);
+      border-top: 2px solid var(--grey50);
+      transition: background 0.2s;
     }
     .optional-header:hover { background: var(--grey20); }
     .optional-label {
-      font-family: var(--font-mono); font-size: 0.75rem;
-      letter-spacing: 0.1em; color: var(--grey50); flex: 1;
+      font-family: var(--font-mono); font-size: 0.72rem;
+      letter-spacing: 0.12em; color: var(--grey50); flex: 1;
+      text-transform: uppercase;
     }
     .optional-badge {
       font-family: var(--font-mono); font-size: 0.65rem;
-      letter-spacing: 0.1em; color: var(--grey50);
+      letter-spacing: 0.08em; color: var(--grey50);
       border: 1px solid var(--grey30); padding: 0.2rem 0.6rem;
     }
     .optional-toggle {
@@ -375,16 +378,16 @@
       transition: transform 0.3s; font-family: var(--font-mono);
     }
     .optional-header.open .optional-toggle { transform: rotate(45deg); color: var(--pink); }
-    .optional-header.open { border-bottom: 1px solid var(--grey30); }
+    .optional-header.open { border-color: var(--grey50); }
     .optional-body { display: none; }
     .optional-body.open { display: block; }
-    .optional-row { border-left: 2px solid var(--grey30); margin-left: 0; }
-    .optional-row:hover { border-left-color: var(--grey50); }
-    .optional-row.open { border-left-color: var(--pink); border-color: var(--grey30); }
+    /* Optional rows use same feature-row styling — just dim the price */
+    .optional-row { border-left: none; }
     .optional-price {
       font-family: var(--font-mono) !important; font-size: 0.7rem !important;
-      color: var(--grey50) !important; letter-spacing: 0.1em;
+      color: var(--grey50) !important; letter-spacing: 0.08em;
       border: 1px solid var(--grey30); padding: 0.2rem 0.6rem;
+      align-self: center;
     }
 
     /* ── Datenschutz Accordion ─────────────────────────────── */
@@ -788,7 +791,6 @@
         </div>
       </div>
     </div>
-    </div>
 
     <!-- Optional Features Familien -->
     <div class="optional-section">
@@ -973,7 +975,6 @@
           </div>
         </div>
       </div>
-    </div>
     </div>
 
     <!-- Optional Features Anbieter -->
@@ -1215,7 +1216,6 @@
           </div>
         </div>
       </div>
-    </div>
     </div>
 
     <!-- Optional Features Team -->
