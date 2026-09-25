@@ -601,7 +601,7 @@ footer{border-top:1px solid var(--g30);padding:2rem;font-size:.72rem;color:var(-
       <h2 data-i18n="cta_tit">Bereit loszulegen?</h2>
       <p data-i18n="cta_sub">Wir freuen uns auf das Gespräch.</p>
       <div class="cta-acts">
-        <a href="mailto:team@gosnob.com" class="bp">→ team@gosnob.com</a>
+        <button class="bp" onclick="contactMail()">→ team@gosnob.com</button>
         <button class="bo" onclick="exportPDF()" data-i18n="cta_pdf_arg">↓ ALS PDF</button>
         <button class="bo" onclick="openView('proposal')" data-i18n="cta_to_prop">→ ZUM PROPOSAL</button>
       </div>
@@ -619,7 +619,7 @@ footer{border-top:1px solid var(--g30);padding:2rem;font-size:.72rem;color:var(-
       <p class="hsub fade" data-i18n="p_sub">Komplette Neugestaltung der Präsenz und manuellen Prozesse — AI-gestützt, modular, skalierbar.</p>
       <div class="hacts fade">
         <button class="bp" onclick="exportPDF()" data-i18n="p_dl">↓ PROPOSAL DOWNLOADEN</button>
-        <a href="mailto:team@gosnob.com" class="bo" data-i18n="p_contact">→ KONTAKT AUFNEHMEN</a>
+        <button class="bo" onclick="contactMail()" data-i18n="p_contact">→ KONTAKT AUFNEHMEN</button>
       </div>
       <div class="claim-row fade">
         <div class="cc"><div class="t" data-i18n="cl1t">FÜR ALLE FAMILIEN</div><div class="d" data-i18n="cl1d">Unabhängig von Hintergrund &amp; Budget</div></div>
@@ -823,7 +823,7 @@ footer{border-top:1px solid var(--g30);padding:2rem;font-size:.72rem;color:var(-
       <h2 data-i18n="cta_tit">Bereit loszulegen?</h2>
       <p data-i18n="cta_sub">Wir freuen uns auf das Gespräch. Meld dich direkt — schnell und unkompliziert.</p>
       <div class="cta-acts">
-        <a href="mailto:team@gosnob.com" class="bp">→ team@gosnob.com</a>
+        <button class="bp" onclick="contactMail()">→ team@gosnob.com</button>
         <button class="bo" onclick="exportPDF()" data-i18n="cta_pdf_prop">↓ ALS PDF</button>
         <button class="bo" onclick="openView('arg')" data-i18n="cta_to_arg">← ZUM ARGUMENTARIUM</button>
       </div>
@@ -834,18 +834,46 @@ footer{border-top:1px solid var(--g30);padding:2rem;font-size:.72rem;color:var(-
 <footer>
   <div class="fi">
     <div class="flogo">GO<span>SNOB</span>.AI × BASLER <span>FERIENPASS</span></div>
-    <div>SNOB-2026-001 / JUAR-2026-001 · <span data-i18n="foot_law">Schweizer Recht · Basel-Stadt</span> · <a href="mailto:team@gosnob.com">team@gosnob.com</a></div>
+    <div>SNOB-2026-001 / JUAR-2026-001 · <span data-i18n="foot_law">Schweizer Recht · Basel-Stadt</span> · <button style="background:none;border:none;color:var(--pk);font-family:var(--fm);font-size:.72rem;cursor:pointer;padding:0;letter-spacing:.05em;" onclick="contactMail()">team@gosnob.com</button></div>
     <div data-i18n="foot_copy">© 2026 goSNOB.ai — Alle Rechte vorbehalten</div>
   </div>
 </footer>
 <script>
-// ── PDF EXPORT — beide Views zusammen
+// ── KONTAKT
+function contactMail(){
+  const email='team@gosnob.com';
+  // Versuche mailto
+  const link=document.createElement('a');
+  link.href='mailto:'+email+'?subject=Basler%20Ferienpass%202026&body=Hallo%20SNOB-Team%2C';
+  link.target='_blank';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  // Kopiere E-Mail als Fallback mit Hinweis
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(email).then(()=>{
+      showToast('📧 '+email+' kopiert!');
+    }).catch(()=>{});
+  }
+}
+function showToast(msg){
+  const t=document.createElement('div');
+  t.style.cssText='position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--pk);color:#000;font-family:var(--fm);font-size:.8rem;padding:.8rem 1.5rem;z-index:9999;letter-spacing:.05em;';
+  t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),3000);
+}
+
+// ── PDF EXPORT — beide Views zusammen, aktuelle Sprache
 function exportPDF(){
-  // Alle Inhalte sichtbar machen vor Export
+  // Alle Inhalte sichtbar + alle Accordeons öffnen
   document.querySelectorAll('.fade').forEach(f=>f.classList.add('vis'));
   document.querySelectorAll('.ftab-body').forEach(t=>t.style.display='block');
+  document.querySelectorAll('.fbody').forEach(t=>t.style.display='block');
+  document.querySelectorAll('.opbody').forEach(t=>t.style.display='block');
 
   const styles=Array.from(document.querySelectorAll('style')).map(s=>s.innerHTML).join('\n');
+  // innerHTML nach setLang — Texte sind bereits übersetzt im DOM
   const arg=document.getElementById('view-arg').innerHTML;
   const prop=document.getElementById('view-proposal').innerHTML;
 
@@ -894,9 +922,12 @@ body{background:#000;color:#fff;margin:0;padding:0;}
   a.click();
   URL.revokeObjectURL(url);
 
-  // Tabs wieder normal
+  // Tabs + Accordeons wieder normal
   setTimeout(()=>{
     document.querySelectorAll('.ftab-body').forEach((t,i)=>{t.style.display=i===0?'block':'none';});
+    document.querySelectorAll('.fbody').forEach(t=>t.style.display='');
+    document.querySelectorAll('.opbody').forEach(t=>t.style.display='');
+    showToast('✓ Download gestartet — im Browser öffnen und als PDF drucken');
   },500);
 }
 
@@ -1072,6 +1103,216 @@ fr:{
   p5_lbl:'05 — POURQUOI SNOB',p5_tit:'La différence.',w1h:'Diversité & Inclusion',w1p:"Pour toutes les origines. Le Ferienpass est pour chaque famille.",w2h:'Barrières Linguistiques',w2p:"Accès en DE / FR / EN — aucune famille exclue.",w3h:'Basé en Suisse',w3p:'Données en Suisse, contact direct.',w4h:'IA-Natif',w4p:"L'IA est le fondement — pas un ajout.",w5h:'Modulaire & Évolutif',w5p:"Package de base aujourd'hui — avancé demain.",w6h:'Zéro Dépendance',w6p:'Standards ouverts, hébergement direct Metanet.ch.',w7h:'Multilingue dès le départ',w7p:"DE / FR / EN intégré dès le premier jour.",w8h:"Gains d'Efficacité",w8p:"Paiements automatiques, listes d'attente — focus sur le portfolio.",
   p_cta_lbl:'06 — PROCHAINES ÉTAPES',cta_pdf_prop:'↓ EN PDF',cta_to_arg:"← VERS L'ARGUMENTAIRE",foot_law:'Droit Suisse · Bâle-Ville',foot_copy:'© 2026 goSNOB.ai — Tous droits réservés'
 }
+};
+
+// ── 8 WEITERE SPRACHEN
+T.it={
+  login_sub:'Ferienpass Basilea — Documenti riservati 2026',lbl_name:'Nome',lbl_code:'Codice di accesso',lerr:'Credenziali non valide.',login_btn:'RICHIEDERE ACCESSO',login_hint:'RISERVATO · SOLO PERSONE AUTORIZZATE',
+  land_sub:'× BASLER FERIENPASS 2026',land_tag_arg:'Società · Sociale · Inclusione',land_h_arg:'PERCHÉ IL FERIENPASS <em>PER TUTTI.</em>',land_desc_arg:'La promessa sociale del Ferienpass di Basilea — e perché una base moderna è una necessità.',land_for_arg:'PER: <strong>Politica · Partner · Pubblico · Media</strong>',ls1:'Nazionalità',ls2:'Origine migratoria',ls3:'Settimane vacanze/anno',land_btn_arg:'→ APRIRE ARGOMENTARIO',
+  land_tag_prop:'Tecnologia · Investimento · Attuazione',land_h_prop:'COSA COSTRUIAMO. <em>COME FUNZIONA.</em>',land_desc_prop:"L'offerta concreta: funzionalità, prezzi, tempi e piano di pagamento.",land_for_prop:'PER: <strong>Committente · Decisori · Team di progetto</strong>',ls4:'60k Investimento',ls5:'Fasi progetto',ls6:'Milestone',land_btn_prop:'→ APRIRE PROPOSTA',
+  nav_arg:'ARGOMENTARIO',nav_prop:'PROPOSTA',nav_dl:'↓ PDF',
+  a_h1:'BASLER FERIENPASS',a_h2:'PER TUTTI.',a_sub:'Il Ferienpass di Basilea è da decenni un\'istituzione. Ora è il momento di mantenere la sua promessa con una base moderna.',
+  s1:'Nazionalità a Basilea',s2:'Popolazione con orig. migratoria',s3:'Settimane vacanze/anno',
+  a2_lbl:'02 — REALTÀ SOCIALE BASILEA',a2_tit:'I numeri dietro la promessa.',a2_lead:'L\'inclusione non è uno slogan — è misurabile.',
+  sz1t:'Non parlano una lingua nazionale a casa',sz1d:'Quasi la metà delle famiglie basilesi comunica a casa in turco, albanese, tamil, arabo o un\'altra lingua.',sz1s:'Fonte: Ufficio statistico Basilea-Città 2024',
+  sz2t:'Ritardo di apprendimento per estate',sz2d:'I bambini delle famiglie a basso reddito perdono fino a 2 mesi di progressi scolastici durante le vacanze estive.',sz2s:'Fonte: OCSE Education at a Glance 2023',
+  sz3t:'Apertura iscrizioni — e chi perde',sz3d:'Apertura alle 7:00, sito solo in tedesco, nessuna lista d\'attesa. Chi non parla la lingua non ha possibilità.',sz3s:'Basler Ferienpass — processo attuale',
+  sz_quote:'Il Ferienpass promette: vacanze per tutti. Ma chi non parla tedesco, non riesce ad accedere alle 7:00 — è escluso. Non per cattiva intenzione. Perché l\'infrastruttura non è cresciuta.',
+  sz_cite:'La soluzione non è la buona volontà. La soluzione è l\'infrastruttura digitale.',
+  aq_lbl:'STATO ATTUALE → MIGLIORAMENTO',aq_ist:'DA — OGGI',aq_sol:'A — OBIETTIVO',
+  a4_tit:'Anche il Ferienpass.',a4_lead:'Basilea-Città ha oltre 170 nazionalità. Il Ferienpass oggi parla solo tedesco.',
+  ui_lang:'Interfaccia piattaforma',ai_lang:'Assistente AI',leg_ui:'Interfaccia (DE / FR / EN)',leg_ai:'Assistente telefonico AI (8 lingue)',
+  q1:'Un assistente AI telefonico in turco, albanese, tamil e ucraino significa: ogni genitore può chiamare nella propria lingua madre — alle 22:00 — e prenotare un corso.',
+  q1c:'Questa è la differenza tra partecipazione ed esclusione.',
+  core_msg:'Il Ferienpass di Basilea è da decenni una promessa a tutte le famiglie: le vacanze sono possibili per ogni bambino — indipendentemente da origine, lingua e budget.',
+  core_cite:'Basler Ferienpass — Per i bambini. Per le famiglie. Per Basilea.',
+  cta_tit:'Pronti a iniziare?',cta_sub:'Siamo lieti di parlarne.',cta_pdf_arg:'↓ COME PDF',cta_to_prop:'→ ALLA PROPOSTA',cta_pdf_prop:'↓ COME PDF',cta_to_arg:'← ALL\'ARGOMENTARIO',
+  p_sub:'Riprogettazione completa — basata su AI, modulare, scalabile.',p_dl:'↓ SCARICA PROPOSTA',p_contact:'→ CONTATTACI',
+  funders_t:'Possibili partner finanziatori',
+  ms_lbl:'PIANO DI PAGAMENTO — 3 MILESTONE',ms1n:'Alla firma del contratto',ms2n:'Dopo il Go-Live',ms3n:'Dopo 3 mesi di supporto',ms_tot:'TOTALE',
+  foot_law:'Diritto svizzero · Basilea-Città',foot_copy:'© 2026 goSNOB.ai — Tutti i diritti riservati'
+};
+T.tr={
+  login_sub:'Ferienpass Basel — Gizli Belgeler 2026',lbl_name:'İsim',lbl_code:'Erişim kodu',lerr:'Geçersiz kimlik bilgileri.',login_btn:'ERİŞİM İSTE',login_hint:'GİZLİ · YALNIZCA YETKİLİ KİŞİLER',
+  land_sub:'× BASLER FERIENPASS 2026',land_tag_arg:'Toplum · Sosyal · Kapsayıcılık',land_h_arg:'NEDEN FERİENPASS <em>HERKES İÇİN.</em>',land_desc_arg:'Basel Ferienpass\'ın sosyal vaadi — ve modern bir altyapının neden zorunlu olduğu.',land_for_arg:'İÇİN: <strong>Siyaset · Ortaklar · Kamuoyu · Medya</strong>',ls1:'Milliyet',ls2:'Göç geçmişi',ls3:'Tatil haftası/yıl',land_btn_arg:'→ ARGÜMANTARİUMU AÇ',
+  land_tag_prop:'Teknoloji · Yatırım · Uygulama',land_h_prop:'NE İNŞA EDİYORUZ. <em>NASIL ÇALIŞIYOR.</em>',land_desc_prop:'Somut teklif: özellikler, fiyatlar, zaman çizelgesi ve ödeme planı.',land_for_prop:'İÇİN: <strong>İşveren · Karar Vericiler · Proje Ekibi</strong>',ls4:'60k Yatırım',ls5:'Proje aşaması',ls6:'Kilometre taşı',land_btn_prop:'→ TEKLİFİ AÇ',
+  nav_arg:'ARGÜMANTARİUM',nav_prop:'TEKLİF',nav_dl:'↓ PDF',
+  a_h1:'BASLER FERİENPASS',a_h2:'HERKES İÇİN.',a_sub:'Basel Ferienpass on yıllardır bir kurum. Şimdi modern bir temel ile vaadini yerine getirme zamanı.',
+  s1:'Basel\'deki milliyet',s2:'Göç geçmişi olan nüfus',s3:'Yılda tatil haftası',
+  a2_lbl:'02 — BASEL\'İN SOSYAL GERÇEKLİĞİ',a2_tit:'Vadin arkasındaki rakamlar.',a2_lead:'Kapsayıcılık bir slogan değil — ölçülebilir.',
+  sz1t:'Evde ulusal dil konuşmayan',sz1d:'Basel hanelerinin neredeyse yarısı evde Türkçe, Arnavutça, Tamilce, Arapça veya başka bir dilde iletişim kuruyor. Mevcut web sitesi onlar için fiilen mevcut değil.',sz1s:'Kaynak: Basel-Stadt İstatistik Ofisi 2024',
+  sz2t:'Yaz başına öğrenme kaybı',sz2d:'Düşük gelirli ailelerin çocukları yaz tatillerinde 2 aya kadar öğrenme ilerlemesi kaybediyor.',sz2s:'Kaynak: OECD Education at a Glance 2023',
+  sz3t:'Kayıt başlangıcı — ve kim kaybediyor',sz3d:'Sabah 7\'de başlayan kayıt, yalnızca Almanca web sitesi, bekleme listesi yok. Dili bilmeyen veya çalışmak zorunda olan birinin şansı yok.',sz3s:'Basler Ferienpass — mevcut süreç',
+  sz_quote:'Ferienpass söz veriyor: herkes için tatil. Ama Almanca bilmeyenler, sabah 7\'de bağlanamayanlar dışlanıyor. Kötü niyetten değil. Altyapı büyümediği için.',
+  sz_cite:'Çözüm iyi niyet değil. Çözüm dijital altyapıdır.',
+  aq_lbl:'MEVCUT DURUM → İYİLEŞTİRME',aq_ist:'BUGÜN',aq_sol:'HEDEF',
+  a4_tit:'Ferienpass da öyle.',a4_lead:'Basel-Stadt\'ın 170\'den fazla milliyeti var. Ferienpass bugün yalnızca Almanca konuşuyor.',
+  ui_lang:'Platform arayüzü',ai_lang:'AI Asistan',leg_ui:'Platform (DE / FR / EN)',leg_ai:'AI telefon asistanı (8 dil)',
+  q1:'Türkçe, Arnavutça, Tamilce ve Ukraynaca\'da AI telefon asistanı şu anlama geliyor: her anne, her baba kendi ana dilinde arayabilir — saat 22:00\'de — ve bir kurs kaydedebilir.',
+  q1c:'Bu, katılım ile dışlanma arasındaki farktır.',
+  core_msg:'Basel Ferienpass on yıllardır tüm Basel ailelerine bir söz: tatil her çocuk için mümkün — köken, dil ve bütçeden bağımsız olarak.',
+  core_cite:'Basler Ferienpass — Çocuklar için. Aileler için. Basel için.',
+  cta_tit:'Başlamaya hazır mısınız?',cta_sub:'Görüşmeyi dört gözle bekliyoruz.',cta_pdf_arg:'↓ PDF OLARAK',cta_to_prop:'→ TEKLİFE',cta_pdf_prop:'↓ PDF OLARAK',cta_to_arg:'← ARGÜMANTARİUMA',
+  p_sub:'Eksiksiz yeniden tasarım — AI destekli, modüler, ölçeklenebilir.',p_dl:'↓ TEKLİFİ İNDİR',p_contact:'→ BİZE ULAŞIN',
+  funders_t:'Olası finansman ortakları',
+  ms_lbl:'ÖDEME PLANI — 3 KİLOMETRE TAŞI',ms1n:'Sözleşme imzalandığında',ms2n:'Go-Live sonrası',ms3n:'3 ay destek sonrası',ms_tot:'TOPLAM',
+  foot_law:'İsviçre Hukuku · Basel-Stadt',foot_copy:'© 2026 goSNOB.ai — Tüm hakları saklıdır'
+};
+T.sq={
+  login_sub:'Ferienpass Basel — Dokumente Konfidenciale 2026',lbl_name:'Emri',lbl_code:'Kodi i hyrjes',lerr:'Kredencialet e pavlefshme.',login_btn:'KËRKO HYRJE',login_hint:'KONFIDENCIAL · VETËM PERSONAT E AUTORIZUAR',
+  land_sub:'× BASLER FERIENPASS 2026',land_tag_arg:'Shoqëri · Sociale · Përfshirje',land_h_arg:'PERSE FERIENPASS <em>PËR TË GJITHË.</em>',land_desc_arg:'Premtimi social i Ferienpass të Baselit — dhe pse një bazë moderne është domosdoshmëri.',land_for_arg:'PËR: <strong>Politikë · Partnerë · Publik · Media</strong>',ls1:'Kombësi',ls2:'Prejardhje migrimi',ls3:'Javë pushimi/vit',land_btn_arg:'→ HAP ARGUMENTARIN',
+  land_tag_prop:'Teknologji · Investim · Zbatim',land_h_prop:'ÇKA NDËRTOJMË. <em>SI FUNKSIONON.</em>',land_desc_prop:'Oferta konkrete: veçoritë, çmimet, afati kohor dhe plani i pagesës.',land_for_prop:'PËR: <strong>Klienti · Vendimmarrësit · Ekipi i projektit</strong>',ls4:'60k Investim',ls5:'Fazat e projektit',ls6:'Gurë kilometri',land_btn_prop:'→ HAP PROPOZIMIN',
+  nav_arg:'ARGUMENTARI',nav_prop:'PROPOZIM',nav_dl:'↓ PDF',
+  a_h1:'BASLER FERIENPASS',a_h2:'PËR TË GJITHË.',a_sub:'Ferienpass i Baselit është prej dekadash një institucion. Tani është koha të plotësohet premtimi i tij me një bazë moderne.',
+  s1:'Kombësi në Basel',s2:'Popullsi me prejardhje migrimi',s3:'Javë pushimi në vit',
+  a2_lbl:'02 — REALITETI SOCIAL I BASELIT',a2_tit:'Numrat pas premtimit.',a2_lead:'Përfshirja nuk është slogan — është e matshme.',
+  sz1t:'Nuk flasin gjuhë kombëtare në shtëpi',sz1d:'Pothuajse gjysma e familjeve të Baselit komunikojnë në shtëpi në turqisht, shqip, tamil, arabisht ose gjuhë tjetër.',sz1s:'Burimi: Zyra Statistikore Basel-Qytet 2024',
+  sz2t:'Humbje e të mësuarit çdo verë',sz2d:'Fëmijët nga familjet me të ardhura të ulëta humbasin deri 2 muaj progres shkollor gjatë pushimeve verore.',sz2s:'Burimi: OECD Education at a Glance 2023',
+  sz3t:'Hapja e regjistrimit — dhe kush humb',sz3d:'Hapja në orën 7:00, faqe vetëm në gjermanisht, pa listë pritjeje. Kush nuk e di gjuhën nuk ka shans.',sz3s:'Basler Ferienpass — procesi aktual',
+  sz_quote:'Ferienpass premton: pushime për të gjithë. Por kush nuk flet gjermanisht, nuk mund të hyjë në orën 7:00 — është i përjashtuar. Jo nga qëllim i keq. Por sepse infrastruktura nuk ka rritur.',
+  sz_cite:'Zgjidhja nuk është vullneti i mirë. Zgjidhja është infrastruktura dixhitale.',
+  aq_lbl:'GJENDJA AKTUALE → PËRMIRËSIM',aq_ist:'SOT',aq_sol:'QËLLIMI',
+  a4_tit:'Edhe Ferienpass.',a4_lead:'Basel-Qytet ka mbi 170 kombësi. Ferienpass sot flet vetëm gjermanisht.',
+  ui_lang:'Ndërfaqja e platformës',ai_lang:'Asistent AI',leg_ui:'Platforma (DE / FR / EN)',leg_ai:'Asistent telefonik AI (8 gjuhë)',
+  q1:'Një asistent telefonik AI në turqisht, shqip, tamil dhe ukrainisht do të thotë: çdo prind mund të telefonojë në gjuhën e tij amtare — në ora 22:00 — dhe të rezervojë.',
+  q1c:'Kjo është diferenca midis përfshirjes dhe përjashtimit.',
+  core_msg:'Ferienpass i Baselit është prej dekadash një premtim për të gjitha familjet: pushimet janë të mundshme për çdo fëmijë — pavarësisht nga prejardhja, gjuha dhe buxheti.',
+  core_cite:'Basler Ferienpass — Për fëmijët. Për familjet. Për Baselin.',
+  cta_tit:'Gati për të filluar?',cta_sub:'Presim me padurim bisedën.',cta_pdf_arg:'↓ SI PDF',cta_to_prop:'→ TE PROPOZIMI',cta_pdf_prop:'↓ SI PDF',cta_to_arg:'← TE ARGUMENTARI',
+  p_sub:'Riprojektim i plotë — i mbështetur nga AI, modular, i shkallëzueshëm.',p_dl:'↓ SHKARKO PROPOZIMIN',p_contact:'→ NA KONTAKTONI',
+  funders_t:'Partnerë të mundshëm financiarë',
+  ms_lbl:'PLAN PAGESE — 3 GURË KILOMETRI',ms1n:'Nënshkrimi i kontratës',ms2n:'Pas Go-Live',ms3n:'Pas 3 muaj mbështetje',ms_tot:'TOTAL',
+  foot_law:'E Drejtë Zvicerane · Basel-Qytet',foot_copy:'© 2026 goSNOB.ai — Të gjitha të drejtat e rezervuara'
+};
+T.sr={
+  login_sub:'Ferienpass Basel — Poverljivi dokumenti 2026',lbl_name:'Ime',lbl_code:'Pristupni kod',lerr:'Nevažeći podaci.',login_btn:'ZATRAŽI PRISTUP',login_hint:'POVERLJIVO · SAMO OVLAŠĆENA LICA',
+  land_sub:'× BASLER FERIENPASS 2026',land_tag_arg:'Društvo · Socijalno · Inkluzija',land_h_arg:'ZAŠTO FERIENPASS <em>ZA SVE.</em>',land_desc_arg:'Socijalno obećanje Ferienpass Bazela — i zašto je moderna osnova neophodnost.',land_for_arg:'ZA: <strong>Politiku · Partnere · Javnost · Medije</strong>',ls1:'Nacionalnosti',ls2:'Migracijsko poreklo',ls3:'Sedmice odmora/god.',land_btn_arg:'→ OTVORI ARGUMENTARIJUM',
+  land_tag_prop:'Tehnologija · Investicija · Realizacija',land_h_prop:'ŠTA GRADIMO. <em>KAKO FUNKCIONIŠE.</em>',land_desc_prop:'Konkretna ponuda: funkcije, cene, vremenski plan i plan plaćanja.',land_for_prop:'ZA: <strong>Naručioca · Donosioce odluka · Projektni tim</strong>',ls4:'60k Investicija',ls5:'Faze projekta',ls6:'Miljokazi',land_btn_prop:'→ OTVORI PREDLOG',
+  nav_arg:'ARGUMENTARIJUM',nav_prop:'PREDLOG',nav_dl:'↓ PDF',
+  a_h1:'BASLER FERIENPASS',a_h2:'ZA SVE.',a_sub:'Bazelski Ferienpass je decenijama institucija. Sada je vreme da se ispuni njegovo obećanje modernom osnovom.',
+  s1:'Nacionalnosti u Bazelu',s2:'Stanovništvo s migracijskim poreklom',s3:'Sedmice odmora godišnje',
+  a2_lbl:'02 — SOCIJALNA STVARNOST BAZELA',a2_tit:'Brojevi iza obećanja.',a2_lead:'Inkluzija nije slogan — ona je merljiva.',
+  sz1t:'Ne govore nacionalni jezik kod kuće',sz1d:'Skoro polovina domaćinstava u Bazelu komunicira kod kuće na turskom, albanskom, tamilskom, arapskom ili drugom jeziku.',sz1s:'Izvor: Statistički ured Basel-Stadt 2024',
+  sz2t:'Gubitak učenja po letu',sz2d:'Deca iz porodica s niskim prihodima gube do 2 meseca napretka u učenju tokom letnjih praznika.',sz2s:'Izvor: OECD Education at a Glance 2023',
+  sz3t:'Otvaranje prijava — i ko gubi',sz3d:'Otvaranje u 7:00, sajt samo na nemačkom, nema liste čekanja. Ko ne zna jezik nema šanse.',sz3s:'Basler Ferienpass — trenutni proces',
+  sz_quote:'Ferienpass obećava: odmor za sve. Ali ko ne govori nemački, ne može da se prijavi u 7:00 — isključen je. Ne iz loše namere. Jer infrastruktura nije rasla.',
+  sz_cite:'Rešenje nije dobra volja. Rešenje je digitalna infrastruktura.',
+  aq_lbl:'TRENUTNO STANJE → POBOLJŠANJE',aq_ist:'DANAS',aq_sol:'CILJ',
+  a4_tit:'I Ferienpass isto.',a4_lead:'Basel-Stadt ima preko 170 nacionalnosti. Ferienpass danas govori samo nemački.',
+  ui_lang:'Interfejs platforme',ai_lang:'AI Asistent',leg_ui:'Platforma (DE / FR / EN)',leg_ai:'AI telefonski asistent (8 jezika)',
+  q1:'AI telefonski asistent na turskom, albanskom, tamilskom i ukrajinskom znači: svaki roditelj može da nazove na maternjem jeziku — u 22:00 — i rezerviše kurs.',
+  q1c:'To je razlika između učešća i isključenosti.',
+  core_msg:'Bazelski Ferienpass je decenijama obećanje svim bazelskim porodicama: odmor je moguć za svako dete — bez obzira na poreklo, jezik i budžet.',
+  core_cite:'Basler Ferienpass — Za decu. Za porodice. Za Basel.',
+  cta_tit:'Spremni za početak?',cta_sub:'Radujemo se razgovoru.',cta_pdf_arg:'↓ KAO PDF',cta_to_prop:'→ NA PREDLOG',cta_pdf_prop:'↓ KAO PDF',cta_to_arg:'← NA ARGUMENTARIJUM',
+  p_sub:'Potpuno redizajniranje — zasnovano na AI, modularno, skalabilno.',p_dl:'↓ PREUZMI PREDLOG',p_contact:'→ KONTAKTIRAJTE NAS',
+  funders_t:'Mogući partneri za finansiranje',
+  ms_lbl:'PLAN PLAĆANJA — 3 MILJOKAZA',ms1n:'Potpisivanje ugovora',ms2n:'Nakon Go-Live',ms3n:'Nakon 3 meseca podrške',ms_tot:'UKUPNO',
+  foot_law:'Švajcarsko pravo · Basel-Stadt',foot_copy:'© 2026 goSNOB.ai — Sva prava zadržana'
+};
+T.es={
+  login_sub:'Ferienpass Basilea — Documentos confidenciales 2026',lbl_name:'Nombre',lbl_code:'Código de acceso',lerr:'Credenciales inválidas.',login_btn:'SOLICITAR ACCESO',login_hint:'CONFIDENCIAL · SOLO PERSONAS AUTORIZADAS',
+  land_sub:'× BASLER FERIENPASS 2026',land_tag_arg:'Sociedad · Social · Inclusión',land_h_arg:'POR QUÉ EL FERIENPASS <em>PARA TODOS.</em>',land_desc_arg:'La promesa social del Ferienpass de Basilea — y por qué una base moderna es una necesidad.',land_for_arg:'PARA: <strong>Política · Socios · Público · Medios</strong>',ls1:'Nacionalidades',ls2:'Origen migratorio',ls3:'Semanas vacaciones/año',land_btn_arg:'→ ABRIR ARGUMENTARIO',
+  land_tag_prop:'Tecnología · Inversión · Implementación',land_h_prop:'QUÉ CONSTRUIMOS. <em>CÓMO FUNCIONA.</em>',land_desc_prop:'La oferta concreta: funcionalidades, precios, cronograma y plan de pago.',land_for_prop:'PARA: <strong>Cliente · Decisores · Equipo del proyecto</strong>',ls4:'60k Inversión',ls5:'Fases del proyecto',ls6:'Hitos',land_btn_prop:'→ ABRIR PROPUESTA',
+  nav_arg:'ARGUMENTARIO',nav_prop:'PROPUESTA',nav_dl:'↓ PDF',
+  a_h1:'BASLER FERIENPASS',a_h2:'PARA TODOS.',a_sub:'El Ferienpass de Basilea es desde hace décadas una institución. Ahora es el momento de cumplir su promesa con una base moderna.',
+  s1:'Nacionalidades en Basilea',s2:'Población con origen migratorio',s3:'Semanas de vacaciones al año',
+  a2_lbl:'02 — REALIDAD SOCIAL DE BASILEA',a2_tit:'Los números detrás de la promesa.',a2_lead:'La inclusión no es un eslogan — es medible.',
+  sz1t:'No hablan lengua nacional en casa',sz1d:'Casi la mitad de los hogares basilenses se comunican en casa en turco, albanés, tamil, árabe u otro idioma.',sz1s:'Fuente: Oficina de Estadística Basilea-Ciudad 2024',
+  sz2t:'Pérdida de aprendizaje por verano',sz2d:'Los niños de familias con bajos ingresos pierden hasta 2 meses de progreso de aprendizaje durante las vacaciones de verano.',sz2s:'Fuente: OCDE Education at a Glance 2023',
+  sz3t:'Apertura de inscripciones — y quién pierde',sz3d:'Apertura a las 7:00, sitio solo en alemán, sin lista de espera. Quien no domine el idioma no tiene oportunidad.',sz3s:'Basler Ferienpass — proceso actual',
+  sz_quote:'El Ferienpass promete: vacaciones para todos. Pero quien no habla alemán, no puede acceder a las 7:00 — está excluido. No por mala intención. Porque la infraestructura no creció.',
+  sz_cite:'La solución no es la buena voluntad. La solución es la infraestructura digital.',
+  aq_lbl:'ESTADO ACTUAL → MEJORA',aq_ist:'HOY',aq_sol:'OBJETIVO',
+  a4_tit:'El Ferienpass también.',a4_lead:'Basilea-Ciudad tiene más de 170 nacionalidades. El Ferienpass hoy solo habla alemán.',
+  ui_lang:'Interfaz de plataforma',ai_lang:'Asistente AI',leg_ui:'Plataforma (DE / FR / EN)',leg_ai:'Asistente telefónico AI (8 idiomas)',
+  q1:'Un asistente telefónico AI en turco, albanés, tamil y ucraniano significa: cada padre puede llamar en su lengua materna — a las 22:00 — y reservar un curso.',
+  q1c:'Esa es la diferencia entre participación y exclusión.',
+  core_msg:'El Ferienpass de Basilea es desde hace décadas una promesa a todas las familias: las vacaciones son posibles para cada niño — independientemente del origen, idioma y presupuesto.',
+  core_cite:'Basler Ferienpass — Para los niños. Para las familias. Para Basilea.',
+  cta_tit:'¿Listos para empezar?',cta_sub:'Esperamos con interés la conversación.',cta_pdf_arg:'↓ COMO PDF',cta_to_prop:'→ A LA PROPUESTA',cta_pdf_prop:'↓ COMO PDF',cta_to_arg:'← AL ARGUMENTARIO',
+  p_sub:'Rediseño completo — impulsado por AI, modular, escalable.',p_dl:'↓ DESCARGAR PROPUESTA',p_contact:'→ CONTÁCTENOS',
+  funders_t:'Posibles socios financiadores',
+  ms_lbl:'PLAN DE PAGO — 3 HITOS',ms1n:'Firma del contrato',ms2n:'Después del Go-Live',ms3n:'Después de 3 meses de soporte',ms_tot:'TOTAL',
+  foot_law:'Derecho Suizo · Basilea-Ciudad',foot_copy:'© 2026 goSNOB.ai — Todos los derechos reservados'
+};
+T.pt={
+  login_sub:'Ferienpass Basileia — Documentos confidenciais 2026',lbl_name:'Nome',lbl_code:'Código de acesso',lerr:'Credenciais inválidas.',login_btn:'SOLICITAR ACESSO',login_hint:'CONFIDENCIAL · APENAS PESSOAS AUTORIZADAS',
+  land_sub:'× BASLER FERIENPASS 2026',land_tag_arg:'Sociedade · Social · Inclusão',land_h_arg:'PORQUE O FERIENPASS <em>PARA TODOS.</em>',land_desc_arg:'A promessa social do Ferienpass da Basileia — e por que uma base moderna é uma necessidade.',land_for_arg:'PARA: <strong>Política · Parceiros · Público · Mídia</strong>',ls1:'Nacionalidades',ls2:'Origem migratória',ls3:'Semanas férias/ano',land_btn_arg:'→ ABRIR ARGUMENTÁRIO',
+  land_tag_prop:'Tecnologia · Investimento · Implementação',land_h_prop:'O QUE CONSTRUÍMOS. <em>COMO FUNCIONA.</em>',land_desc_prop:'A oferta concreta: funcionalidades, preços, cronograma e plano de pagamento.',land_for_prop:'PARA: <strong>Cliente · Decisores · Equipe do projeto</strong>',ls4:'60k Investimento',ls5:'Fases do projeto',ls6:'Marcos',land_btn_prop:'→ ABRIR PROPOSTA',
+  nav_arg:'ARGUMENTÁRIO',nav_prop:'PROPOSTA',nav_dl:'↓ PDF',
+  a_h1:'BASLER FERIENPASS',a_h2:'PARA TODOS.',a_sub:'O Ferienpass da Basileia é há décadas uma instituição. Agora é hora de cumprir a sua promessa com uma base moderna.',
+  s1:'Nacionalidades em Basileia',s2:'População com origem migratória',s3:'Semanas de férias por ano',
+  a2_lbl:'02 — REALIDADE SOCIAL DA BASILEIA',a2_tit:'Os números por trás da promessa.',a2_lead:'Inclusão não é um slogan — é mensurável.',
+  sz1t:'Não falam língua nacional em casa',sz1d:'Quase metade das famílias de Basileia se comunica em casa em turco, albanês, tâmil, árabe ou outro idioma.',sz1s:'Fonte: Serviço de Estatística Basileia-Cidade 2024',
+  sz2t:'Perda de aprendizagem por verão',sz2d:'Crianças de famílias de baixa renda perdem até 2 meses de progresso de aprendizagem durante as férias de verão.',sz2s:'Fonte: OCDE Education at a Glance 2023',
+  sz3t:'Abertura das inscrições — e quem perde',sz3d:'Abertura às 7:00, site apenas em alemão, sem lista de espera. Quem não domina o idioma não tem chance.',sz3s:'Basler Ferienpass — processo atual',
+  sz_quote:'O Ferienpass promete: férias para todos. Mas quem não fala alemão, não consegue aceder às 7:00 — está excluído. Não por má intenção. Porque a infraestrutura não cresceu.',
+  sz_cite:'A solução não é a boa vontade. A solução é a infraestrutura digital.',
+  aq_lbl:'ESTADO ATUAL → MELHORIA',aq_ist:'HOJE',aq_sol:'OBJETIVO',
+  a4_tit:'O Ferienpass também.',a4_lead:'Basileia-Cidade tem mais de 170 nacionalidades. O Ferienpass hoje fala apenas alemão.',
+  ui_lang:'Interface da plataforma',ai_lang:'Assistente AI',leg_ui:'Plataforma (DE / FR / EN)',leg_ai:'Assistente telefónico AI (8 línguas)',
+  q1:'Um assistente telefónico AI em turco, albanês, tâmil e ucraniano significa: cada pai pode ligar na sua língua materna — às 22:00 — e reservar um curso.',
+  q1c:'Essa é a diferença entre participação e exclusão.',
+  core_msg:'O Ferienpass da Basileia é há décadas uma promessa a todas as famílias: as férias são possíveis para cada criança — independentemente da origem, língua e orçamento.',
+  core_cite:'Basler Ferienpass — Para as crianças. Para as famílias. Para a Basileia.',
+  cta_tit:'Prontos para começar?',cta_sub:'Aguardamos a conversa com interesse.',cta_pdf_arg:'↓ COMO PDF',cta_to_prop:'→ À PROPOSTA',cta_pdf_prop:'↓ COMO PDF',cta_to_arg:'← AO ARGUMENTÁRIO',
+  p_sub:'Redesenho completo — baseado em AI, modular, escalável.',p_dl:'↓ BAIXAR PROPOSTA',p_contact:'→ CONTACTE-NOS',
+  funders_t:'Possíveis parceiros financiadores',
+  ms_lbl:'PLANO DE PAGAMENTO — 3 MARCOS',ms1n:'Assinatura do contrato',ms2n:'Após o Go-Live',ms3n:'Após 3 meses de suporte',ms_tot:'TOTAL',
+  foot_law:'Direito Suíço · Basileia-Cidade',foot_copy:'© 2026 goSNOB.ai — Todos os direitos reservados'
+};
+T.uk={
+  login_sub:'Ferienpass Базель — Конфіденційні документи 2026',lbl_name:'Ім\'я',lbl_code:'Код доступу',lerr:'Невірні облікові дані.',login_btn:'ЗАПРОСИТИ ДОСТУП',login_hint:'КОНФІДЕНЦІЙНО · ТІЛЬКИ АВТОРИЗОВАНІ ОСОБИ',
+  land_sub:'× BASLER FERIENPASS 2026',land_tag_arg:'Суспільство · Соціальне · Інклюзія',land_h_arg:'ЧОМУ FERIENPASS <em>ДЛЯ ВСІХ.</em>',land_desc_arg:'Соціальна обіцянка Ferienpass Базеля — і чому сучасна основа є необхідністю.',land_for_arg:'ДЛЯ: <strong>Політики · Партнери · Громадськість · ЗМІ</strong>',ls1:'Національності',ls2:'Міграційне походження',ls3:'Тижнів відпустки/рік',land_btn_arg:'→ ВІДКРИТИ АРГУМЕНТАРІЙ',
+  land_tag_prop:'Технологія · Інвестиція · Реалізація',land_h_prop:'ЩО МИ БУДУЄМО. <em>ЯК ЦЕ ПРАЦЮЄ.</em>',land_desc_prop:'Конкретна пропозиція: функції, ціни, часові рамки та план оплати.',land_for_prop:'ДЛЯ: <strong>Замовника · Приймачів рішень · Команди проекту</strong>',ls4:'60k Інвестиція',ls5:'Фази проекту',ls6:'Етапи',land_btn_prop:'→ ВІДКРИТИ ПРОПОЗИЦІЮ',
+  nav_arg:'АРГУМЕНТАРІЙ',nav_prop:'ПРОПОЗИЦІЯ',nav_dl:'↓ PDF',
+  a_h1:'BASLER FERIENPASS',a_h2:'ДЛЯ ВСІХ.',a_sub:'Базельський Ferienpass є інституцією вже десятиліттями. Настав час виконати його обіцянку на сучасній основі.',
+  s1:'Національності у Базелі',s2:'Населення з міграційним походженням',s3:'Тижнів відпустки на рік',
+  a2_lbl:'02 — СОЦІАЛЬНА РЕАЛЬНІСТЬ БАЗЕЛЯ',a2_tit:'Цифри за обіцянкою.',a2_lead:'Інклюзія — це не гасло — вона вимірювана.',
+  sz1t:'Не розмовляють державною мовою вдома',sz1d:'Майже половина базельських домогосподарств спілкується вдома турецькою, албанською, тамільською, арабською або іншою мовою.',sz1s:'Джерело: Статистичне управління Базель-Штадт 2024',
+  sz2t:'Втрата навчання за літо',sz2d:'Діти з малозабезпечених сімей втрачають до 2 місяців навчального прогресу під час літніх канікул.',sz2s:'Джерело: ОЕСР Education at a Glance 2023',
+  sz3t:'Відкриття реєстрації — і хто програє',sz3d:'Відкриття о 7:00, сайт лише німецькою, без списку очікування. Хто не знає мови — не має шансу.',sz3s:'Basler Ferienpass — поточний процес',
+  sz_quote:'Ferienpass обіцяє: відпустка для всіх. Але хто не розмовляє німецькою, хто не може зайти о 7:00 — виключений. Не через злий умисел. Тому що інфраструктура не зросла.',
+  sz_cite:'Рішення — не добра воля. Рішення — цифрова інфраструктура.',
+  aq_lbl:'ПОТОЧНИЙ СТАН → ПОКРАЩЕННЯ',aq_ist:'СЬОГОДНІ',aq_sol:'МЕТА',
+  a4_tit:'Ferienpass також.',a4_lead:'Базель-Штадт має понад 170 національностей. Ferienpass сьогодні розмовляє лише німецькою.',
+  ui_lang:'Інтерфейс платформи',ai_lang:'AI Асистент',leg_ui:'Платформа (DE / FR / EN)',leg_ai:'AI телефонний асистент (8 мов)',
+  q1:'AI телефонний асистент турецькою, албанською, тамільською та українською мовами означає: кожен батько може зателефонувати рідною мовою — о 22:00 — і записатися на курс.',
+  q1c:'Це різниця між участю та виключенням.',
+  core_msg:'Базельський Ferienpass є десятиліттями обіцянкою для всіх базельських сімей: відпустка можлива для кожної дитини — незалежно від походження, мови та бюджету.',
+  core_cite:'Basler Ferienpass — Для дітей. Для сімей. Для Базеля.',
+  cta_tit:'Готові почати?',cta_sub:'З нетерпінням чекаємо розмови.',cta_pdf_arg:'↓ ЯК PDF',cta_to_prop:'→ ДО ПРОПОЗИЦІЇ',cta_pdf_prop:'↓ ЯК PDF',cta_to_arg:'← ДО АРГУМЕНТАРІЮ',
+  p_sub:'Повний редизайн — на основі AI, модульний, масштабований.',p_dl:'↓ ЗАВАНТАЖИТИ ПРОПОЗИЦІЮ',p_contact:'→ ЗВ\'ЯЖІТЬСЯ З НАМИ',
+  funders_t:'Можливі партнери з фінансування',
+  ms_lbl:'ПЛАН ОПЛАТИ — 3 ЕТАПИ',ms1n:'Підписання договору',ms2n:'Після Go-Live',ms3n:'Після 3 місяців підтримки',ms_tot:'ВСЬОГО',
+  foot_law:'Швейцарське право · Базель-Штадт',foot_copy:'© 2026 goSNOB.ai — Всі права захищені'
+};
+T.ta={
+  login_sub:'ஃபெரியன்பாஸ் பேஸல் — இரகசிய ஆவணங்கள் 2026',lbl_name:'பெயர்',lbl_code:'அணுகல் குறியீடு',lerr:'தவறான நற்சான்றிதழ்கள்.',login_btn:'அணுகல் கோரிக்கை',login_hint:'இரகசியம் · அங்கீகரிக்கப்பட்டவர்கள் மட்டும்',
+  land_sub:'× BASLER FERIENPASS 2026',land_tag_arg:'சமூகம் · சமூக நலன் · உள்ளடக்கம்',land_h_arg:'ஏன் ஃபெரியன்பாஸ் <em>அனைவருக்கும்.</em>',land_desc_arg:'பேஸல் ஃபெரியன்பாஸின் சமூக வாக்குறுதி — நவீன அடித்தளம் ஏன் அவசியம்.',land_for_arg:'இதற்காக: <strong>அரசியல் · பங்காளிகள் · பொதுமக்கள் · ஊடகம்</strong>',ls1:'தேசியங்கள்',ls2:'புலம்பெயர் பின்னணி',ls3:'விடுமுறை வாரங்கள்/ஆண்டு',land_btn_arg:'→ வாதம் திறக்கவும்',
+  land_tag_prop:'தொழில்நுட்பம் · முதலீடு · செயல்படுத்தல்',land_h_prop:'நாங்கள் என்ன கட்டுகிறோம். <em>எப்படி செயல்படுகிறது.</em>',land_desc_prop:'உறுதியான சலுகை: அம்சங்கள், விலைகள், காலக்கெடு மற்றும் கட்டண திட்டம்.',land_for_prop:'இதற்காக: <strong>வாடிக்கையாளர் · முடிவெடுப்பவர்கள் · திட்ட குழு</strong>',ls4:'60k முதலீடு',ls5:'திட்ட கட்டங்கள்',ls6:'மைல்கற்கள்',land_btn_prop:'→ திட்டம் திறக்கவும்',
+  nav_arg:'வாதம்',nav_prop:'திட்டம்',nav_dl:'↓ PDF',
+  a_h1:'BASLER FERIENPASS',a_h2:'அனைவருக்கும்.',a_sub:'பேஸல் ஃபெரியன்பாஸ் பல தசாப்தங்களாக ஒரு நிறுவனம். இப்போது நவீன அடித்தளத்துடன் வாக்குறுதியை நிறைவேற்ற வேண்டிய நேரம்.',
+  s1:'பேஸலில் தேசியங்கள்',s2:'புலம்பெயர் பின்னணி உள்ள மக்கள்',s3:'ஆண்டுக்கு விடுமுறை வாரங்கள்',
+  a2_lbl:'02 — பேஸலின் சமூக யதார்த்தம்',a2_tit:'வாக்குறுதிக்கு பின்னால் உள்ள எண்கள்.',a2_lead:'உள்ளடக்கம் என்பது ஒரு முழக்கம் அல்ல — அது அளவிடக்கூடியது.',
+  sz1t:'வீட்டில் தேசிய மொழி பேசுவதில்லை',sz1d:'பேஸல் குடும்பங்களில் கிட்டத்தட்ட பாதி பேர் வீட்டில் துர்க்கிஷ், அல்பேனியன், தமிழ், அரபிக் அல்லது வேறு மொழியில் பேசுகின்றனர்.',sz1s:'ஆதாரம்: பேஸல்-நகர புள்ளியியல் அலுவலகம் 2024',
+  sz2t:'ஒவ்வொரு கோடையிலும் கற்றல் இழப்பு',sz2d:'குறைந்த வருமான குடும்பங்களின் குழந்தைகள் கோடை விடுமுறையில் 2 மாதம் வரை கற்றல் முன்னேற்றத்தை இழக்கின்றனர்.',sz2s:'ஆதாரம்: OECD Education at a Glance 2023',
+  sz3t:'பதிவு திறப்பு — யார் தோற்கிறார்கள்',sz3d:'காலை 7 மணிக்கு திறப்பு, ஜெர்மன் மட்டுமே தளம், காத்திருப்பு பட்டியல் இல்லை. மொழி தெரியாதவர்களுக்கு வாய்ப்பே இல்லை.',sz3s:'Basler Ferienpass — தற்போதைய செயல்முறை',
+  sz_quote:'ஃபெரியன்பாஸ் வாக்களிக்கிறது: அனைவருக்கும் விடுமுறை. ஆனால் ஜெர்மன் தெரியாதவர்கள், காலை 7 மணிக்கு உள்நுழைய முடியாதவர்கள் — விலக்கப்படுகிறார்கள். தீய எண்ணத்தால் அல்ல. ஏனெனில் உள்கட்டமைப்பு வளரவில்லை.',
+  sz_cite:'தீர்வு நல்ல நோக்கம் அல்ல. தீர்வு டிஜிட்டல் உள்கட்டமைப்பு.',
+  aq_lbl:'தற்போதைய நிலை → முன்னேற்றம்',aq_ist:'இன்று',aq_sol:'இலக்கு',
+  a4_tit:'ஃபெரியன்பாஸும் கூட.',a4_lead:'பேஸல்-நகரில் 170க்கும் மேற்பட்ட தேசியங்கள் உள்ளன. ஃபெரியன்பாஸ் இன்று ஜெர்மன் மட்டுமே பேசுகிறது.',
+  ui_lang:'தள இடைமுகம்',ai_lang:'AI உதவியாளர்',leg_ui:'தளம் (DE / FR / EN)',leg_ai:'AI தொலைபேசி உதவியாளர் (8 மொழிகள்)',
+  q1:'துர்க்கிஷ், அல்பேனியன், தமிழ் மற்றும் உக்ரேனியன் மொழிகளில் AI தொலைபேசி உதவியாளர் என்பது: ஒவ்வொரு பெற்றோரும் தங்கள் தாய்மொழியில் அழைக்கலாம் — இரவு 10 மணிக்கு — மற்றும் ஒரு பாடத்தை பதிவு செய்யலாம்.',
+  q1c:'இது பங்கேற்பிற்கும் விலக்கிற்கும் இடையிலான வித்தியாசம்.',
+  core_msg:'பேஸல் ஃபெரியன்பாஸ் பல தசாப்தங்களாக அனைத்து பேஸல் குடும்பங்களுக்கும் ஒரு வாக்குறுதி: ஒவ்வொரு குழந்தைக்கும் விடுமுறை சாத்தியம் — தோற்றம், மொழி மற்றும் பட்ஜெட்டைப் பொறுத்தவரை இல்லாமல்.',
+  core_cite:'Basler Ferienpass — குழந்தைகளுக்கு. குடும்பங்களுக்கு. பேஸலுக்கு.',
+  cta_tit:'தொடங்க தயாரா?',cta_sub:'உரையாடலை ஆவலுடன் எதிர்நோக்குகிறோம்.',cta_pdf_arg:'↓ PDF ஆக',cta_to_prop:'→ திட்டத்திற்கு',cta_pdf_prop:'↓ PDF ஆக',cta_to_arg:'← வாதத்திற்கு',
+  p_sub:'முழுமையான மறுவடிவமைப்பு — AI அடிப்படையில், மட்டுமயமான, அளவிடக்கூடியது.',p_dl:'↓ திட்டம் பதிவிறக்கவும்',p_contact:'→ எங்களை தொடர்பு கொள்ளுங்கள்',
+  funders_t:'சாத்தியமான நிதி கூட்டாளர்கள்',
+  ms_lbl:'கட்டண திட்டம் — 3 மைல்கற்கள்',ms1n:'ஒப்பந்தம் கையொப்பமிடும்போது',ms2n:'Go-Live க்கு பிறகு',ms3n:'3 மாத ஆதரவிற்கு பிறகு',ms_tot:'மொத்தம்',
+  foot_law:'சுவிஸ் சட்டம் · பேஸல்-நகர',foot_copy:'© 2026 goSNOB.ai — அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை'
 };
 
 // ── SETLANG — robust innerHTML for keys with HTML tags
