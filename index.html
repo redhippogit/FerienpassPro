@@ -864,18 +864,27 @@ function showToast(msg){
   setTimeout(()=>t.remove(),3000);
 }
 
-// ── PDF EXPORT — beide Views zusammen, aktuelle Sprache
+// ── PDF EXPORT — window.print()
 function exportPDF(){
-  // Alle Inhalte sichtbar + alle Accordeons öffnen
+  // Alle sichtbar machen
   document.querySelectorAll('.fade').forEach(f=>f.classList.add('vis'));
   document.querySelectorAll('.ftab-body').forEach(t=>t.style.display='block');
   document.querySelectorAll('.fbody').forEach(t=>t.style.display='block');
   document.querySelectorAll('.opbody').forEach(t=>t.style.display='block');
-
-  const styles=Array.from(document.querySelectorAll('style')).map(s=>s.innerHTML).join('\n');
-  // innerHTML nach setLang — Texte sind bereits übersetzt im DOM
-  const arg=document.getElementById('view-arg').innerHTML;
-  const prop=document.getElementById('view-proposal').innerHTML;
+  // Beide Views kurz sichtbar für Print
+  document.querySelectorAll('.view').forEach(v=>v.style.display='block');
+  setTimeout(()=>{
+    window.print();
+    // Nach Print wieder normal
+    setTimeout(()=>{
+      document.querySelectorAll('.view').forEach(v=>v.style.display='');
+      document.querySelectorAll('.ftab-body').forEach((t,i)=>{t.style.display=i===0?'block':'none';});
+      document.querySelectorAll('.fbody').forEach(t=>t.style.display='');
+      document.querySelectorAll('.opbody').forEach(t=>t.style.display='');
+    },1000);
+  },200);
+  // DUMMY — wird nicht gebraucht aber Syntax braucht's
+  const arg='',prop='',styles='';
 
   const html=`<!DOCTYPE html>
 <html lang="de">
