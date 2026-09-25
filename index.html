@@ -330,6 +330,7 @@ footer{border-top:1px solid var(--g30);padding:2rem;font-size:.72rem;color:var(-
   .sbar-row{grid-template-columns:1fr;gap:.5rem;}
 }
 </style>
+
 </head>
 <body>
 <!-- LOGIN -->
@@ -394,7 +395,7 @@ footer{border-top:1px solid var(--g30);padding:2rem;font-size:.72rem;color:var(-
   </div>
   <div class="nav-right">
     <div class="lang-pills" id="langpills"></div>
-    <button class="nav-dl" onclick="window.print()" data-i18n="nav_dl">↓ PDF</button>
+    <button class="nav-dl" onclick="exportPDF()" data-i18n="nav_dl">↓ PDF</button>
   </div>
 </nav>
 
@@ -601,7 +602,7 @@ footer{border-top:1px solid var(--g30);padding:2rem;font-size:.72rem;color:var(-
       <p data-i18n="cta_sub">Wir freuen uns auf das Gespräch.</p>
       <div class="cta-acts">
         <a href="mailto:team@gosnob.com" class="bp">→ team@gosnob.com</a>
-        <button class="bo" onclick="window.print()" data-i18n="cta_pdf_arg">↓ ALS PDF</button>
+        <button class="bo" onclick="exportPDF()" data-i18n="cta_pdf_arg">↓ ALS PDF</button>
         <button class="bo" onclick="openView('proposal')" data-i18n="cta_to_prop">→ ZUM PROPOSAL</button>
       </div>
     </div>
@@ -617,7 +618,7 @@ footer{border-top:1px solid var(--g30);padding:2rem;font-size:.72rem;color:var(-
       <h1 class="htit fade">BASLER FERIENPASS<br><em>JUAR</em></h1>
       <p class="hsub fade" data-i18n="p_sub">Komplette Neugestaltung der Präsenz und manuellen Prozesse — AI-gestützt, modular, skalierbar.</p>
       <div class="hacts fade">
-        <button class="bp" onclick="window.print()" data-i18n="p_dl">↓ PROPOSAL DOWNLOADEN</button>
+        <button class="bp" onclick="exportPDF()" data-i18n="p_dl">↓ PROPOSAL DOWNLOADEN</button>
         <a href="mailto:team@gosnob.com" class="bo" data-i18n="p_contact">→ KONTAKT AUFNEHMEN</a>
       </div>
       <div class="claim-row fade">
@@ -692,7 +693,7 @@ footer{border-top:1px solid var(--g30);padding:2rem;font-size:.72rem;color:var(-
         <!-- ANBIETER TAB -->
         <div id="ftab-providers" class="ftab-body">
           <div class="frow" onclick="tFeat(this)"><div class="fhdr"><h4 data-i18n="p1h">Streamlined Registration</h4><div class="fpr" class="inc">Im Family-Preis</div><div class="ftog">+</div></div><div class="fbody"><div class="f2col"><div class="fcol"><div class="fclbl" data-i18n="col_w">WAS</div><ul><li data-i18n="p1w1">Guided Registration via Sign-up Form</li><li data-i18n="p1w2">Transparente Profil-Freigabe</li></ul></div><div class="fcol"><div class="fclbl" data-i18n="col_why">WARUM</div><ul><li data-i18n="p1b1">Klare Registrierung schafft Vertrauen</li><li data-i18n="p1b2">Eliminiert Reibung im Onboarding</li></ul></div></div></div></div>
-          <div class="frow" onclick="tFeat(this)"><div class="fhdr"><h4 data-i18n="p2h">Assisted Course Publishing</h4><div class="fpr">CHF 8'000</div><div class="ftog">+</div></div><div class="fbody"><div class="f2col"><div class="fcol"><div class="fclbl" data-i18n="col_w">WAS</div><ul><li data-i18n="p2w1">Geführte Kurs-Profil-Erstellung</li><li data-i18n="p2w2">Transparenter Publishing Review Status</li></ul></div><div class="fcol"><div class="fclbl" data-i18n="col_why">WARUM</div><ul><li data-i18n="p2b1">Guidance reduziert manuellen Aufwand</li><li data-i18n="p2b2">Anbieter liefern vollständige Daten von Anfang an</li></ul></div></div></div></div>
+          <div class="frow" onclick="tFeat(this)"><div class="fhdr"><h4 data-i18n="p2h">Assisted Course Publishing</h4><div class="fpr inc">Im Marketplace-Preis</div><div class="ftog">+</div></div><div class="fbody"><div class="f2col"><div class="fcol"><div class="fclbl" data-i18n="col_w">WAS</div><ul><li data-i18n="p2w1">Geführte Kurs-Profil-Erstellung</li><li data-i18n="p2w2">Transparenter Publishing Review Status</li></ul></div><div class="fcol"><div class="fclbl" data-i18n="col_why">WARUM</div><ul><li data-i18n="p2b1">Guidance reduziert manuellen Aufwand</li><li data-i18n="p2b2">Anbieter liefern vollständige Daten von Anfang an</li></ul></div></div></div></div>
           <div class="frow" onclick="tFeat(this)"><div class="fhdr"><h4>Integrated Payments &amp; Waitlists</h4><div class="fpr inc" data-i18n="inc_fam">Im Family-Preis inbegriffen</div><div class="ftog">+</div></div><div class="fbody"><div class="f2col"><div class="fcol"><div class="fclbl" data-i18n="col_w">WAS</div><ul><li>Payments via Stripe / TWINT (inkl. Refunds)</li><li>Transparente Waitlists</li></ul></div><div class="fcol"><div class="fclbl" data-i18n="col_why">WARUM</div><ul><li>Anbieter werden sofort ausgezahlt</li><li>Sichtbare Waitlists ermöglichen proaktives Management</li></ul></div></div></div></div>
           <div class="ophdr" onclick="tOpt(this)"><span class="oplbl" data-i18n="opt_lbl">+ OPTIONALE ERWEITERUNGEN</span><span class="opbdg" data-i18n="opt_bdg">NICHT IM BASE PACKAGE</span><span class="optog">+</span></div>
           <div class="opbody">
@@ -714,8 +715,8 @@ footer{border-top:1px solid var(--g30);padding:2rem;font-size:.72rem;color:var(-
 
         <!-- INFRA TAB -->
         <div id="ftab-infra" class="ftab-body">
-          <div class="frow" onclick="tFeat(this)"><div class="fhdr"><h4 data-i18n="i1h">Modern Website Design</h4><div class="fpr">CHF 12'000</div><div class="ftog">+</div></div><div class="fbody"><div class="f2col"><div class="fcol"><div class="fclbl" data-i18n="col_w">WAS</div><ul><li>Spacious &amp; uncluttered Design</li><li>Full Ferienpass Branding</li><li>Trilingual: DE / FR / EN</li></ul></div><div class="fcol"><div class="fclbl" data-i18n="col_why">WARUM</div><ul><li>Modernes Branding zieht mehr Familien an</li><li>Höhere Qualität bei Kursanbietern</li></ul></div></div></div></div>
-          <div class="frow" onclick="tFeat(this)"><div class="fhdr"><h4 data-i18n="i2h">Modular Architecture</h4><div class="fpr">CHF 20'000</div><div class="ftog">+</div></div><div class="fbody"><div class="f2col"><div class="fcol"><div class="fclbl" data-i18n="col_w">WAS</div><ul><li>Erweiterbar: Base → Advanced Features</li><li>Latest Industry Standards</li><li>Virtually Zero Maintenance</li></ul></div><div class="fcol"><div class="fclbl" data-i18n="col_why">WARUM</div><ul><li>Features über Zeit hinzufügen</li><li>Keine Abhängigkeit von einzelnem Admin</li></ul></div></div></div></div>
+          <div class="frow" onclick="tFeat(this)"><div class="fhdr"><h4 data-i18n="i1h">Modern Website Design</h4><div class="fpr inc">Im Paket</div><div class="ftog">+</div></div><div class="fbody"><div class="f2col"><div class="fcol"><div class="fclbl" data-i18n="col_w">WAS</div><ul><li>Spacious &amp; uncluttered Design</li><li>Full Ferienpass Branding</li><li>Trilingual: DE / FR / EN</li></ul></div><div class="fcol"><div class="fclbl" data-i18n="col_why">WARUM</div><ul><li>Modernes Branding zieht mehr Familien an</li><li>Höhere Qualität bei Kursanbietern</li></ul></div></div></div></div>
+          <div class="frow" onclick="tFeat(this)"><div class="fhdr"><h4 data-i18n="i2h">Modular Architecture</h4><div class="fpr">CHF 20'000 total</div><div class="ftog">+</div></div><div class="fbody"><div class="f2col"><div class="fcol"><div class="fclbl" data-i18n="col_w">WAS</div><ul><li>Erweiterbar: Base → Advanced Features</li><li>Latest Industry Standards</li><li>Virtually Zero Maintenance</li></ul></div><div class="fcol"><div class="fclbl" data-i18n="col_why">WARUM</div><ul><li>Features über Zeit hinzufügen</li><li>Keine Abhängigkeit von einzelnem Admin</li></ul></div></div></div></div>
           <div class="frow" onclick="tFeat(this)"><div class="fhdr"><h4>Metanet.ch Hosting</h4><div class="fpr inc" data-i18n="i3_note">Direkt von Metanet.ch</div><div class="ftog">+</div></div><div class="fbody"><div class="f2col"><div class="fcol"><div class="fclbl" data-i18n="col_w">WAS</div><ul><li>Metanet.ch — Datenspeicherung in der Schweiz</li><li>Exzellenter Customer Support</li></ul></div><div class="fcol"><div class="fclbl" data-i18n="col_why">WARUM</div><ul><li>Direktverbindung mit lokalem Provider</li><li>Kontinuierliche Performance</li></ul></div></div></div></div>
           <div class="ophdr" onclick="tOpt(this)"><span class="oplbl" data-i18n="opt_lbl">+ OPTIONALE ERWEITERUNGEN</span><span class="opbdg" data-i18n="opt_bdg">NICHT IM BASE PACKAGE</span><span class="optog">+</span></div>
           <div class="opbody">
@@ -823,7 +824,7 @@ footer{border-top:1px solid var(--g30);padding:2rem;font-size:.72rem;color:var(-
       <p data-i18n="cta_sub">Wir freuen uns auf das Gespräch. Meld dich direkt — schnell und unkompliziert.</p>
       <div class="cta-acts">
         <a href="mailto:team@gosnob.com" class="bp">→ team@gosnob.com</a>
-        <button class="bo" onclick="window.print()" data-i18n="cta_pdf_prop">↓ ALS PDF</button>
+        <button class="bo" onclick="exportPDF()" data-i18n="cta_pdf_prop">↓ ALS PDF</button>
         <button class="bo" onclick="openView('arg')" data-i18n="cta_to_arg">← ZUM ARGUMENTARIUM</button>
       </div>
     </div>
@@ -838,6 +839,67 @@ footer{border-top:1px solid var(--g30);padding:2rem;font-size:.72rem;color:var(-
   </div>
 </footer>
 <script>
+// ── PDF EXPORT — beide Views zusammen
+function exportPDF(){
+  // Alle Inhalte sichtbar machen vor Export
+  document.querySelectorAll('.fade').forEach(f=>f.classList.add('vis'));
+  document.querySelectorAll('.ftab-body').forEach(t=>t.style.display='block');
+
+  const styles=Array.from(document.querySelectorAll('style')).map(s=>s.innerHTML).join('\n');
+  const arg=document.getElementById('view-arg').innerHTML;
+  const prop=document.getElementById('view-proposal').innerHTML;
+
+  const html=`<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Basler Ferienpass × goSNOB.ai 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+${styles}
+*{cursor:default!important;}
+body{background:#000;color:#fff;margin:0;padding:0;}
+.fade{opacity:1!important;transform:none!important;}
+.ftab-body{display:block!important;}
+.hsec{padding-top:5rem!important;}
+.view-break{page-break-before:always;border-top:3px solid #d946ef;padding-top:3rem;}
+.cta-sec{display:none!important;}
+@page{size:A4;margin:12mm;}
+@media print{
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .view-break{page-break-before:always;}
+  section{page-break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+<div style="padding:2rem 0;">
+  <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:1.5rem;letter-spacing:.1em;color:#d946ef;margin-bottom:.3rem;">GOSNOB.AI × BASLER FERIENPASS 2026</div>
+  <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:#555;">VOLLSTÄNDIGES DOKUMENT — ARGUMENTARIUM + PROPOSAL — VERTRAULICH</div>
+</div>
+<div>${arg}</div>
+<div class="view-break">
+  <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:1rem;letter-spacing:.15em;color:#555;padding:0 2rem 2rem;">PROPOSAL</div>
+  ${prop}
+</div>
+</body>
+</html>`;
+
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download='Ferienpass-goSNOB-2026.html';
+  a.click();
+  URL.revokeObjectURL(url);
+
+  // Tabs wieder normal
+  setTimeout(()=>{
+    document.querySelectorAll('.ftab-body').forEach((t,i)=>{t.style.display=i===0?'block':'none';});
+  },500);
+}
+
 // ── LOGIN
 const VN='ferienpass',VC='ferien4all';
 function doLogin(){
